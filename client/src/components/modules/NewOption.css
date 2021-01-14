@@ -1,0 +1,35 @@
+.NewOption-input,
+.NewOption-submit 
+{
+  font-size: 14px;
+  margin-top: var(--s);
+  padding: var(--s) var(--m);
+}
+
+.NewOption-input {
+  flex-grow: 1;
+  border: var(--lightbrown) 1px solid;
+  border-radius: var(--xs) 0 0 var(--xs);
+  transition: box-shadow 0.1s;
+}
+
+.NewOption-input:focus-within 
+{
+  border-color: var(--lightbrown);
+  outline: none;
+  box-shadow: 0 0 0 var(--xs) var(--green--dim);
+}
+
+.NewOption-submit {
+  color: var(--green);
+  border: var(--green) 1px solid;
+  border-radius: 0 var(--xs) var(--xs) 0;
+  background: none;
+  transition: color 0.1s, background 0.1s;
+  outline:none;
+}
+
+.NewOption-submit:hover {
+  color: var(--white);
+  background-color: var(--green);
+}

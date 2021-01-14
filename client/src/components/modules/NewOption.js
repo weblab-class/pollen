@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { get, post } from "../../utilities";
 
-import "./Board.css";
+import "./NewOption.css";
+import "../../utilities.css";
 
 /*
     props:
+    this.props.addNewOption function
 */
 class NewOption extends Component 
 {
