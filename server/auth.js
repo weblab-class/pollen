@@ -20,12 +20,18 @@ function verify(token) {
 // gets user from DB, or makes a new account if it doesn't exist yet
 function getOrCreateUser(user) {
   // the "sub" field means "subject", which is a unique identifier for each user
-  return User.findOne({ googleid: user.sub }).then((existingUser) => {
+  return User.findOne({ googleID: user.sub }).then((existingUser) => {
+    console.log(existingUser)
     if (existingUser) return existingUser;
 
     const newUser = new User({
-      name: user.name,
-      googleid: user.sub,
+      displayName: user.name,
+      googleID: user.sub,
+      userTag: '@' + user.name,
+      myPolls: [],
+      sharedPolls: [],
+      picture: 0,
+      friends: []
     });
 
     return newUser.save();
@@ -33,6 +39,7 @@ function getOrCreateUser(user) {
 }
 
 function login(req, res) {
+  console.log("LOGIN")
   verify(req.body.token)
     .then((user) => getOrCreateUser(user))
     .then((user) => {

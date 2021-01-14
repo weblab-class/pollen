@@ -11,6 +11,7 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
+const Poll = require("./models/user");
 
 // import authentication library
 const auth = require("./auth");
@@ -41,6 +42,40 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 // | write your API methods below!|
 // |------------------------------|
+
+router.get("/poll", (req, res) => {
+  if (!req.user) {
+    return res.send({});
+  }
+
+  res.send({});
+});
+
+// Requires higher permissions to edit
+// Can only be modified by owner
+router.post("/poll", (req, res) => {
+  if (!req.user) {
+    return res.send({});
+  }
+
+  res.send({});
+});
+
+router.post("/vote", (req, res) => {
+  if (!req.user) {
+    return res.send({});
+  }
+
+  res.send({});
+});
+
+router.post("/addOption", (req, res) => {
+  if (!req.user) {
+    return res.send({});
+  }
+
+  res.send({});
+});
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
