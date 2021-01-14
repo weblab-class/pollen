@@ -8,6 +8,7 @@
 
 .NewOption-input {
   flex-grow: 1;
+  color: var(--lightbrown);
   border: var(--lightbrown) 1px solid;
   border-radius: var(--xs) 0 0 var(--xs);
   transition: box-shadow 0.1s;
