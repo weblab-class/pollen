@@ -27,10 +27,12 @@ function getOrCreateUser(user) {
     const newUser = new User({
       displayName: user.name,
       googleID: user.sub,
-      userTag: '@' + user.name,
+      userTag: '@' + user.given_name,
+      email: user.email,
       myPolls: [],
       sharedPolls: [],
       picture: 0,
+      picture_link: user.picture,
       friends: []
     });
 

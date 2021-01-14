@@ -5,10 +5,12 @@ const Poll = require("./poll");
 const UserSchema = new Schema({
   displayName: String,
   userTag: String,
+  email: String,
   googleID: String,
   myPolls: [Schema.Types.ObjectId],
   sharedPolls: [Schema.Types.ObjectId],
   picture: Number,
+  picture_link: String,
   friends: [Schema.Types.ObjectId]
 });
 
