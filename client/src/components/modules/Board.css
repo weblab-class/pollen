@@ -23,7 +23,7 @@
 
 .Board-questionContent
 {
-    color: var(--darkbrown);
+    color: var(--darkdarkbrown);
     font-size: 40px;
     margin: var(--s) 0 0;
 }

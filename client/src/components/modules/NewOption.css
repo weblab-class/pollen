@@ -22,7 +22,7 @@
 }
 
 .NewOption-submit {
-  color: var(--green);
+  color: var(--darkgreen);
   border: var(--green) 1px solid;
   border-radius: 0 var(--xs) var(--xs) 0;
   background: none;

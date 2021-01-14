@@ -26,9 +26,11 @@
   --white: #fff;
 
   --darkbrown: #826549;
+  --darkdarkbrown: #5e4a38;
   --lightbrown: #c2a286;
 
   --green: #cee079ff;
+  --darkgreen: #a7ba50ff;
   --green--dim: rgb(214, 226, 155);
 
   --xs: 4px;
@@ -75,6 +77,16 @@ form {
 
 .u-textCenter {
   text-align: center;
+}
+
+.u-textLarge
+{
+  font-size: 40px;
+}
+
+.u-textMedium
+{
+  font-size: 20px;
 }
 
 .u-relative {

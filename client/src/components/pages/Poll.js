@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { get } from "../../utilities";
 import Board from "../modules/Board.js";
 import NewOption from "../modules/NewOption.js";
+import VoterList from "../modules/VoterList.js";
 
 import "./Poll.css";
 import "../../utilities.css"
@@ -57,14 +58,28 @@ class Poll extends Component
   {
       return (
       <div className="Poll-container">
-        <div className="u-textCenter">
+        
+        <div className="u-textCenter u-textMedium">
           <span className="u-bold">{"@" + this.state.ownerID} </span>
           <span>'s poll</span>
         </div>
-        <Board question={this.state.question} options={this.state.options} />
-        <div className="u-textCenter">
-          <NewOption addNewOption={this.addNewOption} />
+
+        <div className="u-flex">
+
+          <div className="Poll-subContainer Poll-sideBar">
+            <VoterList />
+          </div>
+
+          <div className="Poll-subContainer Poll-board">
+            <Board question={this.state.question} options={this.state.options} />
+
+            <div className="u-textCenter">
+              <NewOption addNewOption={this.addNewOption} />
+            </div>
+          </div>
+
         </div>
+
       </div>
       );
   }

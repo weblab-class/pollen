@@ -2,3 +2,18 @@
 {
     margin-top: var(--l);
 }
+
+.Poll-subContainer
+{
+    flex-basis: 0;
+}
+
+.Poll-sideBar
+{
+    flex-grow: 1;
+}
+
+.Poll-board
+{
+    flex-grow: 4;
+}
