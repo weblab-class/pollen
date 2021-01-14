@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
+import Poll from "./pages/Poll.js";
 
 import "../utilities.css";
+import "./App.css";
 
-import { socket } from "../client-socket.js";
-
+//import { socket } from "../client-socket.js";
 import { get, post } from "../utilities";
 
 /**
@@ -22,12 +23,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    get("/api/whoami").then((user) => {
+    /*get("/api/whoami").then((user) => {
       if (user._id) {
         // they are registed in the database, and currently logged in.
         this.setState({ userId: user._id });
       }
-    });
+    });*/
   }
 
   handleLogin = (res) => {
@@ -46,7 +47,10 @@ class App extends Component {
 
   render() {
     return (
-      <>
+      <div className="App-container">
+        <Poll _id="2342" />
+      </div>
+      /*<>
         <Router>
           <Skeleton
             path="/"
@@ -56,7 +60,7 @@ class App extends Component {
           />
           <NotFound default />
         </Router>
-      </>
+      </>*/
     );
   }
 }

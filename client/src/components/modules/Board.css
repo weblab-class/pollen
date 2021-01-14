@@ -1,0 +1,42 @@
+.Board-container 
+{
+    border: var(--darkbrown) 15px solid;
+    border-radius: var(--m);
+
+    margin-top: var(--l);
+    padding: var(--m) var(--m);
+
+    background-color: var(--lightbrown);
+}
+
+.Board-questionBox, 
+.Board-optionBox
+{
+    border: var(--darkbrown) 2px solid;
+    border-radius: var(--s);
+
+    margin: 0 0 var(--xs) 0;
+    padding: var(--m) var(--l);
+
+    background-color: white;
+}
+
+.Board-questionContent
+{
+    color: var(--darkbrown);
+    font-size: 40px;
+    margin: var(--s) 0 0;
+}
+
+.Board-optionsBlock
+{
+    padding: var(--m) var(--l);
+}
+
+.Board-optionContent
+{
+    color: var(--darkbrown);
+    font-size: 20px;
+    margin: var(--s) 0 0;
+}
+
