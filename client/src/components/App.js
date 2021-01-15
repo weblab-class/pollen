@@ -3,6 +3,7 @@ import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
 import Poll from "./pages/Poll.js";
+import Profile from './pages/Profile.js';
 
 import "../utilities.css";
 import "./App.css";
@@ -48,18 +49,19 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App-container" >
-        <Router>
-          <Skeleton
-            path="/"
-            handleLogin={this.handleLogin}
-            handleLogout={this.handleLogout}
-            userId={this.state.userId}
-          />
-          <Poll path="/poll" _id="2342" />
-          <NotFound default />
-        </Router>
-      </div>
+
+      <Router>
+        <Skeleton
+          path="/"
+          handleLogin={this.handleLogin}
+          handleLogout={this.handleLogout}
+          userId={this.state.userId}
+        />
+        <Poll path="/poll" _id="2342" />
+        <Profile path="/profile" username="alicethebee" display_name="Alice Chen" />
+        <NotFound default />
+      </Router>
+
     );
   }
 }
