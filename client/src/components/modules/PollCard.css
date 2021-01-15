@@ -1,10 +1,13 @@
 .PollCard-container {
-    border: var(--darkgrey) 1px dashed;
+    border: #cfa7d6ff 1px dashed;
     border-radius: var(--s);
+    /* padding-top: var(--m); */
     margin-top: var(--m);
+    padding-left: var(--s);
 }
 
 .PollCard-namebanner {
-    padding-top: 0px;
     margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: #cfa7d6ff;
 }
