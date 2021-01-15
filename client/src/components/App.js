@@ -3,6 +3,7 @@ import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
 import Poll from "./pages/Poll.js";
+import Profile from './pages/Profile.js';
 
 import "../utilities.css";
 import "./App.css";
@@ -56,7 +57,8 @@ class App extends Component {
           handleLogout={this.handleLogout}
           userId={this.state.userId}
         />
-        <Poll path="/poll" _id="2342" />
+        {/* <Poll path="/poll" _id="2342" /> */}
+        <Profile username="alicethebee" display_name="Alice Chen" />
         <NotFound default />
       </Router>
 
