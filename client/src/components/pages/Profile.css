@@ -1,7 +1,7 @@
 .Profile-container {
     display: grid;
     grid-template-columns: 200px 1fr;
-    grid-gap: 8px;
+    grid-gap: 16px;
     padding: 16px;
     /* height: 400px; */
 }
