@@ -8,10 +8,11 @@
 */
 
 const express = require("express");
+const shortid = require('shortid');
 
 // import models so we can interact with the database
 const User = require("./models/user");
-const Poll = require("./models/user");
+const Poll = require("./models/poll");
 
 // import authentication library
 const auth = require("./auth");
@@ -44,22 +45,69 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 
 router.get("/poll", (req, res) => {
-  if (!req.user) {
+  if (!req.body.admin && !req.user) {
     return res.send({});
   }
+  Poll.findOne({_id:req.body.id}, (err, doc)=>{
+    console.log(doc)
+    if(doc){
+      res.send(doc)
+    }
+    else{
+      res.status(404).send("Not Found")
+    }
+  })
 
-  res.send({});
 });
 
 // Requires higher permissions to edit
 // Can only be modified by owner
 router.post("/poll", (req, res) => {
-  if (!req.user) {
+  if (!req.body.admin && !req.user) {
     return res.send({});
   }
-
-  res.send({});
-});
+  const user_id = req?.user?._id || '600074f15102dacd3c1881ca'
+  const time = Math.floor(Date.now()/1000)
+  // if id was provided try to update
+  if(req.body.id){
+    const is_admin = req.body.admin
+    delete req.body.admin
+    req.body.last_edited = (Date.now())/1000
+    req.body.last_edited_by = user_id
+    Poll.findOneAndUpdate({_id:req.body.id}, req.body, (err, doc)=>{
+      console.log(doc)
+      if(doc){
+        res.send(doc)
+      }
+      else{
+        res.status(404).send("Not Found")
+      }
+    })
+  }
+  else{
+    const id = shortid.generate()
+    const poll = {
+      question: req.body.question,
+      options: req.body.options,
+      votes: [],
+      owner: user_id,
+      tags: req.body.tags || [],
+      open: true,
+      addable: req.body.addable || false,
+      time_created: time,
+      last_edited: time,
+      last_edited_by: user_id,
+      _id: id
+    }
+    Poll.create(poll, function(err, doc) {
+      if(err){
+        console.error(err);
+      }
+      console.log(doc)
+      res.send(doc)
+    })
+  }
+})
 
 router.post("/vote", (req, res) => {
   if (!req.user) {
