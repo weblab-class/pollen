@@ -1,6 +1,13 @@
 .Profile-container {
     display: grid;
-    grid-template-columns: 100px 1fr;
+    grid-template-columns: 200px 1fr;
     grid-gap: 8px;
+    padding: 16px;
     /* height: 400px; */
+}
+
+.Profile-pfp {
+    border-radius: 50%;
+    background-color: aliceblue;
+    border: lightblue 1px dashed;
 }

@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import PollCard from "../modules/PollCard.js";
 
+import "./Grid.css";
+import "../../utilities.css";
+
 class Grid extends Component {
     constructor(props) {
         super(props);
@@ -26,3 +29,4 @@ class Grid extends Component {
     }
 }
 
+export default Grid;
