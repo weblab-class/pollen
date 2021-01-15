@@ -12,6 +12,9 @@ const PollSchema = new mongoose.Schema({
   tags: [String],
   open: Boolean,
   addable: Boolean,
+  time_created: Number,
+  last_edited: Number,
+  last_edited_by: String,
   _id: String,
 });
 
