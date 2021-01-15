@@ -79,6 +79,10 @@ form {
   text-align: center;
 }
 
+.u-textRight {
+  text-align: right;
+}
+
 .u-textLarge
 {
   font-size: 40px;
