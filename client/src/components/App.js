@@ -57,8 +57,8 @@ class App extends Component {
           handleLogout={this.handleLogout}
           userId={this.state.userId}
         />
-        {/* <Poll path="/poll" _id="2342" /> */}
-        <Profile username="alicethebee" display_name="Alice Chen" />
+        <Poll path="/poll" _id="2342" />
+        <Profile path="/profile" username="alicethebee" display_name="Alice Chen" />
         <NotFound default />
       </Router>
 
