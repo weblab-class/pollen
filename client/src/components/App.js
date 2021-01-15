@@ -49,19 +49,19 @@ class App extends Component {
 
   render() {
     return (
-
-      <Router>
-        <Skeleton
-          path="/"
-          handleLogin={this.handleLogin}
-          handleLogout={this.handleLogout}
-          userId={this.state.userId}
-        />
-        <Poll path="/poll" _id="2342" />
-        <Profile path="/profile" username="alicethebee" display_name="Alice Chen" />
-        <NotFound default />
-      </Router>
-
+      <div className="App-container">
+        <Router>
+          <Skeleton
+            path="/"
+            handleLogin={this.handleLogin}
+            handleLogout={this.handleLogout}
+            userId={this.state.userId}
+          />
+          <Poll path="/poll" _id="2342" />
+          <Profile path="/profile" username="alicethebee" display_name="Alice Chen" />
+          <NotFound default />
+        </Router>
+      </div>
     );
   }
 }
