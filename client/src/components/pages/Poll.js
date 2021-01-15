@@ -21,7 +21,12 @@ class Poll extends Component
         question: "Am I a Bee?????", // string
         options: [{_id: 1, content: "yes"}, {_id: 2, content: "no"}, {_id:3, content: "maybe so"}],
         ownerID: "alicethebee", 
-        //votes and stuf
+        voters: [{user: "alicethebee", votes:[1, 2, 3]},
+                  {user: "emilythebee", votes:[1]},
+                  {user: "anithebee", votes:[3]},
+                  {user: "ryanthebee", votes:[1, 3]},
+                  {user: "evethebee", votes:[]},
+                  {user: "ronthebee", votes:[1]}],
       };
   }
 
@@ -36,11 +41,13 @@ class Poll extends Component
         // and MORE COMING SOON!
       });
     });*/
+
+    // pull from backend wooohoo
   }
 
   addNewOption = (opt) =>
   {
-    // this id business is TEMPORARY USE MONGO STUFF INSTEASD!!!!!!!!!!!!!!!!
+    // this id business is TEMPORARY USE BACKEND STUFF INSTEASD!!!!!!!!!!!!!!!!
     /*
     this.setState({
       options: this.state.options.concat([optObj]),
@@ -59,7 +66,7 @@ class Poll extends Component
       return (
       <div className="Poll-container">
         
-        <div className="u-textCenter u-textMedium">
+        <div className="u-darkdarkbrown u-textCenter u-textMedium">
           <span className="u-bold">{"@" + this.state.ownerID} </span>
           <span>'s poll</span>
         </div>
@@ -67,7 +74,7 @@ class Poll extends Component
         <div className="u-flex">
 
           <div className="Poll-subContainer Poll-sideBar">
-            <VoterList />
+            <VoterList voters={this.state.voters} />
           </div>
 
           <div className="Poll-subContainer Poll-board">

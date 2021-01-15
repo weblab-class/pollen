@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+import VoterCard from "./VoterCard.js";
+
+import "./VoterList.css";
 
 /*
     props:
-    this.props.votes
-
+    this.props.voters
 */
+
 class VoterList extends Component 
 {
   constructor(props) 
@@ -15,9 +18,15 @@ class VoterList extends Component
   render() 
   {
       return (
-        <div>
-          Who's Voting?
-        </div>);
+        <div className="VoterList-container">
+            <h3 className="u-textCenter"> Who's Voting? </h3>
+            {this.props.voters.map((voter, i) => 
+                {
+                    return <VoterCard key={i} user={voter.user} votes={voter.votes} />;
+                })
+            }
+        </div>
+        );
   }
 }
 

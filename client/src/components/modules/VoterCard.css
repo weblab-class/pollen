@@ -1,0 +1,7 @@
+.VoterCard-container
+{
+    margin: var(--xs);
+    padding: var(--m) var(--l);
+
+    background-color: white;
+}

@@ -50,6 +50,11 @@ form {
   flex-grow: 1;
 }
 
+.u-darkdarkbrown
+{
+  color: var(--darkdarkbrown);
+}
+
 .u-flex {
   display: flex;
 }

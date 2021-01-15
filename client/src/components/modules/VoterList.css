@@ -1,0 +1,5 @@
+.VoterList-container
+{
+    margin-right: var(--m);
+    padding: var(--xs) var(--xs);
+}
