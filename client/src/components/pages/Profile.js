@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Grid from "../modules/Grid.js";
+import Modal from "../modules/Modal.js";
 
 import "./Profile.css";
 import "../../utilities.css";
@@ -14,6 +15,7 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            show_create: false,
             view: "my polls", // either "my polls" or "shared with me"
         }
     }
@@ -26,35 +28,53 @@ class Profile extends Component {
         this.setState({view: "shared with me"});
     }
 
-    render() {
-        return (
-            <div className="Profile-container">
-                <div className="Profile-sidebar">
-                    <img className="Profile-pfp" src={Pfp} alt="bee" width="100px" height="100px" />
-                    <h2 className="Profile-displayname">{this.props.display_name}</h2>
-                    <p className="Profile-username">@{this.props.username}</p>
+    createPoll = (event) =>
+    {
+        this.setState({show_create: true});
+    }
 
-                    <div className="Profile-sidebuttons u-flexColumn">
-                        <div className="Profile-subTop">
-                            <div className="u-padding" onClick={this.viewMyPolls} >my polls</div>
-                            <div className="u-padding" onClick={this.viewShared} >shared with me</div>
-                        </div>
-                        <div className="Profile-subBot">
-                            <button
-                                type="submit"
-                                value="Create Poll"
-                                onClick={this.createPoll}
-                                className="Profile-button u-pointer"> + create a poll </button>
+    closeCreator = (event) =>
+    {
+        this.setState({show_create: false});
+    }
+
+    render() {
+
+        if (!this.state.show_create)
+        {
+            return (
+                <div className="Profile-container">
+                    <div className="Profile-sidebar">
+                        <img className="Profile-pfp" src={Pfp} alt="bee" width="100px" height="100px" />
+                        <h2 className="Profile-displayname">{this.props.display_name}</h2>
+                        <p className="Profile-username">@{this.props.username}</p>
+    
+                        <div className="Profile-sidebuttons u-flexColumn">
+                            <div className="Profile-subTop">
+                                <div className="u-morepadding" onClick={this.viewMyPolls} >my polls</div>
+                                <div className="u-morepadding" onClick={this.viewShared} >shared with me</div>
+                            </div>
+                            <div className="Profile-subBot">
+                                <button
+                                    type="submit"
+                                    value="Create Poll"
+                                    onClick={this.createPoll}
+                                    className="Profile-button u-pointer"> + create a poll </button>
+                            </div>
                         </div>
                     </div>
+                    
+                    <div>
+                        <h2>  {this.state.view}</h2>
+                        <Grid />
+                    </div>
                 </div>
-
-                <div>
-                    <h2>  {this.state.view}</h2>
-                    <Grid />
-                </div>
-            </div>
-        );
+                );
+        }
+        else
+        {
+            return <Modal show={this.state.show_create} closeCreator={this.closeCreator}/>;
+        }
     }
 }
 

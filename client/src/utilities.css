@@ -85,6 +85,11 @@ form {
   padding: var(--xs);
 }
 
+.u-morepadding
+{
+  padding: var(--s);
+}
+
 .u-bold {
   font-weight: 600;
 }
