@@ -15,7 +15,15 @@ class PollCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            poll: {},
+            poll: {
+                open: true,
+                question: "",
+                votes: [],
+                options: [],
+            },
+            owner: {
+                name: "",
+            }
         };
     }
 
@@ -23,6 +31,11 @@ class PollCard extends Component {
         get('/api/poll', {id: this.props._id}).then((pollObj) => {
             this.setState({
                 poll: pollObj,
+            });
+            return get('/api/user/info', {id: pollObj.owner});
+        }).then((userObj) => {
+            this.setState({
+                owner: userObj,
             });
         });
     }
@@ -40,7 +53,7 @@ class PollCard extends Component {
             (<div className="PollCard-tag" style={{backgroundColor: "#e06666ff"}} >closed</div>);
         return (
             <div className="PollCard-container">
-            <div className="PollCard-namebanner u-textCenter">@{poll.ownerID}</div>
+            <div className="PollCard-namebanner u-textCenter">{this.state.owner.name}</div>
             <div className="PollCard-body">
                 {statusTag}
                 <p>{poll.question}</p>
