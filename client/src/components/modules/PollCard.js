@@ -38,15 +38,20 @@ class PollCard extends Component {
     }
 
     render() {
+        const infoStyle = {
+            color: "gray",
+            fontSize: "x-small",
+            padding: "0px"
+        };
         return (
-            <>
-            <div className="PollCard-namebanner u-textCenter">{this.props.ownerID}</div>
             <div className="PollCard-container">
+            <div className="PollCard-namebanner u-textCenter">@{this.props.ownerID}</div>
+            <div className="PollCard-body">
                 <p>{this.props.question}</p>
-                <p className="u-textRight">{this.props.voters.length} votes</p>
-                <p className="u-textRight">{this.props.options.length} options</p>
+                <p className="u-textRight" style={infoStyle} >{this.props.voters.length} votes</p>
+                <p className="u-textRight" style={infoStyle} >{this.props.options.length} options</p>
             </div>
-            </>
+            </div>
         )
     }
 }

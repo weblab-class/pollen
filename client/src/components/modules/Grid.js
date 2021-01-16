@@ -10,7 +10,8 @@ class Grid extends Component {
         super(props);
         this.state = {
             polls: [
-                {question: "Am I a Bee?????", // string
+                {_id: 1,
+                question: "Am I a Bee?????", // string
                 options: [{_id: 1, content: "yes"}, {_id: 2, content: "no"}, {_id:3, content: "maybe so"}],
                 ownerID: "alicethebee", 
                 voters: [{user: "alicethebee", votes:[1, 2, 3]},
@@ -18,7 +19,28 @@ class Grid extends Component {
                         {user: "anithebee", votes:[3]},
                         {user: "ryanthebee", votes:[1, 3]},
                         {user: "evethebee", votes:[]},
-                        {user: "ronthebee", votes:[1]}],}
+                        {user: "ronthebee", votes:[1]}],},
+                {_id: 2,
+                question: "Why are we alive?", // string
+                options: [{_id: 1, content: "just to suffer"}, {_id: 2, content: "idk man"}, {_id: 3, content: "you're actually dead"}],
+                ownerID: "bobthebee", 
+                voters: [{user: "alicethebee", votes:[1, 2, 3]},
+                        {user: "emilythebee", votes:[1]},
+                        {user: "anithebee", votes:[3]},
+                        {user: "ryanthebee", votes:[1, 3]}],},
+                {_id: 2,
+                question: "what color is my shirt", // string
+                options: [{_id: 1, content: "red"}, {_id: 2, content: "blue"}, {_id:3, content: "yellow"}, {_id:4, content: "green"}],
+                ownerID: "clairethebee", 
+                voters: []},
+                {_id: 3,
+                question: "Will you go to the prom with me? <3", // string
+                options: [{_id: 1, content: "yes"}, {_id: 2, content: "no"}],
+                ownerID: "dylanthebee", 
+                voters: [{user: "anithebee", votes:[2]},
+                        {user: "ryanthebee", votes:[1, 2]},
+                        {user: "evethebee", votes:[2]},
+                        {user: "ronthebee", votes:[1]}],},
             ],
         };
     }
@@ -29,6 +51,7 @@ class Grid extends Component {
         if (hasPolls) {
             pollsList = this.state.polls.map((pollObj) => (
                 <PollCard 
+                    _id={pollObj._id}
                     question={pollObj.question}
                     options={pollObj.options}
                     ownerID={pollObj.ownerID}
