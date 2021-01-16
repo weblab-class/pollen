@@ -9,7 +9,7 @@
 .NewOption-input {
   flex-grow: 1;
   color: var(--lightbrown);
-  border: var(--lightbrown) 1px solid;
+  border: var(--lightbrown) 2px solid;
   border-radius: var(--xs) 0 0 var(--xs);
   transition: box-shadow 0.1s;
 }
@@ -23,7 +23,7 @@
 
 .NewOption-submit {
   color: var(--darkgreen);
-  border: var(--green) 1px solid;
+  border: var(--green) 2px solid;
   border-radius: 0 var(--xs) var(--xs) 0;
   background: none;
   transition: color 0.1s, background 0.1s;

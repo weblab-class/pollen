@@ -7,6 +7,8 @@ import "./Board.css";
 
 /*
     props:
+    this.props.userId
+    this.props.poll_id
     this.props.question
     this.props.options {option id, option color, option content}
 */
@@ -21,7 +23,7 @@ class Board extends Component
   {
       let optionsList = this.props.options.map((opt) =>
       {
-          return <Option _id={opt._id} key={"Option#" + opt._id} content={opt.content} />
+          return <Option poll_id={this.props.poll_id} _id={opt._id} key={"Option#" + opt._id} content={opt.content} />
       });
 
       return (

@@ -9,6 +9,7 @@ import "../../utilities.css"
 
 /*
     props:
+    this.props.userId
     this.props._id (of the poll)
 */
 class Poll extends Component 
@@ -29,7 +30,7 @@ class Poll extends Component
                   {user: "evethebee", votes:[]},
                   {user: "ronthebee", votes:[1]}],
         addable: true,
-        _id: "sdfjseiofheof",
+        _id: "sdfjseiofheof", // poll ID
       };
   }
 
@@ -51,21 +52,13 @@ class Poll extends Component
 
   addNewOption = (opt) =>
   {
-    /*let new_id = this.state.options[this.state.options.length - 1]._id + 1;
-
-    const body = {
-      "question": this.state.question,
-      "options": this.state.options.concat([{_id: new_id, content: opt}]),
-      "tags": this.state.tags,
-      "addable": this.state.addable,
-      "admin": true,
-      "_id": "a79FQ7yi7"
-    };
-    post("/api/poll", body).then((pollObj) => {
+    const body = {id: this.state._id, option: opt};
+    
+    post("/api/poll/addOption", body).then((pollObj) => {
       this.setState({
         options: pollObj.options,
       });
-    });*/
+    });
   };
 
   render() 
@@ -84,7 +77,7 @@ class Poll extends Component
           </div>
 
           <div className="Poll-subContainer Poll-board">
-            <Board question={this.state.question} options={this.state.options} />
+            <Board poll_id={this.state._id} question={this.state.question} options={this.state.options} />
 
             <div className="u-textCenter">
               <NewOption addNewOption={this.addNewOption} />

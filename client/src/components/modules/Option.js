@@ -5,6 +5,8 @@ import "./Option.css";
 
 /*
     props:
+    this.props.userId
+    this.props.poll_id
     this.props.content
     this.props._id
 
@@ -16,12 +18,13 @@ class Option extends Component
       super(props);
   }
 
-
   handleVote = (event) =>
   {
-
+    console.log(this.props.userId + " voted");
+    const body = {id: this.props.poll_id, option_id: this.props._id};
+    post("/api/poll/vote", body);
   }
-  
+
   render() 
   {
       return (
