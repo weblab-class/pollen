@@ -31,12 +31,24 @@ class Profile extends Component {
             <div className="Profile-container">
                 <div className="Profile-sidebar">
                     <img className="Profile-pfp" src={Pfp} alt="bee" width="100px" height="100px" />
-                    <h2>{this.props.display_name}</h2>
-                    <p style={{color: "gray"}}>@{this.props.username}</p>
-                    <div className="u-padding" onClick={this.viewMyPolls} >my polls</div>
-                    <div className="u-padding" onClick={this.viewShared} >shared with me</div>
-                    <div className="u-padding" >+ create a poll</div>
+                    <h2 className="Profile-displayname">{this.props.display_name}</h2>
+                    <p className="Profile-username">@{this.props.username}</p>
+
+                    <div className="Profile-sidebuttons u-flexColumn">
+                        <div className="Profile-subTop">
+                            <div className="u-padding" onClick={this.viewMyPolls} >my polls</div>
+                            <div className="u-padding" onClick={this.viewShared} >shared with me</div>
+                        </div>
+                        <div className="Profile-subBot">
+                            <button
+                                type="submit"
+                                value="Create Poll"
+                                onClick={this.createPoll}
+                                className="Profile-button u-pointer"> + create a poll </button>
+                        </div>
+                    </div>
                 </div>
+
                 <div>
                     <h2>  {this.state.view}</h2>
                     <Grid />
