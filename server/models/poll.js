@@ -3,11 +3,12 @@ const Schema = mongoose.Schema
 
 const PollSchema = new mongoose.Schema({
   question: String,
+  description: String,
   options: [String],
-  votes: [{
-    user: Schema.Types.ObjectId,
-    optionIndex: Number
-  }],
+  votes: {
+    type: Map,
+    of: Array
+  },
   owner: Schema.Types.ObjectId,
   tags: [String],
   open: Boolean,
