@@ -3,12 +3,13 @@ import Grid from "../modules/Grid.js";
 import Modal from "../modules/Modal.js";
 
 import "./Profile.css";
+import { get, post } from "../../utilities.js";
 import "../../utilities.css";
 import Pfp from "../modules/bee_pfp.png";
 
 /*
     props:
-    this.props.user
+    this.props.userId
 */
 
 class Profile extends Component {
@@ -18,6 +19,15 @@ class Profile extends Component {
             show_create: false,
             view: "my polls", // either "my polls" or "shared with me"
         }
+    }
+
+    componentDidMount() {
+        // get('/api/user', {id: this.props.userId})
+        get('/api/user/self', {}).then((user) => {
+            this.setState({
+                user: user,
+            });
+        });
     }
 
     viewMyPolls = () => {
