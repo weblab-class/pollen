@@ -17,14 +17,19 @@ class VoterList extends Component
 
   render() 
   {
+      let voterCardList = [];
+
+      let i = 0;
+      for (const user in this.props.voters)
+      {
+        const votes = this.props.voters.get(user);
+        voterCardList.push((<VoterCard key={i} user={user} votes={votes} />));
+        i++;
+      }
       return (
         <div className="VoterList-container">
             <h3 className="u-textCenter"> Who's Voting? </h3>
-            {this.props.voters.map((voter, i) => 
-                {
-                    return <VoterCard key={i} user={voter.user} votes={voter.votes} />;
-                })
-            }
+            {voterCardList}
         </div>
         );
   }
