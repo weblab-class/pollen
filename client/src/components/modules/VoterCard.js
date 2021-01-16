@@ -19,7 +19,7 @@ class VoterCard extends Component
       return (
         <div className="VoterCard-container">
             <div className="u-bold"> {this.props.user} </div>
-            <div> {" | " + this.props.votes}</div>
+            <div> {this.props.votes}</div>
         </div>
       );
   }

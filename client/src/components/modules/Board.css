@@ -35,6 +35,8 @@
 
 .Board-optionContent
 {
+    flex-grow: 10;
+    flex-basis: 0;
     color: var(--darkbrown);
     font-size: 20px;
     margin: var(--s) 0 0;

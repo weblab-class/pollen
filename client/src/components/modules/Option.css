@@ -1,0 +1,27 @@
+.Option-button
+{
+    background-color: var(--tag-red);
+    display: inline-block;
+    text-align: center;
+
+    border: var(--tag-red) 1px solid;
+    border-radius: var(--xs);
+    font-size: small;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 300;
+    color: white;
+
+    margin: 2px 2px 2px 0px;
+    padding: 6px 14px;
+    outline: none;
+
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.Option-button:hover 
+{
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}

@@ -28,12 +28,6 @@ class NewOption extends Component
 
   addOption = (opt) =>
   {
-    /*const body = {_id: opt._id, content: opt.content};
-    post("/api/poll", body).then((option) =>
-    {
-        this.props.addNewOption(option);
-    });*/
-
     this.props.addNewOption(opt);
   };
 

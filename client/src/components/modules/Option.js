@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import "./Board.css";
+import "./Option.css";
 
 /*
     props:
@@ -15,11 +16,23 @@ class Option extends Component
       super(props);
   }
 
+
+  handleVote = (event) =>
+  {
+
+  }
+  
   render() 
   {
       return (
-        <div className="Board-optionBox">
-          <div className="Board-optionContent u-textCenter">{this.props.content}</div>
+        <div className="Board-optionBox u-textCenter u-flex">
+          <span className="Board-optionContent">{this.props.content}</span>
+          <button
+                type="submit"
+                value="Vote"
+                onClick={this.handleVote}
+                className="Option-button u-pointer"
+            > Vote </button>
         </div>);
   }
 }

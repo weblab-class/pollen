@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { get } from "../../utilities";
+import { get, post } from "../../utilities";
 import Board from "../modules/Board.js";
 import NewOption from "../modules/NewOption.js";
 import VoterList from "../modules/VoterList.js";
@@ -20,6 +20,7 @@ class Poll extends Component
       this.state = {
         question: "Am I a Bee?????", // string
         options: [{_id: 1, content: "yes"}, {_id: 2, content: "no"}, {_id:3, content: "maybe so"}],
+        tags: ["food"],
         ownerID: "alicethebee", 
         voters: [{user: "alicethebee", votes:[1, 2, 3]},
                   {user: "emilythebee", votes:[1]},
@@ -27,18 +28,21 @@ class Poll extends Component
                   {user: "ryanthebee", votes:[1, 3]},
                   {user: "evethebee", votes:[]},
                   {user: "ronthebee", votes:[1]}],
+        addable: true,
+        _id: "sdfjseiofheof",
       };
   }
 
   componentDidMount() 
   {
-    // fix syntax once backend is good
-    /*get("/api/poll", { pollID: this.props._id }).then((pollObj) => {
+    /*get("/api/poll", { _id: this.props._id }).then((pollObj) => {
       this.setState({
         question: pollObj.question,
         options: pollObj.options,
+        tags: pollObj.tags,
         ownerID: pollObj.ownerID,
-        // and MORE COMING SOON!
+        addable: pollObj.addable,
+        _id: pollObj._id,
       });
     });*/
 
@@ -47,18 +51,21 @@ class Poll extends Component
 
   addNewOption = (opt) =>
   {
-    // this id business is TEMPORARY USE BACKEND STUFF INSTEASD!!!!!!!!!!!!!!!!
-    /*
-    this.setState({
-      options: this.state.options.concat([optObj]),
-    });
-    */
+    /*let new_id = this.state.options[this.state.options.length - 1]._id + 1;
 
-    let new_id = this.state.options[this.state.options.length - 1]._id + 1;
-
-    this.setState({
-      options: this.state.options.concat([{_id: new_id, content: opt}]),
-    });
+    const body = {
+      "question": this.state.question,
+      "options": this.state.options.concat([{_id: new_id, content: opt}]),
+      "tags": this.state.tags,
+      "addable": this.state.addable,
+      "admin": true,
+      "_id": "a79FQ7yi7"
+    };
+    post("/api/poll", body).then((pollObj) => {
+      this.setState({
+        options: pollObj.options,
+      });
+    });*/
   };
 
   render() 
