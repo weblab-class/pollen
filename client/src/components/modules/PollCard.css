@@ -1,6 +1,7 @@
 .PollCard-container {
     border: #cfa7d6ff 1px dashed;
     border-radius: 12px;
+    background-color: white;
     /* padding-top: var(--m); */
     margin: var(--s);
     /* padding-left: var(--s); */
@@ -10,8 +11,8 @@
 
 .PollCard-namebanner {
     margin: 0px;
-    padding-top: var(--xs);
-    padding-bottom: var(--xs);
+    padding-top: 6px;
+    padding-bottom: 6px;
     background-color: #cfa7d6ff;
     border-radius: 12px 12px 0px 0px;
 }
@@ -20,4 +21,10 @@
     margin-top: 0px;
     margin-bottom: 0px;
     padding: var(--xs) var(--s); 
+}
+
+div.PollCard-container:hover{
+    -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.03);
 }

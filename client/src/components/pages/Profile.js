@@ -30,16 +30,16 @@ class Profile extends Component {
         return (
             // <h1>hello</h1>
             <div className="Profile-container">
-                <div className="u-textCenter">
+                <div className="Profile-sidebar">
                     <img className="Profile-pfp" src={Pfp} alt="bee" width="100px" height="100px" />
                     <h2>{this.props.display_name}</h2>
-                    <p>@{this.props.username}</p>
+                    <p style={{color: "gray"}}>@{this.props.username}</p>
                     <div className="u-padding" onClick={this.viewMyPolls} >my polls</div>
                     <div className="u-padding" onClick={this.viewShared} >shared with me</div>
                     <div className="u-padding" >+ create a poll</div>
                 </div>
                 <div>
-                    <h2>{this.state.view}</h2>
+                    <h2>  {this.state.view}</h2>
                     <Grid />
                 </div>
             </div>
