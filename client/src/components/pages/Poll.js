@@ -19,10 +19,10 @@ class Poll extends Component
       super(props);
 
       this.state = {
-        question: "Am I a Bee?????", // string
-        options: [{_id: 1, content: "yes"}, {_id: 2, content: "no"}, {_id:3, content: "maybe so"}],
-        tags: ["food"],
-        ownerID: "alicethebee", 
+        question: "",
+        options: [],
+        tags: [],
+        ownerID: "", 
         voters: [{user: "alicethebee", votes:[1, 2, 3]},
                   {user: "emilythebee", votes:[1]},
                   {user: "anithebee", votes:[3]},
@@ -30,24 +30,20 @@ class Poll extends Component
                   {user: "evethebee", votes:[]},
                   {user: "ronthebee", votes:[1]}],
         addable: true,
-        _id: "sdfjseiofheof", // poll ID
       };
   }
 
   componentDidMount() 
   {
-    /*get("/api/poll", { _id: this.props._id }).then((pollObj) => {
+    get("/api/poll", { _id: this.props._id }).then((pollObj) => {
       this.setState({
         question: pollObj.question,
         options: pollObj.options,
         tags: pollObj.tags,
         ownerID: pollObj.ownerID,
         addable: pollObj.addable,
-        _id: pollObj._id,
       });
-    });*/
-
-    // pull from backend wooohoo
+    });
   }
 
   addNewOption = (opt) =>
@@ -77,7 +73,7 @@ class Poll extends Component
           </div>
 
           <div className="Poll-subContainer Poll-board">
-            <Board poll_id={this.state._id} question={this.state.question} options={this.state.options} />
+            <Board poll_id={this.props._id} question={this.state.question} options={this.state.options} />
 
             <div className="u-textCenter">
               <NewOption addNewOption={this.addNewOption} />

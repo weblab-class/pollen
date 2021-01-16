@@ -52,7 +52,7 @@ class Profile extends Component {
         this.setState({show_create: false});
     }
 
-    addNewPoll = (event) =>
+    addNewPoll = (pollObj) =>
     {
         // FILL THIS OUT PLS THANKYOU
     }
