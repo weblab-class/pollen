@@ -12,17 +12,18 @@ import "../../utilities.css"
     this.props.userId
     this.props._id (of the poll)
 */
-class Poll extends Component 
+class Poll extends Component
 {
-  constructor(props) 
+  constructor(props)
   {
       super(props);
-
+      console.log(props)
+      console.log(window.location.href)
       this.state = {
         question: "Am I a Bee?????", // string
         options: [{_id: 1, content: "yes"}, {_id: 2, content: "no"}, {_id:3, content: "maybe so"}],
         tags: ["food"],
-        ownerID: "alicethebee", 
+        ownerID: "alicethebee",
         voters: [{user: "alicethebee", votes:[1, 2, 3]},
                   {user: "emilythebee", votes:[1]},
                   {user: "anithebee", votes:[3]},
@@ -30,11 +31,11 @@ class Poll extends Component
                   {user: "evethebee", votes:[]},
                   {user: "ronthebee", votes:[1]}],
         addable: true,
-        _id: "sdfjseiofheof", // poll ID
+        _id: props._id, // poll ID
       };
   }
 
-  componentDidMount() 
+  componentDidMount()
   {
     /*get("/api/poll", { _id: this.props._id }).then((pollObj) => {
       this.setState({
@@ -53,7 +54,7 @@ class Poll extends Component
   addNewOption = (opt) =>
   {
     const body = {id: this.state._id, option: opt};
-    
+
     post("/api/poll/addOption", body).then((pollObj) => {
       this.setState({
         options: pollObj.options,
@@ -61,7 +62,7 @@ class Poll extends Component
     });
   };
 
-  render() 
+  render()
   {
       return (
       <div className="Poll-container">
