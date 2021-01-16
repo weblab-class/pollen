@@ -4,6 +4,7 @@ import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
 import Poll from "./pages/Poll.js";
 import Profile from './pages/Profile.js';
+import LandingPage from "./pages/LandingPage.js";
 
 import "../utilities.css";
 import "./App.css";
@@ -49,7 +50,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App-container">
+      <div className="jl">
         <Router>
           <Skeleton
             path="/"
@@ -57,6 +58,7 @@ class App extends Component {
             handleLogout={this.handleLogout}
             userId={this.state.userId}
           />
+          <LandingPage path="/land" />
           <Poll path="/poll" _id="2342" />
           <Profile path="/profile" username="alicethebee" display_name="Alice Chen" />
           <NotFound default />

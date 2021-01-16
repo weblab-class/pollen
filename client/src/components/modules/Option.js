@@ -15,15 +15,10 @@ class Option extends Component
       super(props);
   }
 
-  handleClick = (event) =>
-  {
-    // post stuff
-  };
-
   render() 
   {
       return (
-        <div className="Board-optionBox" onClick={this.handleClick}>
+        <div className="Board-optionBox">
           <div className="Board-optionContent u-textCenter">{this.props.content}</div>
         </div>);
   }

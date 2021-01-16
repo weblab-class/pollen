@@ -65,7 +65,6 @@ class Poll extends Component
   {
       return (
       <div className="Poll-container">
-        
         <div className="u-darkdarkbrown u-textCenter u-textMedium">
           <span className="u-bold">{"@" + this.state.ownerID} </span>
           <span>'s poll</span>

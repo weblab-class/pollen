@@ -1,0 +1,47 @@
+.LandingPage-container
+{
+    padding: var(--l);
+    height: 93vh;
+    width: 95vw; 
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.LandingPage-title
+{
+    margin: var(--l) 0 0 0;
+    padding: var(--l) var(--m);
+    color: #3b3636;
+    font-weight: 250;
+    font-size: 150px;
+}
+
+.title-image
+{
+    width: 40vw;
+    height: 50vh;
+}
+
+.LandingPage-button
+{
+  color: white;
+  font-family: 'Comfortaa', cursive;
+  font-size: 22px;
+  border: var(--salmon) 1px solid;
+  border-radius: 10px;
+  background: var(--salmon);
+  transition: color 0.4s, background 0.4s;
+  outline:none;
+
+  width: 20vw;
+  height: 10vh;
+
+  display: center;
+}
+
+.LandingPage-button:hover {
+  color: var(--salmon);
+  background-color: white;
+}

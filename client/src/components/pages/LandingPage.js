@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import "./LandingPage.css";
 
+import background from "../modules/landing.svg";
+import title from "../modules/title_img.svg"
+
 /*
-    props:
+    props: none
 */
 
 class LandingPage extends Component 
@@ -15,7 +18,13 @@ class LandingPage extends Component
   render() 
   {
       return (
-        <div>hallooo</div>
+        <>
+            <div className="LandingPage-container u-textCenter" style={{ 
+                backgroundImage: `url(${background})` 
+            }}>
+            <img className="title-image" src={title} alt = "pollen" />
+            <button type="submit" value="start buzzin'" className="LandingPage-button u-pointer"> start buzzin' </button>           </div> 
+        </>
       );
   }
 }
