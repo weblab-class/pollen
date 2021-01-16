@@ -8,11 +8,11 @@ const UserSchema = new Schema({
   email: String,
   googleID: String,
   myPolls: [{
-    pollID: Schema.Types.ObjectId,
+    _id: String,
     last_visited: Number
   }],
   sharedPolls: [{
-    pollID: Schema.Types.ObjectId,
+    _id: String,
     last_visited: Number
   }],
   picture: Number,

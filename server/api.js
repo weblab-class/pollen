@@ -45,7 +45,7 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 
 router.get("/poll", (req, res) => {
-  if (!req.body.admin && !req.user) {
+  if (!(req.body.admin || req.user)) {
     return res.send({});
   }
   Poll.findOne({_id:req.body.id}, (err, doc)=>{
@@ -63,7 +63,7 @@ router.get("/poll", (req, res) => {
 // Requires higher permissions to edit
 // Can only be modified by owner
 router.post("/poll", (req, res) => {
-  if (!req.body.admin && !req.user) {
+  if (!(req.body.admin || req.user)) {
     return res.send({});
   }
   const user_id = req?.user?._id || '600074f15102dacd3c1881ca'
@@ -74,8 +74,7 @@ router.post("/poll", (req, res) => {
     delete req.body.admin
     req.body.last_edited = (Date.now())/1000
     req.body.last_edited_by = user_id
-    Poll.findOneAndUpdate({_id:req.body.id}, req.body, (err, doc)=>{
-      console.log(doc)
+    Poll.findOneAndUpdate({_id:req.body.id}, req.body, {new: true}, (err, doc)=>{
       if(doc){
         res.send(doc)
       }
@@ -103,14 +102,22 @@ router.post("/poll", (req, res) => {
       if(err){
         console.error(err);
       }
-      console.log(doc)
+      // console.log(doc)
       res.send(doc)
     })
+    const myPoll = {_id:id, last_visited:time}
+    console.log(myPoll)
+    User.findOneAndUpdate({_id: user_id}, { $push: {myPolls:myPoll} }, (err, doc)=>{
+      if(err){
+        console.error(err);
+      }
+    })
+
   }
 })
 
 router.post("/vote", (req, res) => {
-  if (!req.user) {
+  if (!(req.body.admin || req.user)) {
     return res.send({});
   }
 
@@ -123,6 +130,22 @@ router.post("/addOption", (req, res) => {
   }
 
   res.send({});
+});
+
+// debug only
+router.get("/user", (req, res) => {
+  if (!(req.body.admin || req.user)) {
+    return res.send({});
+  }
+  User.findOne({_id:req.body.id}, (err, doc)=>{
+    if(doc){
+      res.send(doc)
+    }
+    else{
+      res.status(404).send("Not Found")
+    }
+  })
+
 });
 
 // anything else falls to this "not found" case
