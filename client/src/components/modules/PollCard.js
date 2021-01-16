@@ -41,12 +41,17 @@ class PollCard extends Component {
         const infoStyle = {
             color: "gray",
             fontSize: "x-small",
-            padding: "0px"
+            padding: "0px",
+            margin: "0px"
         };
+        let statusTag = this.props.isOpen ? 
+            (<div className="PollCard-tag" style={{backgroundColor: "#bbd059ff"}} >open</div>) : 
+            (<div className="PollCard-tag" style={{backgroundColor: "#e06666ff"}} >closed</div>);
         return (
             <div className="PollCard-container">
             <div className="PollCard-namebanner u-textCenter">@{this.props.ownerID}</div>
             <div className="PollCard-body">
+                {statusTag}
                 <p>{this.props.question}</p>
                 <p className="u-textRight" style={infoStyle} >{this.props.voters.length} votes</p>
                 <p className="u-textRight" style={infoStyle} >{this.props.options.length} options</p>

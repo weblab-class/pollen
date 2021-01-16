@@ -28,7 +28,6 @@ class Profile extends Component {
 
     render() {
         return (
-            // <h1>hello</h1>
             <div className="Profile-container">
                 <div className="Profile-sidebar">
                     <img className="Profile-pfp" src={Pfp} alt="bee" width="100px" height="100px" />

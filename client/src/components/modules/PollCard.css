@@ -5,12 +5,18 @@
     /* padding-top: var(--m); */
     margin: var(--s);
     /* padding-left: var(--s); */
-    padding: 0px;
+    padding: 0px 0px 2px 0px;
     width: 30%;
 }
 
+div.PollCard-container:hover{
+    -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.03);
+}
+
 .PollCard-namebanner {
-    margin: 0px;
+    margin: 0px 0px 2px 0px;
     padding-top: 6px;
     padding-bottom: 6px;
     background-color: #cfa7d6ff;
@@ -20,11 +26,16 @@
 .PollCard-body {
     margin-top: 0px;
     margin-bottom: 0px;
-    padding: var(--xs) var(--s); 
+    padding: var(--xs) 12px; 
 }
 
-div.PollCard-container:hover{
-    -webkit-transform: scale(1.03);
-    -ms-transform: scale(1.03);
-    transform: scale(1.03);
+.PollCard-tag {
+    display: inline-block;
+    text-align: center;
+    border-radius: var(--xs);
+    /* background-color: #9fbde8; */
+    font-size: x-small;
+    color: white;
+    margin: 2px 2px 2px 0px;
+    padding: 2px 6px;
 }
