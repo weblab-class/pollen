@@ -12,6 +12,9 @@ const shortid = require('shortid');
 
 // import models so we can interact with the database
 const User = require("./models/user");
+// debug only
+const aniID = '600243bf1f3776002240d3ec'
+
 const Poll = require("./models/poll");
 
 // import authentication library
@@ -66,7 +69,8 @@ router.post("/poll", (req, res) => {
   if (!(req.body.admin || req.user)) {
     return res.send({});
   }
-  const user_id = req?.user?._id || '600074f15102dacd3c1881ca'
+  // Ani's id when admin is true, good for postman
+  const user_id = req?.user?._id || aniID
   const time = Math.floor(Date.now()/1000)
   // if id was provided try to update
   if(req.body.id){
@@ -87,8 +91,9 @@ router.post("/poll", (req, res) => {
     const id = shortid.generate()
     const poll = {
       question: req.body.question,
+      description: req.body.description,
       options: req.body.options,
-      votes: [],
+      votes: new Map(),
       owner: user_id,
       tags: req.body.tags || [],
       open: true,
@@ -116,12 +121,34 @@ router.post("/poll", (req, res) => {
   }
 })
 
-router.post("/vote", (req, res) => {
+router.post("/vote", async (req, res) => {
   if (!(req.body.admin || req.user)) {
     return res.send({});
   }
-
-  res.send({});
+  if(!req.body.option){
+    return res.send("No Option provided");
+  }
+  const user_id = req?.user?._id || aniID
+  const option = req.body.option
+  console.log(option)
+  const poll = await Poll.findOne({_id:req.body.id})
+  if(!poll){
+    return res.status(404).send("Not Found")
+  }
+  console.log("BEFORE", poll)
+  if(poll.votes.has(user_id)){
+    const old_value = poll.votes.get(user_id)
+    if(old_value.includes(option)){
+      return res.send("Already voted for that")
+    }
+    old_value.append(option)
+    poll.votes.set(user_id, old_value)
+  }
+  else{
+    poll.votes.set(user_id, [option])
+  }
+  await poll.save()
+  res.send(poll);
 });
 
 router.post("/addOption", (req, res) => {
