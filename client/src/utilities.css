@@ -78,6 +78,10 @@ form {
   display: inline-block;
 }
 
+.u-padding {
+  padding: var(--xs);
+}
+
 .u-bold {
   font-weight: 600;
 }

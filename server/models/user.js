@@ -7,8 +7,14 @@ const UserSchema = new Schema({
   userTag: String,
   email: String,
   googleID: String,
-  myPolls: [Schema.Types.ObjectId],
-  sharedPolls: [Schema.Types.ObjectId],
+  myPolls: [{
+    _id: String,
+    last_visited: Number
+  }],
+  sharedPolls: [{
+    _id: String,
+    last_visited: Number
+  }],
   picture: Number,
   picture_link: String,
   friends: [Schema.Types.ObjectId]
