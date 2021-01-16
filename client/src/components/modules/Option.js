@@ -5,9 +5,8 @@ import "./Option.css";
 
 /*
     props:
-    this.props.userId
     this.props.poll_id
-    this.props.content
+    this.props.text
     this.props._id
 
 */
@@ -20,7 +19,6 @@ class Option extends Component
 
   handleVote = (event) =>
   {
-    console.log(this.props.userId + " voted");
     const body = {id: this.props.poll_id, option_id: this.props._id};
     post("/api/poll/vote", body);
   }
@@ -29,7 +27,7 @@ class Option extends Component
   {
       return (
         <div className="Board-optionBox u-textCenter u-flex">
-          <span className="Board-optionContent">{this.props.content}</span>
+          <span className="Board-optionContent">{this.props.text}</span>
           <button
                 type="submit"
                 value="Vote"

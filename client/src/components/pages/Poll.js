@@ -9,7 +9,6 @@ import "../../utilities.css"
 
 /*
     props:
-    this.props.userId
     this.props._id (of the poll)
 */
 class Poll extends Component 
@@ -23,13 +22,9 @@ class Poll extends Component
         options: [],
         tags: [],
         ownerID: "", 
-        voters: [{user: "alicethebee", votes:[1, 2, 3]},
-                  {user: "emilythebee", votes:[1]},
-                  {user: "anithebee", votes:[3]},
-                  {user: "ryanthebee", votes:[1, 3]},
-                  {user: "evethebee", votes:[]},
-                  {user: "ronthebee", votes:[1]}],
+        open: true,
         addable: true,
+        voters: new Map(),  
       };
   }
 
@@ -42,6 +37,7 @@ class Poll extends Component
         tags: pollObj.tags,
         ownerID: pollObj.ownerID,
         addable: pollObj.addable,
+        voters: pollObj.votes,
       });
     });
   }
