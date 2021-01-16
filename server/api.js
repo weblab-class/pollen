@@ -28,14 +28,6 @@ const socketManager = require("./server-socket");
 
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
-router.get("/whoami", (req, res) => {
-  if (!req.user) {
-    // not logged in
-    return res.send({});
-  }
-
-  res.send(req.user);
-});
 
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
@@ -48,10 +40,10 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 
 router.get("/poll", (req, res) => {
-  if (!(req.body.admin || req.user)) {
+  if (!(req.query.admin || req.user)) {
     return res.send({});
   }
-  Poll.findOne({_id:req.body.id}, (err, doc)=>{
+  Poll.findOne({_id:req.query.id}, (err, doc)=>{
     if(doc){
       res.send(doc)
     }
@@ -195,7 +187,7 @@ router.post("/poll/addOption", async (req, res) => {
 
 // debug only
 router.get("/user/self", (req, res) => {
-  if (!(req.body.admin || req.user)) {
+  if (!(req.query.admin || req.user)) {
     return res.send({});
   }
   const user_id = req?.user?._id || aniID
@@ -210,10 +202,10 @@ router.get("/user/self", (req, res) => {
 });
 
 router.get("/user/info", (req, res) => {
-  if (!(req.body.admin || req.user)) {
+  if (!(req.query.admin || req.user)) {
     return res.send({});
   }
-  const user_id = req.body.id || aniID
+  const user_id = req.query.id || aniID
   User.findOne({_id:user_id}, (err, doc)=>{
     if(doc){
       res.send({
