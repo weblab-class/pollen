@@ -52,9 +52,9 @@ class Profile extends Component {
         this.setState({show_create: false});
     }
 
-    addNewPoll = (pollObj) =>
+    addNewPoll = (question) =>
     {
-        // FILL THIS OUT PLS THANKYOU
+        return post('/api/poll', {question:question})
     }
 
     render() {
@@ -81,7 +81,7 @@ class Profile extends Component {
                             </div>
                         </div>
                     </div>
-                    
+
                     <div>
                         <h2>  {this.state.view}</h2>
                         <Grid user={this.state.user} view={this.state.view} />

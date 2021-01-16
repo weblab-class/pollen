@@ -8,9 +8,9 @@ import "./Modal.css";
     this.props.addNewPoll
 
 */
-class Modal extends Component 
+class Modal extends Component
 {
-  constructor(props) 
+  constructor(props)
   {
       super(props);
 
@@ -19,7 +19,7 @@ class Modal extends Component
       };
   }
 
-  
+
   handleQuestionChange = (event) =>
   {
       this.setState({
@@ -37,13 +37,17 @@ class Modal extends Component
   handleSubmit = (event) =>
   {
     event.preventDefault();
-    this.props.addNewPoll(this.state.question);
+    this.props.addNewPoll(this.state.question)
+    .then((poll)=>{
+      console.log("POLL", poll)
+      window.location.href = '/poll';
+    })
     this.setState({
         question: "",
-    });   
+    });
   }
 
-  render() 
+  render()
   {
     return (
         <>
@@ -55,9 +59,9 @@ class Modal extends Component
                         value={this.state.question}
                         onChange={this.handleQuestionChange}
                         className="Modal-input"
-                    />   
+                    />
                 </div>
-                <div> 
+                <div>
                     <button
                         type="submit"
                         value="Add New Option"
