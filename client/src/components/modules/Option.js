@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { get, post } from "../../utilities";
 
 import "./Board.css";
 import "./Option.css";
@@ -10,9 +11,9 @@ import "./Option.css";
     this.props._id
 
 */
-class Option extends Component 
+class Option extends Component
 {
-  constructor(props) 
+  constructor(props)
   {
       super(props);
   }
@@ -23,7 +24,7 @@ class Option extends Component
     post("/api/poll/vote", body);
   }
 
-  render() 
+  render()
   {
       return (
         <div className="Board-optionBox u-textCenter u-flex">

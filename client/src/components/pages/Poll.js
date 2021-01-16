@@ -17,39 +17,38 @@ class Poll extends Component
   {
       super(props);
       console.log(props)
-      console.log(window.location.href)
       this.state = {
-        question: "",
-        options: [],
-        tags: [],
-        ownerID: "",
-        open: true,
-        addable: true,
-        voters: new Map(),
+        poll:{
+          question: "",
+          options: [],
+          tags: [],
+          ownerID: "",
+          open: true,
+          addable: true,
+          voters: new Map(),
+          _id: props._id
+        }
       };
+      console.log("INIT", this.state)
   }
 
   componentDidMount()
   {
-    get("/api/poll", { _id: this.props._id }).then((pollObj) => {
+    get("/api/poll", { id: this.state.poll._id }).then((pollObj) => {
+      console.log("POLLED", pollObj)
       this.setState({
-        question: pollObj.question,
-        options: pollObj.options,
-        tags: pollObj.tags,
-        ownerID: pollObj.ownerID,
-        addable: pollObj.addable,
-        voters: pollObj.votes,
+        poll: pollObj
       });
     });
   }
 
   addNewOption = (opt) =>
   {
-    const body = {id: this.state._id, option: opt};
+    const body = {id: this.state.poll._id, option: opt};
 
     post("/api/poll/addOption", body).then((pollObj) => {
       this.setState({
-        options: pollObj.options,
+        poll: pollObj,
       });
     });
   };
@@ -59,18 +58,18 @@ class Poll extends Component
       return (
       <div className="Poll-container">
         <div className="u-darkdarkbrown u-textCenter u-textMedium">
-          <span className="u-bold">{"@" + this.state.ownerID} </span>
+          <span className="u-bold">{"@" + this.state.poll.ownerID} </span>
           <span>'s poll</span>
         </div>
 
         <div className="u-flex">
 
           <div className="Poll-subContainer Poll-sideBar">
-            <VoterList voters={this.state.voters} />
+            <VoterList voters={this.state.poll.voters} />
           </div>
 
           <div className="Poll-subContainer Poll-board">
-            <Board poll_id={this.props._id} question={this.state.question} options={this.state.options} />
+            <Board poll_id={this.state.poll._id} question={this.state.poll.question} options={this.state.poll.options || []} />
 
             <div className="u-textCenter">
               <NewOption addNewOption={this.addNewOption} />
