@@ -209,22 +209,6 @@ router.get("/user/self", (req, res) => {
   })
 });
 
-router.get("/user/name", (req, res) => {
-  if (!(req.body.admin || req.user)) {
-    return res.send({});
-  }
-  const user_id = req.body.id || aniID
-  User.findOne({_id:user_id}, (err, doc)=>{
-    if(doc){
-      console.log(doc)
-      res.send(doc.displayName)
-    }
-    else{
-      res.status(404).send("Not Found")
-    }
-  })
-});
-
 router.get("/user/info", (req, res) => {
   if (!(req.body.admin || req.user)) {
     return res.send({});
