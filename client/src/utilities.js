@@ -38,12 +38,15 @@ function convertToJSON(res) {
 // Helper code to make a get request. Default parameter of empty JSON Object for params.
 // Returns a Promise to a JSON Object.
 export function get(endpoint, params = {}) {
-  const fullPath = endpoint + "?" + formatParams(params);
-  return fetch(fullPath)
+  return fetch(endpoint, {
+    method: "get",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify(params),
+  })
     .then(convertToJSON)
     .catch((error) => {
       // give a useful error message
-      throw `GET request to ${fullPath} failed with error:\n${error}`;
+      throw `GET request to ${endpoint} failed with error:\n${error}`;
     });
 }
 
