@@ -4,13 +4,18 @@ const Schema = mongoose.Schema
 const PollSchema = new mongoose.Schema({
   question: String,
   description: String,
-  options: [String],
+  options: [{
+    text: String,
+    adder: Schema.Types.ObjectId
+  }],
   votes: {
     type: Map,
     of: Array
   },
   owner: Schema.Types.ObjectId,
   tags: [String],
+  viewers: [Schema.Types.ObjectId],
+  editors: [Schema.Types.ObjectId],
   open: Boolean,
   addable: Boolean,
   time_created: Number,

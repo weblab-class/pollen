@@ -52,7 +52,6 @@ router.get("/poll", (req, res) => {
     return res.send({});
   }
   Poll.findOne({_id:req.body.id}, (err, doc)=>{
-    console.log(doc)
     if(doc){
       res.send(doc)
     }
@@ -89,6 +88,9 @@ router.post("/poll", (req, res) => {
   }
   else{
     const id = shortid.generate()
+    for(index in req.body.options){
+      req.body.options[index].adder = user_id
+    }
     const poll = {
       question: req.body.question,
       description: req.body.description,
@@ -111,7 +113,6 @@ router.post("/poll", (req, res) => {
       res.send(doc)
     })
     const myPoll = {_id:id, last_visited:time}
-    console.log(myPoll)
     User.findOneAndUpdate({_id: user_id}, { $push: {myPolls:myPoll} }, (err, doc)=>{
       if(err){
         console.error(err);
@@ -121,50 +122,84 @@ router.post("/poll", (req, res) => {
   }
 })
 
-router.post("/vote", async (req, res) => {
+router.post("/poll/vote", async (req, res) => {
+  if (!(req.body.admin || req.user)) {
+    return res.send({});
+  }
+  if(!req.body.option_id){
+    return res.send("No Option provided");
+  }
+  if(!req.body.id){
+    return res.send("No ID provided");
+  }
+  const user_id = req?.user?._id || aniID
+  const option_id = req.body.option_id
+
+  const poll = await Poll.findOne({_id:req.body.id})
+  if(!poll){
+    return res.status(404).send("Not Found")
+  }
+  if(poll.votes.has(user_id)){
+    const old_value = poll.votes.get(user_id)
+    let found = false
+    for(const cur_option of poll.options){
+      if(cur_option._id == option_id){
+        found = true
+        break
+      }
+    }
+    if(!found){
+      return res.status(404).send("Not an option")
+    }
+
+    if(old_value.includes(option_id)){
+      return res.status(208).send("Already voted for that")
+    }
+    const new_arr = []
+    for(item of old_value)
+      new_arr.push(item)
+    new_arr.push(option_id)
+    poll.votes.set(user_id, new_arr)
+  }
+  else{
+    poll.votes.set(user_id, [option_id])
+  }
+  await poll.save()
+  res.send(poll)
+});
+
+router.post("/poll/addOption", async (req, res) => {
   if (!(req.body.admin || req.user)) {
     return res.send({});
   }
   if(!req.body.option){
     return res.send("No Option provided");
   }
+  if(!req.body.id){
+    return res.send("No ID provided");
+  }
   const user_id = req?.user?._id || aniID
   const option = req.body.option
-  console.log(option)
   const poll = await Poll.findOne({_id:req.body.id})
   if(!poll){
     return res.status(404).send("Not Found")
   }
-  console.log("BEFORE", poll)
-  if(poll.votes.has(user_id)){
-    const old_value = poll.votes.get(user_id)
-    if(old_value.includes(option)){
-      return res.send("Already voted for that")
-    }
-    old_value.append(option)
-    poll.votes.set(user_id, old_value)
-  }
-  else{
-    poll.votes.set(user_id, [option])
-  }
+  console.log(option, user_id)
+  poll.options.push({
+    text: option,
+    adder: user_id
+  })
   await poll.save()
   res.send(poll);
 });
 
-router.post("/addOption", (req, res) => {
-  if (!req.user) {
-    return res.send({});
-  }
-
-  res.send({});
-});
-
 // debug only
-router.get("/user", (req, res) => {
+router.get("/user/self", (req, res) => {
   if (!(req.body.admin || req.user)) {
     return res.send({});
   }
-  User.findOne({_id:req.body.id}, (err, doc)=>{
+  const user_id = req?.user?._id || aniID
+  User.findOne({_id:user_id}, (err, doc)=>{
     if(doc){
       res.send(doc)
     }
@@ -172,7 +207,24 @@ router.get("/user", (req, res) => {
       res.status(404).send("Not Found")
     }
   })
+});
 
+router.get("/user/info", (req, res) => {
+  if (!(req.body.admin || req.user)) {
+    return res.send({});
+  }
+  const user_id = req.body.id || aniID
+  User.findOne({_id:user_id}, (err, doc)=>{
+    if(doc){
+      res.send({
+          tag: doc.userTag,
+          name: doc.displayName
+      })
+    }
+    else{
+      res.status(404).send("Not Found")
+    }
+  })
 });
 
 // anything else falls to this "not found" case
