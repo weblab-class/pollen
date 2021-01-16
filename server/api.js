@@ -88,6 +88,9 @@ router.post("/poll", (req, res) => {
   }
   else{
     const id = shortid.generate()
+    for(index in req.body.options){
+      req.body.options[index].adder = user_id
+    }
     const poll = {
       question: req.body.question,
       description: req.body.description,
@@ -123,14 +126,14 @@ router.post("/poll/vote", async (req, res) => {
   if (!(req.body.admin || req.user)) {
     return res.send({});
   }
-  if(!req.body.option){
+  if(!req.body.option_id){
     return res.send("No Option provided");
   }
   if(!req.body.id){
     return res.send("No ID provided");
   }
   const user_id = req?.user?._id || aniID
-  const option = req.body.option
+  const option_id = req.body.option_id
 
   const poll = await Poll.findOne({_id:req.body.id})
   if(!poll){
@@ -138,22 +141,31 @@ router.post("/poll/vote", async (req, res) => {
   }
   if(poll.votes.has(user_id)){
     const old_value = poll.votes.get(user_id)
-    if(poll.options.includes(option)){
+    let found = false
+    for(const cur_option of poll.options){
+      if(cur_option._id == option_id){
+        found = true
+        break
+      }
+    }
+    if(!found){
       return res.status(404).send("Not an option")
     }
-    if(old_value.includes(option)){
+
+    if(old_value.includes(option_id)){
       return res.status(208).send("Already voted for that")
     }
     const new_arr = []
     for(item of old_value)
       new_arr.push(item)
-    new_arr.push(option)
+    new_arr.push(option_id)
     poll.votes.set(user_id, new_arr)
   }
   else{
-    poll.votes.set(user_id, [option])
+    poll.votes.set(user_id, [option_id])
   }
   await poll.save()
+  res.send(poll)
 });
 
 router.post("/poll/addOption", async (req, res) => {
@@ -182,11 +194,12 @@ router.post("/poll/addOption", async (req, res) => {
 });
 
 // debug only
-router.get("/user", (req, res) => {
+router.get("/user/self", (req, res) => {
   if (!(req.body.admin || req.user)) {
     return res.send({});
   }
-  User.findOne({_id:req.body.id}, (err, doc)=>{
+  const user_id = req?.user?._id || aniID
+  User.findOne({_id:user_id}, (err, doc)=>{
     if(doc){
       res.send(doc)
     }
@@ -194,7 +207,40 @@ router.get("/user", (req, res) => {
       res.status(404).send("Not Found")
     }
   })
+});
 
+router.get("/user/name", (req, res) => {
+  if (!(req.body.admin || req.user)) {
+    return res.send({});
+  }
+  const user_id = req.body.id || aniID
+  User.findOne({_id:user_id}, (err, doc)=>{
+    if(doc){
+      console.log(doc)
+      res.send(doc.displayName)
+    }
+    else{
+      res.status(404).send("Not Found")
+    }
+  })
+});
+
+router.get("/user/info", (req, res) => {
+  if (!(req.body.admin || req.user)) {
+    return res.send({});
+  }
+  const user_id = req.body.id || aniID
+  User.findOne({_id:user_id}, (err, doc)=>{
+    if(doc){
+      res.send({
+          tag: doc.userTag,
+          name: doc.displayName
+      })
+    }
+    else{
+      res.status(404).send("Not Found")
+    }
+  })
 });
 
 // anything else falls to this "not found" case
