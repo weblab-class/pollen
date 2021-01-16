@@ -16,6 +16,10 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            user: {
+                myPolls: [],
+                sharedPolls: [],
+            },
             show_create: false,
             view: "my polls", // either "my polls" or "shared with me"
         }
@@ -49,16 +53,15 @@ class Profile extends Component {
     }
 
     render() {
-
+        console.log(this.state.user);
         if (!this.state.show_create)
         {
             return (
                 <div className="Profile-container">
                     <div className="Profile-sidebar">
                         <img className="Profile-pfp" src={Pfp} alt="bee" width="100px" height="100px" />
-                        <h2 className="Profile-displayname">{this.props.display_name}</h2>
-                        <p className="Profile-username">@{this.props.username}</p>
-    
+                        <h2 className="Profile-displayname">{this.state.user.displayName}</h2>
+                        <p className="Profile-username">{this.state.user.userTag}</p>
                         <div className="Profile-sidebuttons u-flexColumn">
                             <div className="Profile-subTop">
                                 <div className="u-morepadding" onClick={this.viewMyPolls} >my polls</div>
@@ -76,7 +79,7 @@ class Profile extends Component {
                     
                     <div>
                         <h2>  {this.state.view}</h2>
-                        <Grid />
+                        <Grid user={this.state.user} view={this.state.view} />
                     </div>
                 </div>
                 );
