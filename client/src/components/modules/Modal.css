@@ -1,4 +1,57 @@
-.Modal-container 
+.Modal-box
 {
-    
+    align-items: center;
+    justify-content: center;
+}
+
+.Modal-input,
+.Modal-submit,
+.Modal-close
+{
+  font-size: 14px;
+  margin: var(--s);
+  padding: var(--s) var(--m);
+}
+
+.Modal-input {
+  color: var(--lightbrown);
+  border: var(--lightbrown) 2px solid;
+  border-radius: var(--xs) 0 0 var(--xs);
+  transition: box-shadow 0.1s;
+}
+
+.Modal-input:focus-within 
+{
+  border-color: var(--lightbrown);
+  outline: none;
+  box-shadow: 0 0 0 var(--xs) var(--green--dim);
+}
+
+.Modal-submit {
+  color: var(--darkgreen);
+  border: var(--green) 2px solid;
+  border-radius: 0 var(--xs) var(--xs) 0;
+  background: none;
+  transition: color 0.1s, background 0.1s;
+  outline:none;
+}
+
+.Modal-submit:hover {
+  color: var(--white);
+  background-color: var(--green);
+}
+
+
+.Modal-close {
+  color: var(--tag-red);
+  border: var(--tag-red) 2px solid;
+  border-radius: 5px;
+  background: none;
+  transition: color 0.1s, background 0.1s;
+  outline:none;
+}
+
+.Modal-close:hover {
+  color: var(--white);
+  background-color: var(--tag-red);
 }

@@ -46,7 +46,7 @@ class NewOption extends Component
         <div className="u-flex">
             <input
                 type="text"
-                placeholder={this.props.default}
+                placeholder="your idea..."
                 value={this.state.content}
                 onChange={this.handleChange}
                 className="NewOption-input"
