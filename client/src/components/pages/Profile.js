@@ -52,6 +52,11 @@ class Profile extends Component {
         this.setState({show_create: false});
     }
 
+    addNewPoll = (event) =>
+    {
+        // FILL THIS OUT PLS THANKYOU
+    }
+
     render() {
         console.log(this.state.user);
         if (!this.state.show_create)
@@ -86,7 +91,7 @@ class Profile extends Component {
         }
         else
         {
-            return <Modal show={this.state.show_create} closeCreator={this.closeCreator}/>;
+            return <Modal addNewPoll={this.addNewPoll} show={this.state.show_create} closeCreator={this.closeCreator}/>;
         }
     }
 }

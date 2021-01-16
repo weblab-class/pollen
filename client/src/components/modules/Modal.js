@@ -5,6 +5,7 @@ import "./Modal.css";
     props:
     this.props.show
     this.props.closeCreator
+    this.props.addNewPoll
 
 */
 class Modal extends Component 
@@ -33,15 +34,10 @@ class Modal extends Component
     });
   }
 
-  addPoll = (poll) =>
-  {
-    
-  };
-
   handleSubmit = (event) =>
   {
     event.preventDefault();
-    this.addPoll(this.state.question);
+    this.props.addNewPoll(this.state.question);
     this.setState({
         question: "",
     });   
