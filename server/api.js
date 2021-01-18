@@ -92,9 +92,9 @@ router.post("/poll", (req, res) => {
       req.body.options[index].adder = user_id
     }
     const poll = {
-      question: req.body.question,
-      description: req.body.description,
-      options: req.body.options,
+      question: req.body.question || 'Untitled Question',
+      description: req.body.description || '',
+      options: req.body.options || [],
       votes: new Map(),
       owner: user_id,
       tags: req.body.tags || [],
