@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
+import ShareButton from "./ShareButton.js";
 
 import "./NavBar.css";
 
@@ -41,21 +42,22 @@ class NavBar extends Component {
             />
           )}
         </div>
-        <div className="NavBar-title u-inlineBlock">
-          <Link to="/" className="NavBar-link">
+          <Link to="/" className="NavBar-link NavBar-title">
             pollen
           </Link>
-        </div>
-        <div className="NavBar-linkContainer u-inlineBlock">
-            {/* <Link to="/" className="NavBar-link">
-              Home
-            </Link> */}
-            {this.props.userId && (
-              <Link to={"/profile/"} className="NavBar-link">
-                profile
-              </Link>
-            )}
-        </div>
+
+          {this.props.userId && (
+            <Link to={"/profile/"} className="NavBar-link">
+              profile
+            </Link>
+          )}
+
+        { window.location.pathname.startsWith("/poll") && (
+            <ShareButton href={window.location.href} style="align-content:flex-end;">
+            </ShareButton>
+        )}
+
+
       </nav>
     );
   }

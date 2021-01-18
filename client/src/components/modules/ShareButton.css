@@ -1,0 +1,13 @@
+.share-button {
+  color: white;
+  font-family: 'Comfortaa', cursive;
+  font-size: 18px;
+  border: var(--salmon) 1px solid;
+  border-radius: 10px;
+  background: var(--salmon);
+  transition: color 0.4s, background 0.4s;
+  outline:none;
+  width: 120px;
+  height: 40px;
+  margin-left: auto;
+}
