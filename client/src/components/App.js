@@ -40,12 +40,14 @@ class App extends Component {
     post("/api/login", { token: userToken}).then((user) => {
       console.log("Posted to login, response:", user)
       this.setState({ userId: user._id });
+      window.location.href = '/profile'
       post("/api/initsocket", { socketid: socket.id });
     });
   };
 
   handleLogout = () => {
     this.setState({ userId: undefined });
+    window.location.href = '/'
     post("/api/logout");
   };
 
