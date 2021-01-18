@@ -39,3 +39,8 @@ div.PollCard-container:hover{
     margin: 2px 2px 2px 0px;
     padding: 2px 6px;
 }
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}

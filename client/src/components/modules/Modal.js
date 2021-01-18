@@ -40,7 +40,7 @@ class Modal extends Component
     this.props.addNewPoll(this.state.question)
     .then((poll)=>{
       console.log("POLL", poll)
-      window.location.href = '/poll';
+      window.location.href = '/poll/'+poll._id;
     })
     this.setState({
         question: "",
