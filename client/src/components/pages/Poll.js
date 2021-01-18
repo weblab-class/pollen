@@ -29,26 +29,36 @@ class Poll extends Component
           _id: props._id
         },
 
+        votes_names: [],
+        votes_tags: [],
+
         owner_name: "",
         owner_tag: "",
       };
       //console.log("INIT", this.state)
   }
 
-  componentDidMount()
+  async componentDidMount()
   {
-    get("/api/poll", { id: this.state.poll._id }).then((pollObj) => {
-      //console.log("POLLED", pollObj)
-      this.setState({
-        poll: pollObj
-      });
-      return get("/api/user/info", { id: this.state.poll.owner });
-    }).then((userObj) => {
-      this.setState({
-        owner_name: userObj.name,
-        owner_tag: userObj.tag,
-      });
-    });
+    const pollObj = await get("/api/poll", { id: this.state.poll._id });
+    const ownerObj = await get("/api/user/info", { id: pollObj.owner });
+
+    let tags = [];
+    let names = [];
+    for (const user in pollObj.votes)
+    {
+      const userObj = await get("/api/user/info", { id: user} );
+      tags.push(userObj.tag);
+      names.push(userObj.name);
+    }
+  
+    this.setState({
+      poll: pollObj,
+      owner_tag: ownerObj.tag,
+      owner_name: ownerObj.name,
+      votes_tags: tags,
+      votes_names: names,
+    });      
   }
 
   addNewOption = (opt) =>
@@ -75,7 +85,7 @@ class Poll extends Component
             <div className="u-flex">
 
               <div className="Poll-subContainer Poll-sideBar">
-                <VoterList voters={this.state.poll.votes} />
+                <VoterList voters={this.state.poll.votes} tags={this.state.votes_tags}/>
               </div>
 
               <div className="Poll-subContainer Poll-board">

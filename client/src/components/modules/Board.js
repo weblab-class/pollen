@@ -21,8 +21,8 @@ class Board extends Component
 
   render()
   {
-      console.log("BOARD")
-      console.log(this.props)
+      //console.log("BOARD")
+      //console.log(this.props)
       let optionsList = this.props.options.map((opt) =>
       {
           return <Option poll_id={this.props.poll_id} _id={opt._id} key={"Option#" + opt._id} text={opt.text} />
