@@ -42,17 +42,13 @@
 .Profile-sidebuttons
 {
     margin: var(--m) 0;
-    height: 100%;
-}
-
-.Profile-subTop
-{
-    margin-bottom: auto;
 }
 
 .Profile-subBot
 {
-    margin-top: auto;
+    position: relative;
+    margin-left: 0%;
+    margin-top: 80%;
 }
 
 .Profile-button:hover
