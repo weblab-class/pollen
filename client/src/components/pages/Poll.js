@@ -27,15 +27,18 @@ class Poll extends Component
           addable: true,
           voters: new Map(),
           _id: props._id
-        }
+        },
+
+        owner_name: "",
+        owner_tag: "",
       };
-      console.log("INIT", this.state)
+      //console.log("INIT", this.state)
   }
 
   componentDidMount()
   {
     get("/api/poll", { id: this.state.poll._id }).then((pollObj) => {
-      console.log("POLLED", pollObj)
+      //console.log("POLLED", pollObj)
       this.setState({
         poll: pollObj
       });
@@ -51,6 +54,13 @@ class Poll extends Component
         poll: pollObj,
       });
     });
+
+    get("/api/user/info", { id: this.state.poll.owner }).then((userObj) => {
+      this.setState({
+        owner_name: userObj.name,
+        owner_tag: userObj.tag,
+      });
+    });
   };
 
   render()
@@ -59,7 +69,7 @@ class Poll extends Component
         <div className="App-container">
           <div className="Poll-container">
             <div className="u-darkdarkbrown u-textCenter u-textMedium">
-              <span className="u-bold">{"@" + this.state.poll.owner} </span>
+              <span className="u-bold">{"@" + this.state.poll.owner_tag} </span>
               <span>'s poll</span>
             </div>
 
