@@ -80,6 +80,38 @@ class Poll extends Component
     });
   };
 
+  handleVote = async opt_id =>
+  {
+    const body = {id: this.state.poll._id, option_id: opt_id};
+    const pollObj = await post("/api/poll/vote", body);
+
+    const userObj = await get("/api/user/info", { id: this.props.userId} );
+
+    let curOption = null;
+    for (const optObj of pollObj.options)
+    {
+      if (optObj._id === opt_id)
+      {
+        curOption = optObj;
+      }
+    }
+
+    let new_user_votes = this.state.user_votes;
+    if (userObj.tag in new_user_votes)
+    {
+      new_user_votes[userObj.tag].push(curOption);
+    }
+    else
+    {
+      new_user_votes[userObj.tag] = [curOption];
+    }
+
+    this.setState({
+      poll: pollObj,
+      user_votes: new_user_votes,
+    });
+  }
+
   render()
   {
       return (
@@ -97,7 +129,7 @@ class Poll extends Component
               </div>
 
               <div className="Poll-subContainer Poll-board">
-                <Board poll_id={this.state.poll._id} question={this.state.poll.question} options={this.state.poll.options || []} />
+                <Board handleVote={this.handleVote} poll_id={this.state.poll._id} question={this.state.poll.question} options={this.state.poll.options || []} />
 
                 <div className="u-textCenter">
                   <NewOption addNewOption={this.addNewOption} />

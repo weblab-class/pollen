@@ -5,7 +5,6 @@ import "./VoterCard.css";
     props:
     this.props.user
     this.props.votes
-
 */
 class VoterCard extends Component 
 {

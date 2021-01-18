@@ -25,7 +25,7 @@ class Board extends Component
       //console.log(this.props)
       let optionsList = this.props.options.map((opt) =>
       {
-          return <Option poll_id={this.props.poll_id} _id={opt._id} key={"Option#" + opt._id} text={opt.text} />
+          return <Option handleVote={this.handleVote} poll_id={this.props.poll_id} _id={opt._id} key={"Option#" + opt._id} text={opt.text} />
       });
 
       return (

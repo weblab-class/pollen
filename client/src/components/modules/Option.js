@@ -9,6 +9,7 @@ import "./Option.css";
     this.props.poll_id
     this.props.text
     this.props._id
+    this.props.handleVote
 
 */
 class Option extends Component
@@ -18,12 +19,11 @@ class Option extends Component
       super(props);
   }
 
-  handleVote = (event) =>
+  addVote = (event) =>
   {
-    const body = {id: this.props.poll_id, option_id: this.props._id};
-    post("/api/poll/vote", body);
+    return this.props.handleVote(this.props._id);
   }
-
+  
   render()
   {
       return (
@@ -32,7 +32,7 @@ class Option extends Component
           <button
                 type="submit"
                 value="Vote"
-                onClick={this.handleVote}
+                onClick={this.addVote}
                 className="Option-button u-pointer"
             > Vote </button>
         </div>);
