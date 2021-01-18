@@ -22,7 +22,8 @@ class VoterList extends Component
       let i = 0;
       for (const user in this.props.voters)
       {
-        const votes = this.props.voters.get(user);
+        //console.log(this.props.voters);
+        const votes = this.props.voters[user];
         voterCardList.push((<VoterCard key={i} user={user} votes={votes} />));
         i++;
       }

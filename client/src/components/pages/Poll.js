@@ -25,7 +25,7 @@ class Poll extends Component
           owner: "",
           open: true,
           addable: true,
-          voters: new Map(),
+          votes: {},
           _id: props._id
         },
 
@@ -75,7 +75,7 @@ class Poll extends Component
             <div className="u-flex">
 
               <div className="Poll-subContainer Poll-sideBar">
-                <VoterList voters={this.state.poll.voters} />
+                <VoterList voters={this.state.poll.votes} />
               </div>
 
               <div className="Poll-subContainer Poll-board">
