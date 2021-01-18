@@ -11,6 +11,16 @@ import { get, post } from "../../utilities.js";
  * @param {number} last_visited
 */
 
+// colors and stuff
+const tagColors = {
+    "Food": "#cee079ff",
+    "food": "#cee079ff",
+    "travel": "#ea9999ff",
+    "games": "#9fbde8ff",
+    "relationships": "#cfa7d6ff",
+    "other": "#da9fc5ff"
+};
+
 class PollCard extends Component {
     constructor(props) {
         super(props);
@@ -55,13 +65,15 @@ class PollCard extends Component {
         let tagsList = null;
         if (poll.tags.length !== 0) {
             tagsList = poll.tags.map((tag) => (
-                <div className="PollCard-tag" style={{backgroundColor: "#cfa7d6ff"}} >{tag}</div>
+                <div className="PollCard-tag" style={{backgroundColor: tagColors[tag]}} >{tag}</div>
             ));
         }
         const pollLink = '/poll/' + poll._id;
+        // const onclick = 'window.location.href="/poll/'+ poll._id + '"';
+        const onclick = 'window.location.href="/poll/62HRWorwL/"';
         return (
             // <a href={pollLink}>
-              <div className="PollCard-container">
+              <div className="PollCard-container" onClick={() => {window.location.href = "/poll/" + poll._id;}}>
                 <div className="PollCard-namebanner u-textCenter">{this.state.owner.name}</div>
                 <div className="PollCard-body">
                     {statusTag}
