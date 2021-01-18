@@ -5,3 +5,8 @@
 
     background-color: white;
 }
+
+.VoterCard-name
+{
+    margin-bottom: var(--xs);
+}

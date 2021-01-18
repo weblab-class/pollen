@@ -25,8 +25,9 @@ class VoterList extends Component
       {
         const votes = this.props.user_votes[usertag].map((opt)=>
         {
-          return opt.text + "\n";
+          return opt.text;
         });
+        console.log(votes);
         voterCardList.push((<VoterCard key={i} user={usertag} votes={votes} />));
         i++;
       }
