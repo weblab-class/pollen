@@ -55,16 +55,17 @@ class App extends Component {
     return (
       <>
         <NavBar
+          userId={this.state.userId}
           handleLogin={this.handleLogin}
           handleLogout={this.handleLogout}
           userId={this.state.userId}
         />
           <Router>
-            <LandingPage path="/" />
+            <LandingPage path="/" handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
             <Poll userId={this.state.userId} path="/poll/:_id"/>
             <Profile userId={this.state.userId} path="/profile"/>
             <NotFound default />
-            <Skeleton path="/skeleton" handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
+            <Skeleton path="/skeleton" />
           </Router>
 
       </>
