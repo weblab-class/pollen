@@ -1,5 +1,6 @@
 .NavBar-container {
-    padding: var(--s) var(--m);
+    padding: var(--xs);
+    width: 100%;
     background-color: #fff2ccff;
     display: flex;
     flex-direction: row;
@@ -8,13 +9,14 @@
   }
 
   .NavBar-title {
-    color: #434343;
-    font-size: 20px;
+    color: #3b3636;
+    font-size: 30px;
+    font-weight: 600;
+    margin-left: var(--m)
   }
 
   .NavBar-link,
   .NavBar-link:visited {
-    color: #434343;
     opacity: 0.6;
     text-decoration: none;
   }
@@ -28,5 +30,9 @@
   }
 
   .NavBar-share {
-    justify-content: flex-end;
+    margin-left: auto;
+  }
+
+  .NavBar-login {
+    margin-right: var(--m)
   }

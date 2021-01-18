@@ -19,9 +19,7 @@ class ShareButton extends Component
   render()
   {
       return (
-        <button type="button" class="share-button" onclick={()=>{
-          alert("Send this link to your friends " + this.state.href);
-        }}> + Share </button>
+        <button type="button" class="share-button" onClick={() => {alert("NEED A MODAL HERE")}}> + Share </button>
       );
   }
 }

@@ -9,6 +9,7 @@ import "../../utilities.css";
  * Proptypes
  * @param {object} user
  * @param {string} view
+ * this.props.tagColors
 */
 
 class Grid extends Component {
@@ -27,6 +28,7 @@ class Grid extends Component {
               const pollObj = user.myPolls[index]
               pollsList.push(
                 <PollCard
+                  tagColors={this.props.tagColors}
                   _id={pollObj._id}
                   last_visited={pollObj.last_visited}
                   key={index}/>)

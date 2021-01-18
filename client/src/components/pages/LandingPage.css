@@ -1,14 +1,13 @@
 .LandingPage-container
 {
     padding: var(--l);
-    height: 93vh;
-    width: 95vw; 
+    height: 84.5vh;
+    width: 95.5vw; 
 
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
-
 
 .title-image
 {
@@ -16,7 +15,7 @@
     height: 50vh;
 
     position: absolute;
-    top: 5%;
+    top: 6%;
     left: 28%;
 }
 
@@ -31,12 +30,11 @@
   transition: color 0.4s, background 0.4s;
   outline:none;
 
-  width: 22vw;
-  height: 12vh;
+  padding: var(--l) var(--xl);
 
   position: absolute;
-  top: 55%;
-  left: 38%;
+  top: 60%;
+  left: 41%;
 }
 
 .LandingPage-button:hover {

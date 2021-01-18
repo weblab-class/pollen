@@ -20,7 +20,24 @@ class NavBar extends Component {
     return (
       <nav className="NavBar-container">
 
-        <div className="NavBar-linkContainer u-inlineBlock">
+          <Link to="/" className="NavBar-link NavBar-title">
+            pollen
+          </Link>
+
+          {this.props.userId && (
+            <Link to={"/profile/"} className="NavBar-link">
+              profile
+            </Link>
+          )}
+          
+        <div class="NavBar-share">
+          { window.location.pathname.startsWith("/poll") && (
+                <ShareButton href={window.location.href} >
+                </ShareButton>
+          )}
+        </div>
+
+        <div className="NavBar-login">
           {/* <Link to="/chat/" className="NavBar-link">
             Chat
           </Link> */}
@@ -42,21 +59,6 @@ class NavBar extends Component {
             />
           )}
         </div>
-          <Link to="/" className="NavBar-link NavBar-title">
-            pollen
-          </Link>
-
-          {this.props.userId && (
-            <Link to={"/profile/"} className="NavBar-link">
-              profile
-            </Link>
-          )}
-
-        { window.location.pathname.startsWith("/poll") && (
-            <ShareButton href={window.location.href} style="align-content:flex-end;">
-            </ShareButton>
-        )}
-
 
       </nav>
     );
