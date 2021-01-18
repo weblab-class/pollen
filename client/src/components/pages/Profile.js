@@ -63,7 +63,7 @@ class Profile extends Component {
 
     addNewPoll = (question, tags) =>
     {
-        return post('/api/poll', {question: question, tags: tags})
+        return post('/api/poll', {question: question, tags: tags});
     }
 
     render() {

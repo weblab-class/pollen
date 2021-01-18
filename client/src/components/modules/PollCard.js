@@ -81,7 +81,7 @@ class PollCard extends Component {
                 <div className="PollCard-namebanner u-textCenter">{this.state.owner.name}</div>
                 <div className="PollCard-body">
                     {statusTag}
-                    <p>{poll.question}</p>
+                    <p className="PollCard-question">{poll.question}</p>
                     {tagsList}
                     <p className="u-textRight" style={infoStyle} >{numvotes} votes</p>
                     <p className="u-textRight" style={infoStyle} >{poll.options.length} options</p>
