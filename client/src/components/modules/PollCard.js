@@ -59,10 +59,12 @@ class PollCard extends Component {
             (<div className="PollCard-tag" style={{backgroundColor: "#bbd059ff"}} >open</div>) :
             (<div className="PollCard-tag" style={{backgroundColor: "#e06666ff"}} >closed</div>);
         let tagsList = null;
+        let cardColor = "#cfa7d6ff";
         if (poll.tags.length !== 0) {
             tagsList = poll.tags.map((tag) => (
                 <div className="PollCard-tag" style={{backgroundColor: this.props.tagColors[tag]}} >{tag}</div>
             ));
+            cardColor = this.props.tagColors[poll.tags[0]] // pick the first tag to be color
         }
 
         let numvotes = 0;
@@ -71,14 +73,17 @@ class PollCard extends Component {
             numvotes += this.state.poll.votes[user].length;
         }
 
-
         const pollLink = '/poll/' + poll._id;
         // const onclick = 'window.location.href="/poll/'+ poll._id + '"';
         const onclick = 'window.location.href="/poll/62HRWorwL/"';
         return (
             // <a href={pollLink}>
-              <div className="PollCard-container" onClick={() => {window.location.href = "/poll/" + poll._id;}}>
-                <div className="PollCard-namebanner u-textCenter">{this.state.owner.name}</div>
+              <div className="PollCard-container" 
+                onClick={() => {window.location.href = "/poll/" + poll._id;}}
+                style={{borderColor: cardColor}}>
+                <div className="PollCard-namebanner u-textCenter" style={{backgroundColor: cardColor}}>
+                    {this.state.owner.name}
+                </div>
                 <div className="PollCard-body">
                     {statusTag}
                     <p className="PollCard-question">{poll.question}</p>
