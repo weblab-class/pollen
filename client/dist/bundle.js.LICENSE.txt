@@ -4,6 +4,8 @@ object-assign
 @license MIT
 */
 
+/*! https://mths.be/utf8js v2.1.2 by @mathias */
+
 /**
  * Checks if an event is supported in the current execution environment.
  *

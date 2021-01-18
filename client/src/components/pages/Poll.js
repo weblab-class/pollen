@@ -22,7 +22,7 @@ class Poll extends Component
           question: "",
           options: [],
           tags: [],
-          ownerID: "",
+          owner: "",
           open: true,
           addable: true,
           voters: new Map(),
@@ -59,7 +59,7 @@ class Poll extends Component
         <div className="App-container">
           <div className="Poll-container">
             <div className="u-darkdarkbrown u-textCenter u-textMedium">
-              <span className="u-bold">{"@" + this.state.poll.ownerID} </span>
+              <span className="u-bold">{"@" + this.state.poll.owner} </span>
               <span>'s poll</span>
             </div>
 
