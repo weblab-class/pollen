@@ -168,6 +168,52 @@ router.post("/poll/vote", async (req, res) => {
   res.send(poll)
 });
 
+router.post("/poll/unvote", async (req, res) => {
+  if (!(req.body.admin || req.user)) {
+    return res.send({});
+  }
+  if(!req.body.option_id){
+    return res.send("No Option provided");
+  }
+  if(!req.body.id){
+    return res.send("No ID provided");
+  }
+  const user_id = req?.user?._id || aniID
+  const option_id = req.body.option_id
+
+  const poll = await Poll.findOne({_id:req.body.id})
+  if(!poll){
+    return res.status(404).send("Not Found")
+  }
+  if(poll.votes.has(user_id)){
+    let found = false
+    for(const cur_option of poll.options){
+      if(cur_option._id == option_id){
+        found = true
+        break
+      }
+    }
+
+    const user_votes = poll.votes.get(user_id)
+
+    const new_arr = []
+    for(item of user_votes)
+      if(item!==option_id)
+        new_arr.push(item)
+
+    if(new_arr.length == user_votes.length){
+      return res.status(208).send("Did not vote for that yet")
+    }
+
+    poll.votes.set(user_id, new_arr)
+  }
+  else{
+    res.status(404).send({error:"User not found"})
+  }
+  await poll.save()
+  res.send(poll)
+});
+
 router.post("/poll/addOption", async (req, res) => {
   if (!(req.body.admin || req.user)) {
     return res.send({});
