@@ -62,6 +62,7 @@ class Profile extends Component {
         if (!this.state.show_create)
         {
             return (
+                <div className="App-container">
                 <div className="Profile-container">
                     <div className="Profile-sidebar">
                         <img className="Profile-pfp" src={Pfp} alt="bee" width="100px" height="100px" />
@@ -86,6 +87,7 @@ class Profile extends Component {
                         <h2>  {this.state.view}</h2>
                         <Grid user={this.state.user} view={this.state.view} />
                     </div>
+                </div>
                 </div>
                 );
         }

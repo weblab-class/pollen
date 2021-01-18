@@ -18,7 +18,7 @@ class NavBar extends Component {
   render() {
     return (
       <nav className="NavBar-container">
-        
+
         <div className="NavBar-linkContainer u-inlineBlock">
           {/* <Link to="/chat/" className="NavBar-link">
             Chat
@@ -42,7 +42,7 @@ class NavBar extends Component {
           )}
         </div>
         <div className="NavBar-title u-inlineBlock">
-          <Link to="/land" className="NavBar-link">
+          <Link to="/" className="NavBar-link">
             pollen
           </Link>
         </div>

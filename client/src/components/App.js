@@ -57,22 +57,14 @@ class App extends Component {
           handleLogout={this.handleLogout}
           userId={this.state.userId}
         />
-        <Router>
-            <LandingPage path="/land" />
-        </Router>
-        <div className="App-container">
           <Router>
-            <Skeleton
-              path="/"
-              handleLogin={this.handleLogin}
-              handleLogout={this.handleLogout}
-              userId={this.state.userId}
-            />
+            <LandingPage path="/" />
             <Poll path="/poll/:_id"/>
             <Profile path="/profile"/>
             <NotFound default />
+            <Skeleton path="/skeleton" handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
           </Router>
-        </div>
+
       </>
     );
   }

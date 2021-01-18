@@ -56,29 +56,31 @@ class Poll extends Component
   render()
   {
       return (
-      <div className="Poll-container">
-        <div className="u-darkdarkbrown u-textCenter u-textMedium">
-          <span className="u-bold">{"@" + this.state.poll.ownerID} </span>
-          <span>'s poll</span>
-        </div>
-
-        <div className="u-flex">
-
-          <div className="Poll-subContainer Poll-sideBar">
-            <VoterList voters={this.state.poll.voters} />
-          </div>
-
-          <div className="Poll-subContainer Poll-board">
-            <Board poll_id={this.state.poll._id} question={this.state.poll.question} options={this.state.poll.options || []} />
-
-            <div className="u-textCenter">
-              <NewOption addNewOption={this.addNewOption} />
+        <div className="App-container">
+          <div className="Poll-container">
+            <div className="u-darkdarkbrown u-textCenter u-textMedium">
+              <span className="u-bold">{"@" + this.state.poll.ownerID} </span>
+              <span>'s poll</span>
             </div>
+
+            <div className="u-flex">
+
+              <div className="Poll-subContainer Poll-sideBar">
+                <VoterList voters={this.state.poll.voters} />
+              </div>
+
+              <div className="Poll-subContainer Poll-board">
+                <Board poll_id={this.state.poll._id} question={this.state.poll.question} options={this.state.poll.options || []} />
+
+                <div className="u-textCenter">
+                  <NewOption addNewOption={this.addNewOption} />
+                </div>
+              </div>
+
+            </div>
+
           </div>
-
         </div>
-
-      </div>
       );
   }
 }
