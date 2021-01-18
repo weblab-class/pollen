@@ -41,11 +41,6 @@ class NavBar extends Component {
             />
           )}
         </div>
-        <div className="NavBar-title u-inlineBlock">
-          <Link to="/" className="NavBar-link">
-            pollen
-          </Link>
-        </div>
         <div className="NavBar-linkContainer u-inlineBlock">
             {/* <Link to="/" className="NavBar-link">
               Home
@@ -55,6 +50,11 @@ class NavBar extends Component {
                 profile
               </Link>
             )}
+        </div>
+        <div className="NavBar-title u-inlineBlock">
+          <Link to="/" className="NavBar-link">
+            pollen
+          </Link>
         </div>
       </nav>
     );

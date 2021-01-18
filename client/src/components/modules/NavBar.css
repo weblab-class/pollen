@@ -1,14 +1,18 @@
 .NavBar-container {
-    padding: var(--s) var(--m);
+    padding: var(--xs);
+    width: 100%;
     background-color: #fff2ccff;
     /* display: flex; */
   }
   
   .NavBar-title {
-    color: #434343;
-    font-size: 20px;
-    padding-left: var(--m);
-    /* text-align: center; */
+    color: #3b3636;
+    font-size: 30px;
+    font-weight: 600;
+
+    position: absolute;
+    left: 46%;
+    top: 1.5%;
   }
   
   .NavBar-linkContainer {
@@ -17,7 +21,6 @@
   
   .NavBar-link,
   .NavBar-link:visited {
-    color: #434343;
     opacity: 0.6;
     text-decoration: none;
   }
