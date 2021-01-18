@@ -5,8 +5,7 @@ import "./VoterList.css";
 
 /*
     props:
-    this.props.voters
-    this.props.tags
+    this.props.user_votes
 */
 
 
@@ -22,15 +21,16 @@ class VoterList extends Component
       let voterCardList = [];
 
       let i = 0;
-      for (const user in this.props.voters)
+      for (const usertag in this.props.user_votes)
       {
-        const tag = this.props.tags[i];
-        const votes = this.props.voters[user];
-        voterCardList.push((<VoterCard key={i} user={tag} votes={votes} />));
+        const votes = this.props.user_votes[usertag].map((opt)=>
+        {
+          return opt.text + "\n";
+        });
+        voterCardList.push((<VoterCard key={i} user={usertag} votes={votes} />));
         i++;
       }
 
-      console.log('done);');
       return (
         <div className="VoterList-container">
             <h3 className="u-textCenter"> Who's Voting? </h3>
