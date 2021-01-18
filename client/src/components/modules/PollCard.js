@@ -9,29 +9,25 @@ import { get, post } from "../../utilities.js";
  * Proptypes
  * @param {string} _id
  * @param {number} last_visited
+ * this.props.tagColors
 */
 
-// colors and stuff
-const tagColors = {
-    "Food": "#cee079ff",
-    "food": "#cee079ff",
-    "travel": "#ea9999ff",
-    "games": "#9fbde8ff",
-    "relationships": "#cfa7d6ff",
-    "other": "#da9fc5ff"
-};
+
 
 class PollCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            poll: {
-                open: true,
+            poll:{
                 question: "",
-                votes: [],
                 options: [],
                 tags: [],
-            },
+                owner: "",
+                open: true,
+                addable: true,
+                votes: {},
+                _id: props._id
+              },
             owner: {
                 name: "",
             }
@@ -65,9 +61,17 @@ class PollCard extends Component {
         let tagsList = null;
         if (poll.tags.length !== 0) {
             tagsList = poll.tags.map((tag) => (
-                <div className="PollCard-tag" style={{backgroundColor: tagColors[tag]}} >{tag}</div>
+                <div className="PollCard-tag" style={{backgroundColor: this.props.tagColors[tag]}} >{tag}</div>
             ));
         }
+
+        let numvotes = 0;
+        for (const user in this.state.poll.votes)
+        {
+            numvotes += this.state.poll.votes[user].length;
+        }
+
+
         const pollLink = '/poll/' + poll._id;
         // const onclick = 'window.location.href="/poll/'+ poll._id + '"';
         const onclick = 'window.location.href="/poll/62HRWorwL/"';
@@ -79,7 +83,7 @@ class PollCard extends Component {
                     {statusTag}
                     <p>{poll.question}</p>
                     {tagsList}
-                    <p className="u-textRight" style={infoStyle} >{poll.votes.length} votes</p>
+                    <p className="u-textRight" style={infoStyle} >{numvotes} votes</p>
                     <p className="u-textRight" style={infoStyle} >{poll.options.length} options</p>
                 </div>
               </div>

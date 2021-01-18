@@ -4,6 +4,21 @@
     justify-content: center;
 }
 
+.Modal-topbox
+{
+  padding-top: var(--m);
+}
+
+.Modal-list
+{
+  list-style-type:none;
+}
+
+.Modal-Tag
+{
+  font-size: 15px;
+}
+
 .Modal-input,
 .Modal-submit,
 .Modal-close
