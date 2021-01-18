@@ -42,6 +42,12 @@ class Poll extends Component
       this.setState({
         poll: pollObj
       });
+      return get("/api/user/info", { id: this.state.poll.owner });
+    }).then((userObj) => {
+      this.setState({
+        owner_name: userObj.name,
+        owner_tag: userObj.tag,
+      });
     });
   }
 
@@ -54,13 +60,6 @@ class Poll extends Component
         poll: pollObj,
       });
     });
-
-    get("/api/user/info", { id: this.state.poll.owner }).then((userObj) => {
-      this.setState({
-        owner_name: userObj.name,
-        owner_tag: userObj.tag,
-      });
-    });
   };
 
   render()
@@ -69,7 +68,7 @@ class Poll extends Component
         <div className="App-container">
           <div className="Poll-container">
             <div className="u-darkdarkbrown u-textCenter u-textMedium">
-              <span className="u-bold">{"@" + this.state.poll.owner_tag} </span>
+              <span className="u-bold">{this.state.owner_tag} </span>
               <span>'s poll</span>
             </div>
 
