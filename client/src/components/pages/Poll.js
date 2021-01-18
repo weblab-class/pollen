@@ -10,6 +10,7 @@ import "../../utilities.css"
 /*
     props:
     this.props._id (of the poll)
+    this.props.userId
 */
 class Poll extends Component
 {

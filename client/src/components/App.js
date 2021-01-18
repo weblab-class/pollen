@@ -26,12 +26,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    /*get("/api/whoami").then((user) => {
+    get("/api/whoami").then((user) => {
       if (user._id) {
         // they are registed in the database, and currently logged in.
         this.setState({ userId: user._id });
       }
-    });*/
+    });
   }
 
   handleLogin = (res) => {
@@ -61,8 +61,8 @@ class App extends Component {
         />
           <Router>
             <LandingPage path="/" />
-            <Poll path="/poll/:_id"/>
-            <Profile path="/profile"/>
+            <Poll userId={this.state.userId} path="/poll/:_id"/>
+            <Profile userId={this.state.userId} path="/profile"/>
             <NotFound default />
             <Skeleton path="/skeleton" handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
           </Router>

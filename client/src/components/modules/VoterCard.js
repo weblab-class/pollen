@@ -15,10 +15,13 @@ class VoterCard extends Component
 
   render() 
   {
+    let i = 0;
     const voteList = this.props.votes.map((voteObj) =>
     {
-      return <div> {">" + voteObj} </div>;
+      i++;
+      return <div key={i}> {">" + voteObj} </div>;
     });
+
       return (
         <div className="VoterCard-container">
             <div className="VoterCard-name u-bold"> {this.props.user} </div>
