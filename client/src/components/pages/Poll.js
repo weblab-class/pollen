@@ -62,8 +62,11 @@ class Poll extends Component
     }
     for (const user_id in pollObj.votes)
     {
-      if(user_id!=this.state.userId)
-        user_info_map[user_id] = await get("/api/user/info", { id: user_id} );
+      if(user_id!=this.state.userId){
+        try{
+          user_info_map[user_id] = await get("/api/user/info", { id: user_id} );
+        }catch(err){console.error(err);}
+      }
     }
 
     this.setState({
