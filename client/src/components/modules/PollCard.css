@@ -8,6 +8,9 @@
     padding: 0px 0px 2px 0px;
     width: 30%;
     cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-flow: column;
 }
 
 div.PollCard-container:hover{
@@ -28,12 +31,14 @@ div.PollCard-container:hover{
     margin-top: 0px;
     margin-bottom: 0px;
     padding: var(--xs) 12px; 
+    /* position: relative; */
+    /* flex-grow: 1; */
 }
 
 .PollCard-question
 {
     margin-top: var(--m);
-    margin-bottom: var(--xs);
+    margin-bottom: var(--m);
 }
 
 .PollCard-tag {
@@ -45,6 +50,26 @@ div.PollCard-container:hover{
     color: white;
     margin: 0px 2px 0px 0px;
     padding: 2px 10px;
+}
+
+.PollCard-info {
+    width: 100%;
+    color: gray;
+    font-size: x-small;
+    padding: 0px;
+    margin: 0px 6px 6px 0px;
+    flex-grow: 1;
+    /* text-align: right; */
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+p {
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+    bottom: 0px;
 }
 
 a {

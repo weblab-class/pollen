@@ -61,6 +61,7 @@
     padding-top: var(--l);
     padding-left: 0px;
     text-align: center;
+    /* position: sticky; */
     /* background-color: lightgray; */
 }
 
