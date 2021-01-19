@@ -10,8 +10,10 @@ import "./Board.css";
     this.props.userId
     this.props.poll_id
     this.props.question
-    this.props.handleVote
+    this.props.handleAddVote
+    this.props.handleRemoveVote
     this.props.options {option id, option color, option content}
+    this.props.userVoteIds
 */
 class Board extends Component
 {
@@ -22,11 +24,15 @@ class Board extends Component
 
   render()
   {
-      //console.log("BOARD")
-      //console.log(this.props)
       let optionsList = this.props.options.map((opt) =>
       {
-          return <Option handleVote={this.props.handleVote} poll_id={this.props.poll_id} _id={opt._id} key={"Option#" + opt._id} text={opt.text} />
+          return <Option handleAddVote={this.props.handleAddVote} 
+                        handleRemoveVote={this.props.handleRemoveVote}
+                            userVoteIds={this.props.userVoteIds}
+                            poll_id={this.props.poll_id}
+                            _id={opt._id} 
+                            key={"Option#" + opt._id} 
+                            text={opt.text} />
       });
 
       return (

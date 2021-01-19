@@ -17,7 +17,7 @@ class Poll extends Component
   constructor(props)
   {
       super(props);
-      console.log(props)
+      //console.log(props)
       this.state = {
         poll:{
           question: "",
@@ -27,7 +27,7 @@ class Poll extends Component
           open: true,
           addable: true,
           votes: {},
-          _id: props._id
+          _id: this.props._id
         },
 
         user_votes: {}, // user tag to [option text]
@@ -74,14 +74,15 @@ class Poll extends Component
   {
     const body = {id: this.state.poll._id, option: opt};
 
-    post("/api/poll/addOption", body).then((pollObj) => {
+    post("/api/poll/addOption", body).then((pollObj) => 
+    {
       this.setState({
         poll: pollObj,
       });
     });
   };
 
-  handleVote = async opt_id =>
+  handleAddVote = async opt_id =>
   {
     const body = {id: this.state.poll._id, option_id: opt_id};
     const pollObj = await post("/api/poll/vote", body);
@@ -106,6 +107,37 @@ class Poll extends Component
     {
       new_user_votes[userObj.tag] = [curOption];
     }
+    this.setState({
+      poll: pollObj,
+      user_votes: new_user_votes,
+    });
+  }
+
+  handleRemoveVote = async opt_id =>
+  {
+    const body = {id: this.state.poll._id, option_id: opt_id};
+    const pollObj = await post("/api/poll/unvote", body);
+    const userObj = await get("/api/user/info", { id: this.props.userId} );
+
+    let curOption = null;
+    let option_map = {}; // maps option id to option object
+    for (let i = 0; i < pollObj.options.length; i++)
+    {
+      const cur_opt_id = pollObj.options[i]._id;
+      if (cur_opt_id === opt_id)
+      {
+        curOption = pollObj.options[i];
+      }
+      option_map[opt_id] = pollObj.options[i];
+    }
+
+    let new_user_votes = this.state.user_votes;
+    let new_cur_user_votes = [];
+    for (const voteId of pollObj.votes[this.props.userId]) // id of votes
+    {
+        new_cur_user_votes.push(option_map[voteId]);
+    }
+    new_user_votes[userObj.tag] = new_cur_user_votes;
 
     this.setState({
       poll: pollObj,
@@ -130,7 +162,12 @@ class Poll extends Component
               </div>
 
               <div className="Poll-subContainer Poll-board">
-                <Board handleVote={this.handleVote} poll_id={this.state.poll._id} question={this.state.poll.question} options={this.state.poll.options || []} />
+                <Board handleAddVote={this.handleAddVote} 
+                        handleRemoveVote={this.handleRemoveVote}
+                        userVoteIds={this.state.poll.votes[this.props.userId]}
+                        poll_id={this.state.poll._id} 
+                        question={this.state.poll.question} 
+                        options={this.state.poll.options || []} />
 
                 <div className="u-textCenter">
                   <NewOption addNewOption={this.addNewOption} />

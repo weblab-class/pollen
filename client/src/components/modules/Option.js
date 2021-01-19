@@ -9,7 +9,9 @@ import "./Option.css";
     this.props.poll_id
     this.props.text
     this.props._id
-    this.props.handleVote
+    this.props.handleAddVote
+    this.props.handleRemoveVote
+    this.props.userVoteIds
 
 */
 class Option extends Component
@@ -21,20 +23,40 @@ class Option extends Component
 
   addVote = (event) =>
   {
-    return this.props.handleVote(this.props._id);
+    return this.props.handleAddVote(this.props._id);
+  }
+
+  removeVote = (event) =>
+  {
+    return this.props.handleRemoveVote(this.props._id);
   }
   
   render()
   {
+    let voted = false;
+    for (const voteId of this.props.userVoteIds)
+    {
+      if (this.props._id === voteId)
+      {
+        voted = true;
+        break;
+      }
+    }
+
+    let votebutton = null;
+    if (voted)
+    {
+      votebutton = <button type="submit" value="Unvote" onClick={this.removeVote} className="Option-button Option-remove u-pointer"> Unvote </button>;
+    }
+    else
+    { 
+      votebutton = <button type="submit" value="Vote" onClick={this.addVote} className="Option-button Option-add u-pointer"> Vote </button>;
+    }
+
       return (
         <div className="Board-optionBox u-textCenter u-flex">
           <span className="Board-optionContent">{this.props.text}</span>
-          <button
-                type="submit"
-                value="Vote"
-                onClick={this.addVote}
-                className="Option-button u-pointer"
-            > Vote </button>
+          {votebutton}
         </div>);
   }
 }

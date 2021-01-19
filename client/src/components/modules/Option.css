@@ -1,10 +1,8 @@
 .Option-button
 {
-    background-color: var(--tag-red);
     display: inline-block;
     text-align: center;
 
-    border: var(--tag-red) 1px solid;
     border-radius: var(--xs);
     font-size: small;
     font-family: 'Comfortaa', cursive;
@@ -24,4 +22,16 @@
     -webkit-transform: scale(1.1);
     -ms-transform: scale(1.1);
     transform: scale(1.1);
+}
+
+.Option-remove
+{
+    border: #3b3636 1px solid;
+    background-color:#3b3636;
+}
+
+.Option-add
+{
+    border: var(--tag-red) 1px solid;
+    background-color: var(--tag-red);
 }
