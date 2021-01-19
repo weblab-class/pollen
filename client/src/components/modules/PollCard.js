@@ -49,12 +49,6 @@ class PollCard extends Component {
 
     render() {
         let poll = this.state.poll;
-        const infoStyle = {
-            color: "gray",
-            fontSize: "x-small",
-            padding: "0px",
-            margin: "0px"
-        };
         let statusTag = poll.open ?
             (<div className="PollCard-tag" style={{backgroundColor: "#bbd059ff"}} >open</div>) :
             (<div className="PollCard-tag" style={{backgroundColor: "#e06666ff"}} >closed</div>);
@@ -74,10 +68,8 @@ class PollCard extends Component {
         }
 
         const pollLink = '/poll/' + poll._id;
-        // const onclick = 'window.location.href="/poll/'+ poll._id + '"';
-        const onclick = 'window.location.href="/poll/62HRWorwL/"';
+
         return (
-            // <a href={pollLink}>
               <div className="PollCard-container" 
                 onClick={() => {window.location.href = "/poll/" + poll._id;}}
                 style={{borderColor: cardColor}}>
@@ -88,11 +80,15 @@ class PollCard extends Component {
                     {statusTag}
                     <p className="PollCard-question">{poll.question}</p>
                     {tagsList}
-                    <p className="u-textRight" style={infoStyle} >{numvotes} votes</p>
-                    <p className="u-textRight" style={infoStyle} >{poll.options.length} options</p>
+                    
+                    {/* <p className="PollCard-info u-textRight" >{numvotes} votes</p>
+                    <p className="PollCard-info u-textRight" >{poll.options.length} options</p> */}
+                </div>
+                <div className="PollCard-info" >
+                    <p className="u-textRight" >{numvotes} votes</p>
+                    <p className="u-textRight" >{poll.options.length} options</p>
                 </div>
               </div>
-            // </a>
         )
     }
 }
