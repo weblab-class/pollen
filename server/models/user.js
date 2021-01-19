@@ -9,11 +9,9 @@ const UserSchema = new Schema({
   googleID: String,
   myPolls: [{
     _id: String,
-    last_visited: Number
   }],
   sharedPolls: [{
     _id: String,
-    last_visited: Number
   }],
   picture: Number,
   picture_link: String,

@@ -51,15 +51,20 @@ router.get("/poll", (req, res) => {
   if (!(req.query.admin || req.user)) {
     return res.send({});
   }
-  Poll.findOne({_id:req.query.id}, (err, doc)=>{
+  const user_id = req?.user?._id || aniID
+  console.log("GOT POLL", user_id)
+  Poll.findOneAndUpdate({_id:req.query.id},{ $addToSet: user_id } ,{new: true}, (err, doc)=>{
     if(doc){
       res.send(doc)
+      if(req.user && req.user._id != doc.owner ){
+        const time = Math.floor(Date.now()/1000)
+        User.findOneAndUpdate({_id: user_id}, { $addToSet: doc._id }, (err, doc)=>{})
+      }
     }
     else{
       res.status(404).send("Not Found")
     }
   })
-
 });
 
 // Requires higher permissions to edit
@@ -208,7 +213,7 @@ router.post("/poll/unvote", async (req, res) => {
     poll.votes.set(user_id, new_arr)
   }
   else{
-    res.status(404).send({error:"User not found"})
+    res.status(404).send("User not found")
   }
   await poll.save()
   res.send(poll)
