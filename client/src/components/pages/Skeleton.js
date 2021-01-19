@@ -5,7 +5,7 @@ import "../../utilities.css";
 import "./Skeleton.css";
 
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID
-const GOOGLE_CLIENT_ID = "708938922173-9p5lthpd7oftf05k6ocmjibea819ra8c.apps.googleusercontent.com";
+const GOOGLE_CLIENT_ID = "372400085928-8o463krp4me6mghktgvdn782gneprseo.apps.googleusercontent.com";
 
 class Skeleton extends Component {
   constructor(props) {

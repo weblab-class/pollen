@@ -6,7 +6,7 @@ import ShareButton from "./ShareButton.js";
 import "./NavBar.css";
 
 // This identifies your web application to Google's authentication service
-const GOOGLE_CLIENT_ID = "629695202863-25fq27eg96bkgafumfmj8n3etcvie7ji.apps.googleusercontent.com";
+const GOOGLE_CLIENT_ID = "372400085928-8o463krp4me6mghktgvdn782gneprseo.apps.googleusercontent.com";
 
 /**
  * The navigation bar at the top of all pages. Takes no props.
