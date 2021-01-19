@@ -11,6 +11,7 @@ import "../../utilities.css"
     props:
     this.props._id (of the poll)
     this.props.userId
+    this.props.tagColors
 */
 class Poll extends Component
 {
@@ -131,7 +132,9 @@ class Poll extends Component
                         userVoteIds={this.state.poll.votes[this.state?.user?._id] || []}
                         poll_id={this.state.poll._id}
                         question={this.state.poll.question}
-                        options={this.state.poll.options || []} />
+                        options={this.state.poll.options || []} 
+                        tags={this.state.poll.tags}
+                        tagColors={this.props.tagColors}/>
 
                 <div className="u-textCenter">
                   <NewOption addNewOption={this.addNewOption} />

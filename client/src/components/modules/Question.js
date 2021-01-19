@@ -5,6 +5,8 @@ import "./Board.css";
 /*
     props:
     this.props.content
+    this.props.tags
+    this.props.tagColors
 */
 class Question extends Component 
 {
@@ -15,11 +17,19 @@ class Question extends Component
 
   render() 
   {
-      return (
-        <div className="Board-questionBox">
-            <div className="Board-questionContent u-textCenter">{this.props.content}</div>
-        </div>
-        );
+        let tagsList = null;
+        if (this.props.tags.length !== 0) 
+        {
+            tagsList = this.props.tags.map((tag) => (
+                <div className="Board-tag" style={{backgroundColor: this.props.tagColors[tag]}} >{tag}</div>
+            )); 
+        }
+        return (
+            <div className="Board-questionBox">
+                {tagsList}
+                <div className="Board-questionContent u-textCenter">{this.props.content}</div>
+            </div>
+            );
   }
 }
 

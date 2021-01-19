@@ -14,6 +14,8 @@ import "./Board.css";
     this.props.handleRemoveVote
     this.props.options {option id, option color, option content}
     this.props.userVoteIds
+    this.props.tags
+    this.props.tagColors
 */
 class Board extends Component
 {
@@ -24,23 +26,27 @@ class Board extends Component
 
   render()
   {
-      let optionsList = this.props.options.map((opt) =>
-      {
-          return <Option handleAddVote={this.props.handleAddVote} 
-                        handleRemoveVote={this.props.handleRemoveVote}
-                            userVoteIds={this.props.userVoteIds}
-                            poll_id={this.props.poll_id}
-                            _id={opt._id} 
-                            key={"Option#" + opt._id} 
-                            text={opt.text} />
-      });
+        let optionsList = this.props.options.map((opt) =>
+        {
+            return <Option handleAddVote={this.props.handleAddVote} 
+                            handleRemoveVote={this.props.handleRemoveVote}
+                                userVoteIds={this.props.userVoteIds}
+                                poll_id={this.props.poll_id}
+                                _id={opt._id} 
+                                key={"Option#" + opt._id} 
+                                text={opt.text} />
+        });
 
-      return (
-          <div className="Board-container">
-              <Question content={this.props.question} />
-              {optionsList}
-          </div>
-    );
+        return (
+            <div className="Board-container">
+                <div>
+                    <Question content={this.props.question}
+                                tags={this.props.tags}
+                                tagColors={this.props.tagColors} />
+                </div>
+                {optionsList}
+            </div>
+        );
   }
 }
 

@@ -16,6 +16,15 @@ import { get, post } from "../utilities";
 /**
  * Define the "App" component as a class.
  */
+
+const tagColors = {
+  "food": "#cee079ff",
+  "travel": "#ea9999ff",
+  "games": "#9fbde8ff",
+  "relationships": "#cfa7d6ff",
+  "other": "#da9fc5ff"
+};
+
 class App extends Component {
   // makes props available in this component
   constructor(props) {
@@ -62,8 +71,8 @@ class App extends Component {
         />
           <Router>
             <LandingPage path="/" handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
-            <Poll userId={this.state.userId} path="/poll/:_id"/>
-            <Profile userId={this.state.userId} path="/profile"/>
+            <Poll tagColors={tagColors} userId={this.state.userId} path="/poll/:_id"/>
+            <Profile tagColors={tagColors} userId={this.state.userId} path="/profile"/>
             <NotFound default />
             <Skeleton path="/skeleton" />
           </Router>

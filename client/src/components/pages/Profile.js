@@ -10,16 +10,10 @@ import Pfp from "../modules/bee_pfp.png";
 /*
     props:
     this.props.userId
+    this.props.tagColors
 */
 
 // colors and stuff
-const tagColors = {
-    "food": "#cee079ff",
-    "travel": "#ea9999ff",
-    "games": "#9fbde8ff",
-    "relationships": "#cfa7d6ff",
-    "other": "#da9fc5ff"
-};
 
 class Profile extends Component {
     constructor(props) {
@@ -94,7 +88,7 @@ class Profile extends Component {
 
                     <div>
                         <h2>  {this.state.view}</h2>
-                        <Grid tagColors={tagColors} user={this.state.user} view={this.state.view} />
+                        <Grid tagColors={this.props.tagColors} user={this.state.user} view={this.state.view} />
                     </div>
                 </div>
                 </div>
@@ -102,7 +96,7 @@ class Profile extends Component {
         }
         else
         {
-            return <Modal tagColors={tagColors} addNewPoll={this.addNewPoll} show={this.state.show_create} closeCreator={this.closeCreator}/>;
+            return <Modal tagColors={this.props.tagColors} addNewPoll={this.addNewPoll} show={this.state.show_create} closeCreator={this.closeCreator}/>;
         }
     }
 }
