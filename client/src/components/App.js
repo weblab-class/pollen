@@ -40,6 +40,7 @@ class App extends Component {
     post("/api/login", { token: userToken}).then((user) => {
       console.log("Posted to login, response:", user)
       this.setState({ userId: user._id });
+      console.log("USERID",this.state.userId)
       window.location.href = '/profile'
       post("/api/initsocket", { socketid: socket.id });
     });
@@ -58,7 +59,6 @@ class App extends Component {
           userId={this.state.userId}
           handleLogin={this.handleLogin}
           handleLogout={this.handleLogout}
-          userId={this.state.userId}
         />
           <Router>
             <LandingPage path="/" handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>

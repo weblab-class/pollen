@@ -9,28 +9,42 @@ import "./VoterList.css";
 */
 
 
-class VoterList extends Component 
+class VoterList extends Component
 {
-  constructor(props) 
+  constructor(props)
   {
       super(props);
   }
 
-  render() 
+  render()
   {
       let voterCardList = [];
+      console.log("VOTES", this.props.votes)
+      console.log("Options", this.props.options)
+      console.log("User Info", this.props.user_info)
+      const optionsMap = new Map()
+      let index = 0
+      for(let option of this.props.options){
+        option.index = index
+        optionsMap.set(option._id, option)
+        index+=1
+      }
+      console.log("Options MAP", optionsMap)
+      console.log("Options MAP Size", optionsMap.size)
+
 
       let i = 0;
-      for (const usertag in this.props.user_votes)
-      {
-        const votes = this.props.user_votes[usertag].map((opt)=>
+      if(optionsMap.size>0)
+        for (const user_id in this.props.votes)
         {
-          return opt.text;
-        });
-        console.log(votes);
-        voterCardList.push((<VoterCard key={i} user={usertag} votes={votes} />));
-        i++;
-      }
+          const usertag = this.props.user_info[user_id].tag
+          let votes = this.props.votes[user_id].sort((optA, optB)=>{
+            return optionsMap.get(optA).index - optionsMap.get(optB).index;
+          })
+          votes = votes.map(opt => optionsMap.get(opt).text);
+          voterCardList.push((<VoterCard key={i} user={usertag} votes={votes} />));
+          i++;
+        }
 
       return (
         <div className="VoterList-container">
