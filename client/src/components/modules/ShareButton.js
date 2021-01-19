@@ -19,7 +19,7 @@ class ShareButton extends Component
   render()
   {
       return (
-        <button type="button" class="share-button" onClick={() => {alert("NEED A MODAL HERE")}}> + Share </button>
+        <button type="button" className="share-button" onClick={() => {alert("NEED A MODAL HERE")}}> + Share </button>
       );
   }
 }
