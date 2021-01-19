@@ -1,6 +1,6 @@
 # pollen
 
-Welcome to *pollen*, your new beehive of casual decision-making activity! From picking a movie or restaurant to brainstorming for a project, *pollen* is all about celebrating ideas and choices.
+Welcome to *pollen*, your new beehive of casual decision-making activity! From picking a movie or restaurant to brainstorming for a project, *pollen* is all about propagating ideas and choices.
 
 ## We're all allergic to this scenario...
 
