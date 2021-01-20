@@ -7,18 +7,43 @@
     padding: var(--m) var(--m);
 
     background-color: var(--lightbrown);
+    display: flex;
+    
+    flex-direction: column;
 }
 
-.Board-questionBox, 
-.Board-optionBox
-{
+.Board-questionBox {
     border: var(--darkbrown) 2px solid;
     border-radius: var(--s);
 
     margin: 0 0 var(--xs) 0;
+    
     padding: var(--m) var(--l);
 
     background-color: white;
+    /* width: 100%; */
+    flex-grow: 1;
+}
+
+.Board-optionsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-around; */
+    justify-content: flex-start;
+    margin: 0 auto;
+}
+
+.Board-optionBox {
+    /* border: var(--darkbrown) 2px solid; */
+    /* border-radius: var(--s); */
+
+    /* margin: 0 0 var(--xs) 0; */
+    margin: var(--xs);
+    padding: var(--l) var(--l);
+
+    background-color: #ffd966ff;
+    /* flex: 0 42%; */
+    flex: 0 25%;
 }
 
 .Board-questionContent

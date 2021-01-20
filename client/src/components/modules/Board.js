@@ -44,7 +44,9 @@ class Board extends Component
                                 tags={this.props.tags}
                                 tagColors={this.props.tagColors} />
                 </div>
-                {optionsList}
+                <div className="Board-optionsContainer">
+                    {optionsList}
+                </div>
             </div>
         );
   }
