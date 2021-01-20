@@ -3,7 +3,8 @@ import { get, post } from "../../utilities";
 import Board from "../modules/Board.js";
 import NewOption from "../modules/NewOption.js";
 import VoterList from "../modules/VoterList.js";
-import ClosePoll from "../modules/ClosePoll.js"
+import ClosePoll from "../modules/ClosePoll.js";
+import SharePoll from "../modules/SharePoll.js";
 
 import "./Poll.css";
 import "../../utilities.css";
@@ -37,6 +38,8 @@ class Poll extends Component
 
         owner_name: "",
         owner_tag: "",
+
+        share_show: false,
       };
   }
 
@@ -111,6 +114,20 @@ class Poll extends Component
     });
   }
 
+  sharePoll = (event) =>
+  {
+    this.setState({
+      share_show: true,
+    });
+  }
+
+  closeSharePoll = (event) =>
+  {
+    this.setState({
+      share_show: false,
+    });
+  }
+
   render()
   {
     let isOwner = this.props.userId === this.state.poll.owner;
@@ -124,7 +141,15 @@ class Poll extends Component
       closePoll = <div></div>;
     }
 
-
+    let shareModal = null
+    if (this.state.share_show)
+    {
+      shareModal = <SharePoll closeSharePoll={this.closeSharePoll} />;
+    }
+    else
+    {
+      shareModal = <div></div>;
+    }
 
       return (
         <div className="App-container">
@@ -137,8 +162,11 @@ class Poll extends Component
             </div>
             <div className="Poll-buttonContainer">
             <button type="submit" value="Close Poll" onClick={this.closePoll} className="Poll-button u-pointer"> Close Poll </button>
+            <button type="submit" value="Share Poll" onClick={this.sharePoll} className="Poll-button u-pointer"> Share Poll </button>
             </div>
           </div>
+
+          {shareModal}
 
             <div className="u-flex">
               <div className="Poll-subContainer Poll-sideBar">
