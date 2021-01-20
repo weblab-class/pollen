@@ -53,9 +53,9 @@ class Option extends Component
       votebutton = <button type="submit" value="Vote" onClick={this.addVote} className="Option-button Option-add u-pointer"> Vote </button>;
     }
 
-      return (
-        <div className="Board-optionBox u-textCenter u-flex">
-          <span className="Board-optionContent">{this.props.text}</span>
+      return ( // removed u-flex
+        <div className="Board-optionBox u-textCenter">
+          <div className="Board-optionContent">{this.props.text}</div>
           {votebutton}
         </div>);
   }

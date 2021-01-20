@@ -1,6 +1,6 @@
 .Option-button
 {
-    display: inline-block;
+    /* display: inline-block; */
     text-align: center;
 
     border-radius: var(--xs);
