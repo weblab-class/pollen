@@ -3,9 +3,10 @@ import { get, post } from "../../utilities";
 import Board from "../modules/Board.js";
 import NewOption from "../modules/NewOption.js";
 import VoterList from "../modules/VoterList.js";
+import ClosePoll from "../modules/ClosePoll.js"
 
 import "./Poll.css";
-import "../../utilities.css"
+import "../../utilities.css";
 
 /*
     props:
@@ -112,16 +113,34 @@ class Poll extends Component
 
   render()
   {
+    let isOwner = this.props.userId === this.state.poll.owner;
+    let closePoll = null;
+    if (isOwner)
+    {
+      closePoll = <ClosePoll user={this.state.user_info[this.props.userId]} />;
+    }
+    else
+    {
+      closePoll = <div></div>;
+    }
+
+
+
       return (
         <div className="App-container">
           <div className="Poll-container">
-            <div className="u-darkdarkbrown u-textCenter u-textMedium">
-              <span className="u-bold">{this.state.owner_tag} </span>
-              <span>'s poll</span>
+
+          <div className="Poll-head">
+            <div className="Poll-title u-textCenter u-darkdarkbrown u-textMedium">
+                    <span className="u-bold">{this.state.owner_tag} </span>
+                    <span>'s poll</span>
             </div>
+            <div className="Poll-buttonContainer">
+            <button type="submit" value="Close Poll" onClick={this.closePoll} className="Poll-button u-pointer"> Close Poll </button>
+            </div>
+          </div>
 
             <div className="u-flex">
-
               <div className="Poll-subContainer Poll-sideBar">
                 <VoterList user_info={this.state.user_info} votes={this.state.poll.votes} options={this.state.poll.options}/>
               </div>
@@ -139,6 +158,7 @@ class Poll extends Component
                 <div className="u-textCenter">
                   <NewOption addNewOption={this.addNewOption} />
                 </div>
+
               </div>
 
             </div>

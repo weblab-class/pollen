@@ -5,7 +5,7 @@ import Modal from "../modules/Modal.js";
 import "./Profile.css";
 import { get, post } from "../../utilities.js";
 import "../../utilities.css";
-import Pfp from "../modules/bee_pfp.png";
+import Pfp from "../imgs/bee_pfp.png";
 
 /*
     props:

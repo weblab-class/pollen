@@ -1,0 +1,22 @@
+.ClosePoll-container
+{
+    background-color: white;
+    
+    text-align: center;
+
+    border: var(--darkgrey) 1px solid;
+    border-radius: var(--xs);
+    font-size: small;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 300;
+    color: black;
+
+    margin: 3px 5px 3px 5px;
+    padding: 6px 14px;
+    outline: none;
+}
+
+.ClosePoll-container:hover
+{
+    border: var(--blackgrey) 1px solid;
+}

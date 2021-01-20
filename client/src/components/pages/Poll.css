@@ -17,3 +17,47 @@
 {
     flex-grow: 4;
 }
+
+.Poll-head
+{
+    display: flex;
+    padding: 0;
+}
+
+.Poll-title
+{
+    flex-basis: 0;
+    flex-grow: 4;
+}
+
+.Poll-buttonContainer
+{
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.Poll-button
+{
+    display: inline-block;
+    text-align: center;
+
+    border-radius: var(--xs);
+    font-size: small;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 300;
+    color: white;
+
+    margin: 2px 2px 2px 0px;
+    padding: 6px 14px;
+    outline: none;
+
+    border: #3b3636 1px solid;
+    background-color:#3b3636;
+}
+
+.Poll-button:hover 
+{
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
