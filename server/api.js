@@ -28,14 +28,6 @@ const socketManager = require("./server-socket");
 
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
-router.get("/whoami", (req, res) => {
-  if (!req.user) {
-    // not logged in
-    return res.send({});
-  }
-
-  res.send(req.user);
-});
 
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
@@ -43,11 +35,31 @@ router.post("/initsocket", (req, res) => {
   res.send({});
 });
 
+router.get("/poll/delete", (req, res) => {
+  if (!(req.query.admin || req.user)) {
+    return res.status(208).send({});
+  }
+  if(!req.query.id){
+    return res.status(208).send("No id provided");
+  }
+  console.log("POLL DELETE")
+  const user_id = req?.user?._id || aniID
+  const poll_id = req.query.id
+  Poll.deleteOne({_id:poll_id, owner:user_id}, function (err) {
+    if(err){
+      return res.status(404).send(err);
+    }
+    return res.send("Deleted")
+  });
+
+})
+
 // |------------------------------|
 // | write your API methods below!|
 // |------------------------------|
 
 router.get("/poll", (req, res) => {
+  res.set('Cache-control', 'public, max-age=10')
   if (!(req.query.admin || req.user)) {
     return res.send({});
   }
@@ -246,6 +258,7 @@ router.post("/poll/addOption", async (req, res) => {
 
 // debug only
 router.get("/user/self", (req, res) => {
+  res.set('Cache-control', 'public, max-age=300')
   if (!(req.query.admin || req.user)) {
     return res.send({});
   }
@@ -261,6 +274,7 @@ router.get("/user/self", (req, res) => {
 });
 
 router.get("/user/info", (req, res) => {
+  res.set('Cache-control', 'public, max-age=60')
   if (!(req.query.admin || req.user)) {
     return res.send({});
   }
