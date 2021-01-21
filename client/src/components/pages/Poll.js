@@ -175,7 +175,7 @@ class Poll extends Component
             <div className="Poll-buttonContainer">
             <button type="submit" value="Close Poll" onClick={this.closePoll} className="Poll-button u-pointer"> Close Poll </button>
             <button type="submit" value="Share Poll" onClick={this.sharePoll} className="Poll-button u-pointer"> Share Poll </button>
-            <img src={trash} className="Poll-trash" height="30px" onClick={this.deletePoll} />
+            <div className="Poll-trash"><img src={trash} height="30px" onClick={this.deletePoll} /></div>
             </div>
           </div>
 
