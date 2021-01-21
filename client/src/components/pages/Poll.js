@@ -5,7 +5,9 @@ import NewOption from "../modules/NewOption.js";
 import VoterList from "../modules/VoterList.js";
 import ClosePoll from "../modules/ClosePoll.js";
 import SharePoll from "../modules/SharePoll.js";
+import DeletePoll from "../modules/DeletePoll.js";
 
+import trash from "../modules/trash.svg";
 import "./Poll.css";
 import "../../utilities.css";
 
@@ -151,6 +153,16 @@ class Poll extends Component
       shareModal = <div></div>;
     }
 
+    let deletePoll = null;
+    if (isOwner)
+    {
+      deletePoll = <DeletePoll user={this.state.user_info[this.props.userId]} />;
+    }
+    else
+    {
+      deletePoll = <div></div>;
+    }
+
       return (
         <div className="App-container">
           <div className="Poll-container">
@@ -163,6 +175,7 @@ class Poll extends Component
             <div className="Poll-buttonContainer">
             <button type="submit" value="Close Poll" onClick={this.closePoll} className="Poll-button u-pointer"> Close Poll </button>
             <button type="submit" value="Share Poll" onClick={this.sharePoll} className="Poll-button u-pointer"> Share Poll </button>
+            <img src={trash} className="Poll-trash" height="30px" onClick={this.deletePoll} />
             </div>
           </div>
 
