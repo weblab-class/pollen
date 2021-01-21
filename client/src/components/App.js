@@ -35,7 +35,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    get("/api/whoami").then((user) => {
+    get("/api/user/self").then((user) => {
       if (user._id) {
         // they are registed in the database, and currently logged in.
         this.setState({ userId: user._id });
@@ -52,7 +52,7 @@ class App extends Component {
       this.setState({ userId: user._id });
 
       console.log("USERID",this.state.userId)
-      
+
       window.location.href = '/profile'
       post("/api/initsocket", { socketid: socket.id });
     });
