@@ -19,13 +19,13 @@ class Grid extends Component {
 
     render() {
         const user = this.props.user;
-        console.log(user);
         let pollsList = null;
-        const hasPolls = user.myPolls.length !== 0;
+        const userPolls = user?.myPolls || [];
+        const hasPolls = userPolls.length !== 0;
         if (hasPolls) {
             pollsList = []
-            for(let index in user.myPolls){
-              const pollObj = user.myPolls[index]
+            for(let index in userPolls){
+              const pollObj = userPolls[index]
               pollsList.push(
                 <PollCard
                   tagColors={this.props.tagColors}
