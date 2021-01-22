@@ -7,7 +7,6 @@ import ClosePoll from "../modules/ClosePoll.js";
 import SharePoll from "../modules/SharePoll.js";
 import DeletePoll from "../modules/DeletePoll.js";
 
-import trash from "../modules/trash.svg";
 import "./Poll.css";
 import "../../utilities.css";
 
@@ -175,7 +174,7 @@ class Poll extends Component
             <div className="Poll-buttonContainer">
               <button type="submit" value="Close Poll" onClick={this.closePoll} className="Poll-button u-pointer"> Close Poll </button>
               <button type="submit" value="Share Poll" onClick={this.sharePoll} className="Poll-button u-pointer"> Share Poll </button>
-              <div className="Poll-trash"><img src={trash} height="30px" onClick={this.deletePoll} /></div>
+              <div className="Poll-trash"><img src='/images/trash.svg' height="30px" onClick={this.deletePoll} /></div>
             </div>
           </div>
 
@@ -192,7 +191,7 @@ class Poll extends Component
                         userVoteIds={this.state.poll.votes[this.state?.user?._id] || []}
                         poll_id={this.state.poll._id}
                         question={this.state.poll.question}
-                        options={this.state.poll.options || []} 
+                        options={this.state.poll.options || []}
                         tags={this.state.poll.tags}
                         tagColors={this.props.tagColors}/>
 

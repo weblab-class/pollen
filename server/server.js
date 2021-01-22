@@ -78,6 +78,9 @@ app.use(
 // this checks if the user is logged in, and populates "req.user"
 app.use(auth.populateCurrentUser);
 
+// serve static assets
+app.use(express.static(__dirname + '/public'));
+
 // connect user-defined routes
 app.use("/api", api);
 

@@ -5,7 +5,6 @@ import Modal from "../modules/Modal.js";
 import "./Profile.css";
 import { get, post } from "../../utilities.js";
 import "../../utilities.css";
-import Pfp from "../imgs/bee_pfp.png";
 
 /*
     props:
@@ -69,7 +68,7 @@ class Profile extends Component {
                 <div className="App-container">
                 <div className="Profile-container">
                     <div className="Profile-sidebar">
-                        <img className="Profile-pfp" src={Pfp} alt="bee" width="100px" height="100px" />
+                        <img className="Profile-pfp" src='/images/bee_pfp.png' alt="bee" width="100px" height="100px" />
                         <h2 className="Profile-displayname">{this.state.user.displayName}</h2>
                         <p className="Profile-username">{this.state.user.userTag}</p>
                         <div className="Profile-sidebuttons u-flexColumn">

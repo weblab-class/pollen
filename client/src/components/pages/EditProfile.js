@@ -2,8 +2,6 @@ import React, { Component } from "react";
 // import "./EditProfile.css";
 import { get, post } from "../../utilities.js";
 import "../../utilities.css";
-import Pfp from "../imgs/bee_pfp.png";
-
 /*
     props:
     user object (passed from profile) (or get request again??)
