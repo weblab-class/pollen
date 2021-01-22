@@ -21,7 +21,6 @@
   padding: var(--s);
   border: #ffd966ff 2px solid;
   border-radius: var(--xs);
-  border-style: dashed;
 }
 
 .SharePoll-close {
