@@ -11,21 +11,22 @@
   margin-left: var(--m);
   padding: var(--s);
   border: #ffd966ff 1px solid;
+  background-color: #ffd966ff;
   border-radius: var(--xs);
 }
 
 .SharePoll-box
 {
-  margin: var(--s);
+  margin-top: var(--l);
   padding: var(--s);
-  border: var(--darkgreen) 1px solid;
+  border: #ffd966ff 2px solid;
   border-radius: var(--xs);
   border-style: dashed;
 }
 
 .SharePoll-close {
-  color: var(--darkgreen);
-  border: var(--darkgreen) 2px solid;
+  color: var(--tag-red);
+  border: var(--tag-red) 2px solid;
   border-radius: 5px;
   background: none;
   transition: color 0.1s, background 0.1s;
@@ -36,5 +37,5 @@
 
 .SharePoll-close:hover {
   color: var(--white);
-  background-color: var(--darkgreen);
+  background-color: var(--tag-red);
 }

@@ -28,6 +28,14 @@ const socketManager = require("./server-socket");
 
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
+router.get("/whoami", (req, res) => {
+  if (!req.user) {
+    // not logged in
+    return res.send({});
+  }
+
+  res.send(req.user);
+});
 
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
@@ -263,7 +271,9 @@ router.get("/user/self", (req, res) => {
     return res.send({});
   }
   const user_id = req?.user?._id || aniID
-  User.findOne({_id:user_id}, (err, doc)=>{
+  User.findOne({_id:user_id}, (err, doc)=>
+  {
+    console.log("jdlskfjsldkjldfj")
     if(doc){
       res.send(doc)
     }

@@ -30,7 +30,7 @@ class NavBar extends Component {
             </Link>
           )}
 
-        <div class="NavBar-share">
+        <div className="NavBar-share">
           { window.location.pathname.startsWith("/poll") && (
                 <ShareButton href={window.location.href} >
                 </ShareButton>

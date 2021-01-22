@@ -71,7 +71,6 @@
     display: inline-block;
     text-align: center;
     border-radius: var(--s);
-    /* background-color: #9fbde8; */
     font-size: small;
     color: white;
     margin: 0px 2px 0px 2px;
@@ -84,4 +83,23 @@
     -ms-transform: scale(1.1);
     transform: scale(1.1);
     cursor: default;
+}
+
+.Board-tagBox
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Board-owner
+{
+    display: inline-block;
+    text-align: center;
+    border-radius: var(--s);
+    border: var(--red) 1px solid;
+    background-color: white;
+    font-size: small;
+    color: var(--red);
+    margin: 0px 2px 0px 2px;
+    padding: 4px 10px;
 }

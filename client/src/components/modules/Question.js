@@ -24,9 +24,15 @@ class Question extends Component
                 <div className="Board-tag" style={{backgroundColor: this.props.tagColors[tag]}} >{tag}</div>
             )); 
         }
+        // ENVEUTALLY ONLY SHOW OWNER IF ACTUAL OWNER
         return (
             <div className="Board-questionBox">
-                {tagsList}
+                <div className="Board-tagBox">
+                    <div className="Board-tagList">
+                        {tagsList}
+                    </div>
+                    <div className="Board-owner"> owner </div>
+                </div>
                 <div className="Board-questionContent u-textCenter">{this.props.content}</div>
             </div>
             );

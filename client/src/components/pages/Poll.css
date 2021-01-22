@@ -85,9 +85,17 @@
     align-items: flex-end;
     /* align-self: flex-end; */
     flex-grow: 1;
+
+    cursor: pointer;   
 }
 
-.Poll-trash:hover,
+.Poll-trash:hover
+{
+    -webkit-transform: scale(1.3);
+    -ms-transform: scale(1.3);
+    transform: scale(1.3);
+}
+
 .Poll-button:hover 
 {
     -webkit-transform: scale(1.1);

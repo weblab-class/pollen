@@ -37,6 +37,7 @@ class App extends Component {
   componentDidMount() {
     get("/api/user/self").then((user) => {
       if (user._id) {
+        console.log(user._id)
         // they are registed in the database, and currently logged in.
         this.setState({ userId: user._id });
       }

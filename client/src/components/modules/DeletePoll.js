@@ -17,7 +17,7 @@ class DeletePoll extends Component
   {
     return (
         <div className="ClosePoll-container">
-            {this.props.user.tag}, are you sure you want to delete this poll?
+            {this.props.user.tag}, are you sure you want to delete this poll? You can't undo this action.
         </div>
         );
   }
