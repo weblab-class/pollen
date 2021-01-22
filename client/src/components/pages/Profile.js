@@ -83,6 +83,12 @@ class Profile extends Component {
                                     value="Create Poll"
                                     onClick={this.createPoll}
                                     className="Profile-button u-pointer"> + create a poll </button>
+                                <button
+                                    type="submit"
+                                    value="Edit Profile"
+                                    // onClick={this.createPoll}
+                                    onClick={() => {window.location.href = "/profile/edit";}}
+                                    className="Profile-button u-pointer"> edit profile </button>
                             </div>
                         </div>
                     </div>

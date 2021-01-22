@@ -37,7 +37,8 @@ class VoterList extends Component
       if(optionsMap.size>0)
         for (const user_id in this.props.votes)
         {
-          const usertag = this.props.user_info[user_id].tag
+          const userinfo = this.props.user_info[user_id]
+          const usertag = userinfo?.tag || '@'
           let votes = this.props.votes[user_id].sort((optA, optB)=>{
             return optionsMap.get(optA).index - optionsMap.get(optB).index;
           })

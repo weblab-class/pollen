@@ -5,6 +5,7 @@ import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
 import Poll from "./pages/Poll.js";
 import Profile from './pages/Profile.js';
+import EditProfile from './pages/EditProfile.js';
 import LandingPage from "./pages/LandingPage.js";
 
 import "../utilities.css";
@@ -77,6 +78,7 @@ class App extends Component {
             <LandingPage path="/" handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
             <Poll tagColors={tagColors} userId={this.state.userId} path="/poll/:_id"/>
             <Profile tagColors={tagColors} userId={this.state.userId} path="/profile"/>
+            <EditProfile userId={this.state.userId} path="/profile/edit" />
             <NotFound default />
             <Skeleton path="/skeleton" />
           </Router>
