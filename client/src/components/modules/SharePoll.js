@@ -19,7 +19,7 @@ class SharePoll extends Component
         <div className="SharePoll-box">
 
             <div className = "u-flex SharePoll-subbox">
-                <span> Share the buzzing with your friends! </span>
+                <span> Get your friends to buzz in! </span>
                 <span className="SharePoll-link"> {window.location.href} </span>
             </div>
             <div className = "u-flex SharePoll-subbox">
