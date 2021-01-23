@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import "./EditProfile.css";
+import "./EditProfile.css";
 import { get, post } from "../../utilities.js";
 import "../../utilities.css";
 /*
@@ -26,7 +26,8 @@ class EditProfile extends Component {
 
   render() {
     return (
-      <div>edit profile</div>
+      <div>edit profile</div> // placeholder while i figure this mess out
+      
     );
   }
 }
