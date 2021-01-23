@@ -26,6 +26,10 @@ const tagColors = {
   "other": "#da9fc5ff"
 };
 
+const beeIcons = [
+  "/images/bee_pfp.png",
+];
+
 class App extends Component {
   // makes props available in this component
   constructor(props) {
@@ -78,7 +82,7 @@ class App extends Component {
             <LandingPage path="/" handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
             <Poll tagColors={tagColors} userId={this.state.userId} path="/poll/:_id"/>
             <Profile tagColors={tagColors} userId={this.state.userId} path="/profile"/>
-            <EditProfile userId={this.state.userId} path="/profile/edit" />
+            <EditProfile beeIcons={beeIcons} userId={this.state.userId} path="/profile/edit" />
             <NotFound default />
             <Skeleton path="/skeleton" />
           </Router>
