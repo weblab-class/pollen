@@ -67,6 +67,6 @@
 
 .Profile-pfp {
     border-radius: 50%;
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
     border: lightblue 2px dashed;
 }

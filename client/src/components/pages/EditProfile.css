@@ -2,4 +2,21 @@
   display: flex;
   justify-content: center;
   flex-direction: row;
+  flex-wrap: wrap;
+  width: 70%;
+  margin: auto;
+}
+
+.EditProfile-pfpContainer > img {
+  margin: var(--s);
+}
+
+.EditProfile-heading {
+  text-align: center;
+}
+
+.EditProfile-highlight {
+  background-color: #d9cfdb;
+  background-image: linear-gradient(to right, #cfa7d6 0%, #d9cfdb 100%);
+  display: inline-block;
 }

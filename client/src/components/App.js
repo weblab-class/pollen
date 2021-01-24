@@ -27,7 +27,18 @@ const tagColors = {
 };
 
 const beeIcons = [
-  "/images/bee_pfp.png",
+  "/images/defaultpfp.svg",
+  "/images/pfp2.svg",
+  "/images/pfp3.svg",
+  "/images/pfp4.svg",
+  "/images/pfp5.svg",
+  "/images/pfp6.svg",
+  "/images/bee_family.svg",
+  "/images/bee_food.svg",
+  "/images/bee_games.svg",
+  "/images/bee_random.svg",
+  "/images/bee_title.svg",
+  "/images/bee_trav.svg",
 ];
 
 class App extends Component {
