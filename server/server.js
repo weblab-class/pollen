@@ -108,6 +108,7 @@ app.use((err, req, res, next) => {
     message: err.message,
   });
 });
+app.set('etag', 'weak')
 
 const port = process.env.PORT || 3000;
 const server = http.Server(app);

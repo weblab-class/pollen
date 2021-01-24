@@ -70,7 +70,6 @@ router.get("/poll", (req, res) => {
   if (!(req.query.admin || req.user)) {
     return res.send({});
   }
-  res.set('Cache-control', 'public, max-age=10')
   const user_id = req?.user?._id || aniID
   console.log("GOT POLL", user_id)
   Poll.findOneAndUpdate({_id:req.query.id},{ $addToSet: user_id } ,{new: true}, (err, doc)=>{
@@ -269,11 +268,9 @@ router.get("/user/self", (req, res) => {
   if (!(req.query.admin || req.user)) {
     return res.send({});
   }
-  res.set('Cache-control', 'public, max-age=300')
   const user_id = req?.user?._id || aniID
   User.findOne({_id:user_id}, (err, doc)=>
   {
-    console.log("jdlskfjsldkjldfj")
     if(doc){
       res.send(doc)
     }
@@ -287,7 +284,7 @@ router.get("/user/info", (req, res) => {
   if (!(req.query.admin || req.user)) {
     return res.send({});
   }
-  res.set('Cache-control', 'public, max-age=60')
+  res.set('Cache-control', 'public, max-age=10')
   const user_id = req.query.id || aniID
   User.findOne({_id:user_id}, (err, doc)=>{
     if(doc){
