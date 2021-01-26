@@ -19,8 +19,15 @@ class LandingPage extends Component
             <div className="LandingPage-container u-textCenter" style={{
                 backgroundImage: `url("/images/landing.svg")`
             }}>
-            <img className="title-image" src="/images/title_img.svg" alt = "pollen" />
-            <button type="submit" value="start buzzin'" className="LandingPage-button u-pointer"> start buzzin' </button>           </div>
+                <img className="title-image" src="images/title_img.svg" alt = "pollen" />
+                <button 
+                    type="submit" 
+                    value="start buzzin'" 
+                    // onClick={}
+                    className="LandingPage-button u-pointer"> 
+                    start buzzin' 
+                </button>           
+            </div>
         </>
       );
   }
