@@ -30,12 +30,12 @@ class NavBar extends Component {
             </Link>
           )}
 
-        {/*<div className="NavBar-share">
-          { window.location.pathname.startsWith("/poll") && (
+        <div className="NavBar-share">
+          {/* { window.location.pathname.startsWith("/poll") && (
                 <ShareButton href={window.location.href} >
                 </ShareButton>
-          )}
-          </div>*/}
+          )} */}
+        </div>
 
         <div className="NavBar-login">
           {/* <Link to="/chat/" className="NavBar-link">

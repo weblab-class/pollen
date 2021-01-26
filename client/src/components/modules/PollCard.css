@@ -7,6 +7,7 @@
     /* padding-left: var(--s); */
     padding: 0px 0px 2px 0px;
     width: 30%;
+    max-width: 33%;
     cursor: pointer;
     position: relative;
     display: flex;
@@ -39,6 +40,7 @@ div.PollCard-container:hover{
 {
     margin-top: var(--m);
     margin-bottom: var(--m);
+    overflow-wrap: break-word;
 }
 
 .PollCard-tag {

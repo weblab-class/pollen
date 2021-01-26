@@ -54,7 +54,7 @@ class EditProfile extends Component {
       user: userObj,
     });
   }
-  
+
   render() {
     let pfpList = null;
     if (this.props.beeIcons.length !== 0) {
@@ -68,11 +68,11 @@ class EditProfile extends Component {
       <div> 
       <h1 className="u-textCenter">edit profile</h1> 
       {/* so basically show a row of circle pfps and when they click to choose make the circle bigger */}
-      <h2 className="EditProfile-heading" ><span className="u-textCenter EditProfile-highlight" > pick a new profile icon! </span></h2>
+      <h2 className="EditProfile-heading" ><span className="u-textCenter EditProfile-highlight" > &nbsp;&nbsp;pick a new profile icon!&nbsp;&nbsp; </span></h2>
       <div className="EditProfile-pfpContainer">
         {pfpList}
       </div>
-      <h2 className="EditProfile-heading" ><span className="u-textCenter EditProfile-highlight" > change your username: </span></h2>
+      <h2 className="EditProfile-heading" ><span className="u-textCenter EditProfile-highlight" > &nbsp;&nbsp;change your username:&nbsp;&nbsp; </span></h2>
       <div className="u-flex Modal-box Modal-topbox">
           <input
               type="text"
