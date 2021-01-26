@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import "./HowTo.css";
 import "../../utilities.css";
 import "../App.css";
+import "./EditProfile.css";
 
 class HowTo extends Component {
   constructor(props) {
