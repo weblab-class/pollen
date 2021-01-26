@@ -353,16 +353,20 @@ router.post("/poll/addOption", async (req, res) => {
   })
   await poll.save()
 
-    // is this right?
-    let actives = socketManager.getAllConnectedUsers();
-    for (const viewer_id of poll.viewers)
+  // is this right?
+  let actives = socketManager.getAllConnectedUsers();
+  actives = actives.map((obj) => {return obj._id; });
+  
+  console.log(actives);
+  console.log(poll.viewers);
+  for (const viewer_id of poll.viewers)
+  {
+    if (viewer_id in actives)
     {
-      if (viewer_id in actives)
-      {
-        const dataObj = {id: viewer_id, poll: poll};
-        socketManager.getSocketFromUserID(viewer_id).emit("NewInfo", dataObj);
-      }
+      const dataObj = {id: viewer_id, poll: poll};
+      socketManager.getSocketFromUserID(viewer_id).emit("NewInfo", dataObj);
     }
+  }
 
   res.send(poll);
 });
