@@ -16,6 +16,7 @@ import "./Board.css";
     this.props.userVoteIds
     this.props.tags
     this.props.tagColors
+    this.props.isOwner
 */
 class Board extends Component
 {
@@ -42,7 +43,8 @@ class Board extends Component
                 <div>
                     <Question content={this.props.question}
                                 tags={this.props.tags}
-                                tagColors={this.props.tagColors} />
+                                tagColors={this.props.tagColors} 
+                                isOwner={this.props.isOwner}/>
                 </div>
                 <div className="Board-optionsContainer">
                     {optionsList}

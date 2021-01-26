@@ -7,6 +7,7 @@ import "./Board.css";
     this.props.content
     this.props.tags
     this.props.tagColors
+    isOwner
 */
 class Question extends Component 
 {
@@ -31,7 +32,7 @@ class Question extends Component
                     <div className="Board-tagList">
                         {tagsList}
                     </div>
-                    <div className="Board-owner"> owner </div>
+                    {this.props.isOwner ? <div className="Board-owner"> owner </div> : null}
                 </div>
                 <div className="Board-questionContent u-textCenter">{this.props.content}</div>
             </div>

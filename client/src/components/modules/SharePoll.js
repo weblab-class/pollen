@@ -19,11 +19,11 @@ class SharePoll extends Component
         <div className="SharePoll-box">
 
             <div className = "u-flex SharePoll-subbox">
-                <span> Get your friends to buzz in! </span>
+                <span className="SharePoll-text"> Get your friends to buzz in! </span>
                 <span className="SharePoll-link"> {window.location.href} </span>
             </div>
             <div className = "u-flex SharePoll-subbox">
-                <button className="SharePoll-close" onClick={this.props.closeSharePoll}>Close</button>
+                <button className="SharePoll-close" onClick={this.props.closeSharePoll}>close</button>
             </div>
         </div>
       );

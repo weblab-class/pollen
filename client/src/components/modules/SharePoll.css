@@ -9,32 +9,37 @@
 .SharePoll-link
 {
   margin-left: var(--m);
-  padding: var(--s);
+  padding: var(--m);
   border: #ffd966ff 1px solid;
   background-color: #ffd966ff;
-  border-radius: var(--xs);
+  border-radius: var(--s);
 }
 
 .SharePoll-box
 {
   margin-top: var(--l);
   padding: var(--s);
-  border: #ffd966ff 2px solid;
-  border-radius: var(--xs);
+  background-color: #3d3d3d;
+  border: #3d3d3d 1px solid;
+  border-radius: var(--m);
 }
 
 .SharePoll-close {
-  color: var(--tag-red);
+  color: white;
+  font-size: 150;
   border: var(--tag-red) 2px solid;
-  border-radius: 5px;
-  background: none;
+  border-radius: var(--s);
+  background: var(--tag-red);
   transition: color 0.1s, background 0.1s;
   outline:none;
-
   padding: var(--xs) var(--s);
 }
 
 .SharePoll-close:hover {
-  color: var(--white);
-  background-color: var(--tag-red);
+  border: var(--red) 2px solid;
+}
+
+.SharePoll-text
+{
+  color: #ffd966ff;
 }
