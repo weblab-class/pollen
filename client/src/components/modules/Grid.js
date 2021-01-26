@@ -30,6 +30,7 @@ class Grid extends Component {
     render() {
         const user = this.props.user;
         let pollsList = null;
+        console.log(user);
         const userPolls = (this.props.view === "my polls") ? (user?.myPolls || []) : (user?.sharedPolls || [])
         // const userPolls = user?.myPolls || [];
         const hasPolls = userPolls.length !== 0;
@@ -42,7 +43,7 @@ class Grid extends Component {
                   tagColors={this.props.tagColors}
                   _id={pollObj._id}
                   last_visited={pollObj.last_visited}
-                  key={index}/>)
+                  key={pollObj._id}/>)
                 console.log(pollsList)
             }
 
