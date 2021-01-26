@@ -40,7 +40,6 @@ class Poll extends Component
 
         owner_name: "",
         owner_tag: "",
-
         share_show: false,
         delete_show: false,
         close_show: false,
@@ -64,7 +63,7 @@ class Poll extends Component
       option_map[opt_id] = pollObj.options[i];
     }
     console.log("user", user)
-    let user_info_map = {};
+    let user_info_map = {}; // user id -> name and tag
     user_info_map[user._id] = {
       name: user.displayName,
       tag: user.userTag
@@ -85,12 +84,29 @@ class Poll extends Component
       user_info: user_info_map,
     });
 
-    socket.on("NewOption", (data) =>{
-      this.setState({
-        poll: {
-          options: this.state.poll.options.concat([data]),
-        },
-      });
+    socket.on("NewInfo", (data) =>
+    {
+      let new_user_info = this.state.user_info;
+      if (!(data.id in new_user_info))
+      {
+        get("/api/user/info", { id: data.id} ).then((userObj) =>
+        {
+          new_user_info[data.id] = userObj;
+
+          this.setState({
+            poll: data.poll,
+            user_info: new_user_info,
+          });
+        }).catch((err) =>{
+          console.log(err);
+        });
+      }
+      else
+      {
+        this.setState({
+          poll: data.poll,
+        });
+      }
     });
   }
 
