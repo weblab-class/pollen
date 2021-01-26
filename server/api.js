@@ -259,12 +259,26 @@ router.post("/poll/vote", async (req, res) => {
   await poll.save()
 
   let actives = socketManager.getAllConnectedUsers();
+  actives = actives.map((obj) => {return obj._id; });
+
   for (const viewer_id of poll.viewers)
   {
-    if (viewer_id in actives)
+    console.log("VIEWER 1", viewer_id)
+    console.log("ACTIVES", actives)
+
+    let activeViewer = false;
+    for (const active_id of actives)
     {
-      const dataObj = {id: viewer_id, poll: poll};
-      socketManager.getSocketFromUserID(viewer_id).emit("NewInfo", dataObj);
+      if (viewer_id == active_id)
+      {
+        activeViewer = true;
+        break;
+      }
+    }
+    if (activeViewer)
+    {
+      const dataObj = {id: user_id, poll: poll}; // id: person doing the action
+      socketManager.getSocketFromUserID(viewer_id).emit("message", dataObj);
     }
   }
 
@@ -316,12 +330,26 @@ router.post("/poll/unvote", async (req, res) => {
   await poll.save()
 
   let actives = socketManager.getAllConnectedUsers();
+  actives = actives.map((obj) => {return obj._id; });
+
   for (const viewer_id of poll.viewers)
   {
-    if (viewer_id in actives)
+    console.log("VIEWER 1", viewer_id)
+    console.log("ACTIVES", actives)
+
+    let activeViewer = false;
+    for (const active_id of actives)
     {
-      const dataObj = {id: viewer_id, poll: poll};
-      socketManager.getSocketFromUserID(viewer_id).emit("NewInfo", dataObj);
+      if (viewer_id == active_id)
+      {
+        activeViewer = true;
+        break;
+      }
+    }
+    if (activeViewer)
+    {
+      const dataObj = {id: user_id, poll: poll}; // id: person doing the action
+      socketManager.getSocketFromUserID(viewer_id).emit("message", dataObj);
     }
   }
 
@@ -329,6 +357,7 @@ router.post("/poll/unvote", async (req, res) => {
 });
 
 router.post("/poll/addOption", async (req, res) => {
+  console.log("==================================================")
   if (!(req.body.admin || req.user)) {
     return res.send({});
   }
@@ -346,7 +375,7 @@ router.post("/poll/addOption", async (req, res) => {
   {
     return res.status(404).send("Not Found")
   }
-  console.log(option, user_id)
+
   poll.options.push({
     text: option,
     adder: user_id
@@ -357,14 +386,24 @@ router.post("/poll/addOption", async (req, res) => {
   let actives = socketManager.getAllConnectedUsers();
   actives = actives.map((obj) => {return obj._id; });
 
-  console.log(actives);
-  console.log(poll.viewers);
   for (const viewer_id of poll.viewers)
   {
-    if (viewer_id in actives)
+    console.log("VIEWER 1", viewer_id)
+    console.log("ACTIVES", actives)
+
+    let activeViewer = false;
+    for (const active_id of actives)
+    {
+      if (viewer_id == active_id)
+      {
+        activeViewer = true;
+        break;
+      }
+    }
+    if (activeViewer)
     {
       const dataObj = {id: user_id, poll: poll}; // id: person doing the action
-      socketManager.getSocketFromUserID(viewer_id).emit("NewInfo", dataObj);
+      socketManager.getSocketFromUserID(viewer_id).emit("message", dataObj);
     }
   }
 
