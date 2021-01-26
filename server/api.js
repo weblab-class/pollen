@@ -430,20 +430,18 @@ router.get("/user/self", (req, res) => {
   })
 });
 
-router.post("/user/self", (req, res) => {
+router.post("/user/self", async (req, res) => {
   if (!(req.query.admin || req.user)) {
     return res.send({});
   }
   const user_id = req?.user?._id || aniID
-  User.findOne({_id:user_id}, (err, doc)=>
-  {
-    if(doc){
-      res.send(doc)
-    }
-    else{
-      res.status(404).send("Not Found")
-    }
-  })
+  const user = await User.findOneAndUpdate({_id:user_id}, req.body, {new: true})
+  if(user){
+    res.send(user)
+  }
+  else{
+    res.status(404).send("Update failed")
+  }
 });
 
 router.get("/user/info", (req, res) => {
