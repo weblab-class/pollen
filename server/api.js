@@ -83,48 +83,75 @@ router.get("/poll/delete", async (req, res) => {
 // |------------------------------|
 // | write your API methods below!|
 // |------------------------------|
-
-router.get("/poll", (req, res) => {
+router.get("/poll/quick", async (req, res) => {
   if (!(req.query.admin || req.user)) {
     return res.send({});
   }
+  const poll_id = req.query?.id;
+  if(!poll_id){
+    return res.status(208).send("No poll id")
+  }
   const user_id = req?.user?._id || aniID
-  // console.log("GOT POLL", user_id)
   const time = Math.floor(Date.now()/1000)
-  Poll.findOneAndUpdate({_id:req.query.id}, { $addToSet: {viewers: user_id} }, {new: true}, async (err, doc)=>{
-    if(doc){
-      res.send(doc)
-      if(user_id && user_id != doc.owner){
-        const user = await User.findOne({_id:user_id});
-        let foundIndex = -1;
-        let index = 0;
-        for(const sharedPoll of user.sharedPolls){
-          if(sharedPoll._id==doc._id){
-            foundIndex = index;
-            break;
-          }
-          index+=1;
-        }
-        if(foundIndex>=0){
-          user.sharedPolls[foundIndex] = {
-              _id : doc._id,
-              last_visited: time
-          }
-        }
-        else{
-          user.sharedPolls.push({
-            _id: doc._id,
-            last_visited: time
-          })
-        }
+  const poll = await Poll.findOne({_id:poll_id})
+  if(!poll){
+    return res.status(404).send("Poll not found")
+  }
+  return res.send(poll)
+});
 
-        await user.save();
+router.get("/poll", async (req, res) => {
+  if (!(req.query.admin || req.user)) {
+    return res.send({});
+  }
+  const poll_id = req.query?.id;
+  if(!poll_id){
+    return res.status(208).send("No poll id")
+  }
+  const user_id = req?.user?._id || aniID
+  const time = Math.floor(Date.now()/1000)
+  const poll = await Poll.findOne({_id:poll_id})
+  if(!poll){
+    return res.status(404).send("Poll not found")
+  }
+  let foundIndex = -1;
+  for(const index in poll.viewers){
+    if(poll.viewers[foundIndex] == user_id){
+      foundIndex = index;
+      break;
+    }
+  }
+  if(foundIndex<0){
+    poll.viewers.push(user_id)
+    poll.save();
+    res.send(poll)
+  }
+  console.log("USER ID:\t", user_id);
+  console.log("OWNER ID:\t", poll.owner);
+  console.log("Inequality:\t", user_id != poll.owner);
+  if(user_id != poll.owner){
+    const user = await User.findOne({_id:user_id});
+    if(!user)
+      return
+    foundIndex = -1;
+    for(const index in user.sharedPolls){
+      if(user.sharedPolls[index]._id==poll_id){
+        foundIndex = index;
+        break;
       }
     }
-    else{
-      res.status(404).send("Not Found")
+    if(foundIndex>=0){
+      user.sharedPolls[foundIndex].last_visited = time
     }
-  })
+    else{
+      user.sharedPolls.push({
+        _id: poll_id,
+        last_visited: time
+      })
+    }
+    user.save();
+  }
+
 });
 
 // Requires higher permissions to edit
