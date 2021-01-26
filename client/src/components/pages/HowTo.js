@@ -13,12 +13,13 @@ class HowTo extends Component {
     return (
       <div className="App-container">
         <br/>
-        <h1 className="u-textCenter">What's all this buzz about?</h1>
+        <h1 className="u-textCenter"><span className="u-textCenter EditProfile-highlightPurple" >
+          &nbsp;&nbsp;What's all this buzz about?&nbsp;&nbsp;</span></h1>
         <h3 className="u-textCenter" >Welcome to <em>pollen</em>, your new beehive of casual decision-making activity! 
           From picking a movie or restaurant to brainstorming for a project, <em>pollen</em> is all 
           about propagating ideas and choices.</h3>
         <br/>
-        <h2>We're all allergic to this scenario...</h2>
+        <h2><span className="EditProfile-highlightBlue" >&nbsp;&nbsp;We're all allergic to this scenario...&nbsp;&nbsp;</span></h2>
         <h4><i>What do you want to do?</i></h4>
         <h4><i>I don't know, what do you want to do?</i></h4>
         <h4><i>I'm fine with anything you want.</i></h4>
@@ -36,7 +37,7 @@ class HowTo extends Component {
           into its own enjoyable mini-activity rather than a necessary evil every time 
           your friends want to watch a movie together, we're intending to make indecision obsolete.</p>
         <br/>
-        <h2>Features</h2>
+        <h2><span className="EditProfile-highlightGreen" >&nbsp;&nbsp;Features&nbsp;&nbsp;</span></h2>
         <ul>
           <li>Ability to vote, and unvote, for multiple options</li>
           <li>Ability to add your own option if you're not satisfied with the available choices</li>
@@ -47,12 +48,12 @@ class HowTo extends Component {
           <li>Irresistably cute, bee-themed interface</li>
         </ul>
         <br/>
-        <h2>How to Use</h2>
+        <h2><span className="EditProfile-highlightPink" >&nbsp;&nbsp;How to Use&nbsp;&nbsp;</span></h2>
         <p>You'll need a Google account to use <em>pollen</em>. Once you're logged in, 
         you can either vote on poll links from your friends or create your own! 
         See polls you've viewed and voted on in the "shared with me" profile view!</p>
         <br/>
-        <h2>Ready to get pollin' with <em>pollen</em>?</h2>
+        <h2><span className="EditProfile-highlightRed" >&nbsp;&nbsp;Ready to get pollin' with <em>pollen</em>?&nbsp;&nbsp;</span></h2>
         <p>Login with your Google account in the top right corner!</p>
         <br/>
       </div>

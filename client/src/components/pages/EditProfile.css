@@ -15,8 +15,32 @@
   text-align: center;
 }
 
-.EditProfile-highlight {
+.EditProfile-highlightPurple {
   background-color: #d9cfdb;
   background-image: linear-gradient(to right, #cfa7d6 0%, #d9cfdb 100%);
+  display: inline-block;
+}
+
+.EditProfile-highlightBlue {
+  background-color: #ced6e2;
+  background-image: linear-gradient(to right, #a3c0e9 0%, #ced6e2 100%);
+  display: inline-block;
+}
+
+.EditProfile-highlightPink {
+  background-color: #dac1d1;
+  background-image: linear-gradient(to right, #da9fc5 0%, #dac1d1 100%);
+  display: inline-block;
+}
+
+.EditProfile-highlightGreen {
+  background-color: #cfd6aa;
+  background-image: linear-gradient(to right, #d2e088 0%, #cfd6aa 100%);
+  display: inline-block;
+}
+
+.EditProfile-highlightRed {
+  background-color: #e4b9b9;
+  background-image: linear-gradient(to right, #e79d9d 0%, #e4b9b9 100%);
   display: inline-block;
 }

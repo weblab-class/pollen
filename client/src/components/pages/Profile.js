@@ -71,7 +71,7 @@ class Profile extends Component {
                 <div className="App-container">
                 <div className="Profile-container">
                     <div className="Profile-sidebar">
-                        <img className="Profile-pfp" src='/images/defaultpfp.svg' alt="bee" width="100px" height="100px" />
+                        <img className="Profile-pfp" src='/images/pfp/defaultpfp.svg' alt="bee" width="100px" height="100px" />
                         <h2 className="Profile-displayname">{this.state.user.displayName}</h2>
                         <p className="Profile-username">{this.state.user.userTag}</p>
                         <div className="Profile-sidebuttons u-flexColumn">
