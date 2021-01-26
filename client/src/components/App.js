@@ -28,18 +28,18 @@ const tagColors = {
 };
 
 const beeIcons = [
-  "/images/defaultpfp.svg",
-  "/images/pfp2.svg",
-  "/images/pfp3.svg",
-  "/images/pfp4.svg",
-  "/images/pfp5.svg",
-  "/images/pfp6.svg",
-  "/images/bee_family.svg",
-  "/images/bee_food.svg",
-  "/images/bee_games.svg",
-  "/images/bee_random.svg",
-  "/images/bee_title.svg",
-  "/images/bee_trav.svg",
+  "/images/pfp/defaultpfp.svg",
+  "/images/pfp/pfp2.svg",
+  "/images/pfp/pfp3.svg",
+  "/images/pfp/pfp4.svg",
+  "/images/pfp/pfp5.svg",
+  "/images/pfp/pfp6.svg",
+  "/images/pfp/bee_family.svg",
+  "/images/pfp/bee_food.svg",
+  "/images/pfp/bee_games.svg",
+  "/images/pfp/bee_random.svg",
+  "/images/pfp/bee_title.svg",
+  "/images/pfp/bee_trav.svg",
 ];
 
 class App extends Component {
