@@ -13,7 +13,7 @@ const shortid = require('shortid');
 // import models so we can interact with the database
 const User = require("./models/user");
 // debug only
-const aniID = '600243bf1f3776002240d3ec'
+const aniID = '600686cc11557d00229c4578'
 
 const Poll = require("./models/poll");
 
@@ -71,13 +71,39 @@ router.get("/poll", (req, res) => {
     return res.send({});
   }
   const user_id = req?.user?._id || aniID
-  console.log("GOT POLL", user_id)
-  Poll.findOneAndUpdate({_id:req.query.id},{ $addToSet: user_id } ,{new: true}, (err, doc)=>{
+  // console.log("GOT POLL", user_id)
+  const time = Math.floor(Date.now()/1000)
+  Poll.findOneAndUpdate({_id:req.query.id},{ $addToSet: user_id } ,{new: true}, async (err, doc)=>{
     if(doc){
       res.send(doc)
-      if(req.user && req.user._id != doc.owner ){
-        const time = Math.floor(Date.now()/1000)
-        User.findOneAndUpdate({_id: user_id}, { $addToSet: doc._id }, (err, doc)=>{})
+      if(user_id && user_id != doc.owner){
+
+        const user = await User.findOne({_id:user_id});
+        let foundIndex = -1;
+        let index = 0;
+        console.log(user.sharedPolls)
+        for(const sharedPoll of user.sharedPolls){
+          if(sharedPoll._id==doc._id){
+            foundIndex = index;
+            break;
+          }
+          index+=1;
+        }
+
+        if(foundIndex>=0){
+          user.sharedPolls[foundIndex] = {
+              _id : user.sharedPolls[foundIndex]._id,
+              last_visited: time
+          }
+        }
+        else{
+          user.sharedPolls.push({
+            _id: doc._id,
+            last_visited: time
+          })
+        }
+
+        await user.save();
       }
     }
     else{
@@ -263,14 +289,24 @@ router.post("/poll/addOption", async (req, res) => {
   res.send(poll);
 });
 
-router.post("/edit/icon", async (req, res) => {
-});
-
-router.post("/edit/username", async (req, res) => {
-});
-
 // debug only
 router.get("/user/self", (req, res) => {
+  if (!(req.query.admin || req.user)) {
+    return res.send({});
+  }
+  const user_id = req?.user?._id || aniID
+  User.findOne({_id:user_id}, (err, doc)=>
+  {
+    if(doc){
+      res.send(doc)
+    }
+    else{
+      res.status(404).send("Not Found")
+    }
+  })
+});
+
+router.post("/user/self", (req, res) => {
   if (!(req.query.admin || req.user)) {
     return res.send({});
   }
