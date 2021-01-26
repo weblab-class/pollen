@@ -28,10 +28,33 @@ class EditProfile extends Component {
     });
   }
 
-  changePfp() {
-    // api endpoint to change user icon
+  // example
+  /* handleAddVote = async opt_id =>
+  {
+    const body = {id: this.state.poll._id, option_id: opt_id};
+    const pollObj = await post("/api/poll/vote", body);
+
+    this.setState({
+      poll: pollObj,
+    });
+  } */
+
+  // api endpoint to change user icon
+  handleChangePfp = async pfp_loc => {
+    const userObj = await post("/api/edit/icon", pfp_loc);
+    this.setState({
+      user: userObj,
+    });
   }
 
+  // api endpoint to change username
+  handleChangeUsername = async username => {
+    const userObj = await post("/api/edit/username", username);
+    this.setState({
+      user: userObj,
+    });
+  }
+  
   render() {
     let pfpList = null;
     if (this.props.beeIcons.length !== 0) {

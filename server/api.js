@@ -263,6 +263,12 @@ router.post("/poll/addOption", async (req, res) => {
   res.send(poll);
 });
 
+router.post("/edit/icon", async (req, res) => {
+});
+
+router.post("/edit/username", async (req, res) => {
+});
+
 // debug only
 router.get("/user/self", (req, res) => {
   if (!(req.query.admin || req.user)) {
