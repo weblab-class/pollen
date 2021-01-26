@@ -36,11 +36,15 @@ class Profile extends Component {
     }
 
     viewMyPolls = () => {
-        this.setState({view: "my polls"});
+        this.setState({
+            view: "my polls",
+        });
     }
 
     viewShared = () => {
-        this.setState({view: "shared with me"});
+        this.setState({
+            view: "shared with me",
+        });
     }
 
     createPoll = (event) =>
