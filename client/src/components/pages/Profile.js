@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Grid from "../modules/Grid.js";
 import Modal from "../modules/Modal.js";
 
+import "../App.css";
 import "./Profile.css";
 import { get, post } from "../../utilities.js";
 import "../../utilities.css";
