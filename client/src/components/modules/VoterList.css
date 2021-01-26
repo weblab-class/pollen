@@ -2,4 +2,7 @@
 {
     margin-right: var(--m);
     padding: var(--xs) var(--xs);
+    overflow-wrap: break-word;
+    max-width: 15vw;
+    /* margin-left: var(--xl); */
 }
