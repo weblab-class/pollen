@@ -260,6 +260,17 @@ router.post("/poll/vote", async (req, res) => {
     poll.votes.set(user_id, [option_id])
   }
   await poll.save()
+
+  let actives = socketManager.getAllConnectedUsers();
+  for (const viewer_id of poll.viewers)
+  {
+    if (viewer_id in actives)
+    {
+      const dataObj = {id: viewer_id, poll: poll};
+      socketManager.getSocketFromUserID(viewer_id).emit("NewInfo", dataObj);
+    }
+  }
+
   res.send(poll)
 });
 
@@ -306,6 +317,17 @@ router.post("/poll/unvote", async (req, res) => {
     res.status(404).send("User not found")
   }
   await poll.save()
+
+  let actives = socketManager.getAllConnectedUsers();
+  for (const viewer_id of poll.viewers)
+  {
+    if (viewer_id in actives)
+    {
+      const dataObj = {id: viewer_id, poll: poll};
+      socketManager.getSocketFromUserID(viewer_id).emit("NewInfo", dataObj);
+    }
+  }
+
   res.send(poll)
 });
 
@@ -334,14 +356,18 @@ router.post("/poll/addOption", async (req, res) => {
   })
   await poll.save()
 
-    // is this right?
-  const optionObject = poll.options[poll.options.length - 1]
+  // is this right?
   let actives = socketManager.getAllConnectedUsers();
+  actives = actives.map((obj) => {return obj._id; });
+
+  console.log(actives);
+  console.log(poll.viewers);
   for (const viewer_id of poll.viewers)
   {
     if (viewer_id in actives)
     {
-      socketManager.getSocketFromUserID(viewer_id).emit("NewOption", optionObject);
+      const dataObj = {id: user_id, poll: poll}; // id: person doing the action
+      socketManager.getSocketFromUserID(viewer_id).emit("NewInfo", dataObj);
     }
   }
 
