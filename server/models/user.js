@@ -15,8 +15,8 @@ const UserSchema = new Schema({
     _id: String,
     last_visited: Number
   }],
-  picture: Number,
   picture_link: String,
+  border_color: String,
   friends: [Schema.Types.ObjectId]
 });
 

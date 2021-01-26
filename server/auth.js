@@ -17,6 +17,32 @@ function verify(token) {
     .then((ticket) => ticket.getPayload());
 }
 
+const glob = require("glob");
+let profilePics = ['/images/pfp/bee_pfp.png'];
+glob("server/public/images/pfp/*", {}, function (err, files) {
+  const prefix = 'server/public'
+  profilePics = files.map((file)=>{
+    if(file.startsWith(prefix))
+      return file.substring(prefix.length);
+    else
+      return file;
+  })
+})
+
+const cute_colors = [
+  "#877BB9",
+  "#BD81B7",
+  "#EA91BD",
+  "#F69C9B",
+  "#F9B48A",
+  "#FECD7E",
+  "#FFED81",
+  "#B6D884",
+  "#82CCB5",
+  "#6AC8E3",
+  "#71ABDD"
+]
+
 // gets user from DB, or makes a new account if it doesn't exist yet
 function getOrCreateUser(user) {
   // the "sub" field means "subject", which is a unique identifier for each user
@@ -31,8 +57,8 @@ function getOrCreateUser(user) {
       email: user.email,
       myPolls: [],
       sharedPolls: [],
-      picture: 0,
-      picture_link: user.picture,
+      picture_link: profilePics[Math.floor(Math.random() * profilePics.length)],
+      border_color: cute_colors[Math.floor(Math.random() * cute_colors.length)],
       friends: []
     });
 
