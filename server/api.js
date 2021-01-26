@@ -43,7 +43,7 @@ router.post("/initsocket", (req, res) => {
   res.send({});
 });
 
-router.get("/poll/delete", (req, res) => {
+router.get("/poll/delete", async (req, res) => {
   if (!(req.query.admin || req.user)) {
     return res.status(208).send({});
   }
@@ -53,12 +53,30 @@ router.get("/poll/delete", (req, res) => {
   console.log("POLL DELETE")
   const user_id = req?.user?._id || aniID
   const poll_id = req.query.id
-  Poll.deleteOne({_id:poll_id, owner:user_id}, function (err) {
-    if(err){
-      return res.status(404).send(err);
-    }
-    return res.send("Deleted")
-  });
+  // Poll.deleteOne({_id:poll_id, owner:user_id}, function (err, doc) {
+  //   if(err){
+  //     return res.status(404).send(err);
+  //   }
+  //   console.log(err, doc)
+  //   return res.send("Deleted")
+  // });
+  const poll = await Poll.findOne({_id:poll_id})
+  if(poll.owner == user_id){
+    res.send("Deleted")
+  }
+  else{
+    res.send("Hey that's not yours")
+  }
+
+  for(const user of poll.viewers){
+    User.findOne({_id:poll_id}).then((user) =>{
+
+
+    })
+  }
+
+
+  await poll.remove();
 
 })
 
@@ -73,15 +91,13 @@ router.get("/poll", (req, res) => {
   const user_id = req?.user?._id || aniID
   // console.log("GOT POLL", user_id)
   const time = Math.floor(Date.now()/1000)
-  Poll.findOneAndUpdate({_id:req.query.id},{ $addToSet: user_id } ,{new: true}, async (err, doc)=>{
+  Poll.findOneAndUpdate({_id:req.query.id}, { $addToSet: {viewers: user_id} }, {new: true}, async (err, doc)=>{
     if(doc){
       res.send(doc)
       if(user_id && user_id != doc.owner){
-
         const user = await User.findOne({_id:user_id});
         let foundIndex = -1;
         let index = 0;
-        console.log(user.sharedPolls)
         for(const sharedPoll of user.sharedPolls){
           if(sharedPoll._id==doc._id){
             foundIndex = index;
@@ -89,10 +105,9 @@ router.get("/poll", (req, res) => {
           }
           index+=1;
         }
-
         if(foundIndex>=0){
           user.sharedPolls[foundIndex] = {
-              _id : user.sharedPolls[foundIndex]._id,
+              _id : doc._id,
               last_visited: time
           }
         }
