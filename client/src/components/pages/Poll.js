@@ -10,7 +10,6 @@ import DeletePoll from "../modules/DeletePoll.js";
 import "./Poll.css";
 import "../../utilities.css";
 import { socket } from "../../client-socket.js";
-import poll from "../../../../server/models/poll";
 
 /*
     props:
