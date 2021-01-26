@@ -15,9 +15,10 @@ class ClosePoll extends Component
 
   render() 
   {
+
     return (
         <div className="ClosePoll-container">
-            {this.props.user.tag}, ready to decide? 
+            <div className="ClosePoll-text"> {this.props.user.tag}, ready to decide? </div>
         </div>
         );
   }

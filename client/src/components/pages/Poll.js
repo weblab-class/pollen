@@ -41,6 +41,8 @@ class Poll extends Component
         owner_tag: "",
 
         share_show: false,
+        delete_show: false,
+        close_show: false,
       };
   }
 
@@ -115,10 +117,24 @@ class Poll extends Component
     });
   }
 
-  sharePoll = (event) =>
+  showSharePoll = (event) =>
   {
     this.setState({
       share_show: true,
+    });
+  }
+
+  showClosePoll = (event) =>
+  {
+    this.setState({
+      close_show: true,
+    });
+  }
+
+  showDeletePoll = (event) =>
+  {
+    this.setState({
+      delete_show: true,
     });
   }
 
@@ -129,13 +145,32 @@ class Poll extends Component
     });
   }
 
+  closeClosePoll = (event) =>
+  {
+    this.setState({
+      close_show: false,
+    });
+  }
+
+  closeDeletePoll = (event) =>
+  {
+    this.setState({
+      delete_show: false,
+    });
+  }
+
+  deletePoll = (event) =>
+  {
+    console.log("ENDPOINT PLS")
+  }
+
   render()
   {
     let isOwner = this.props.userId === this.state.poll.owner;
     let closePoll = null;
-    if (isOwner)
+    if (this.state.close_show)
     {
-      closePoll = <ClosePoll user={this.state.user_info[this.props.userId]} />;
+      closePoll = <ClosePoll closeClosePoll={this.closeClosePoll} user={this.state.user_info[this.props.userId]} />;
     }
     else
     {
@@ -153,9 +188,9 @@ class Poll extends Component
     }
 
     let deletePoll = null;
-    if (isOwner)
+    if (this.state.delete_show)
     {
-      deletePoll = <DeletePoll user={this.state.user_info[this.props.userId]} />;
+      deletePoll = <DeletePoll closeDeletePoll={this.closeDeletePoll} user={this.state.user_info[this.props.userId]} />;
     }
     else
     {
@@ -172,13 +207,15 @@ class Poll extends Component
                     <span>'s poll</span>
             </div>
             <div className="Poll-buttonContainer">
-              <button type="submit" value="Close Poll" onClick={this.closePoll} className="Poll-button u-pointer"> Close Poll </button>
-              <button type="submit" value="Share Poll" onClick={this.sharePoll} className="Poll-button u-pointer"> Share Poll </button>
-              <div className="Poll-trash"><img src='/images/trash.svg' height="30px" onClick={this.deletePoll} /></div>
+              <button type="submit" value="Close Poll" onClick={this.showClosePoll} className="Poll-button u-pointer"> Close Poll </button>
+              <button type="submit" value="Share Poll" onClick={this.showSharePoll} className="Poll-button u-pointer"> Share Poll </button>
+              <div className="Poll-trash"><img src='/images/trash.svg' height="30px" onClick={this.showDeletePoll} /></div>
             </div>
           </div>
 
           {shareModal}
+          {closePoll}
+          {deletePoll}
 
             <div className="u-flex">
               <div className="Poll-subContainer Poll-sideBar">

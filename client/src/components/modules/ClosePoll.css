@@ -11,7 +11,7 @@
     font-weight: 300;
     color: black;
 
-    margin: 3px 5px 3px 5px;
+    margin: 20px 5px 5px 5px;
     padding: 6px 14px;
     outline: none;
 }
@@ -19,4 +19,49 @@
 .ClosePoll-container:hover
 {
     border: var(--blackgrey) 1px solid;
+}
+
+.ClosePoll-text
+{
+    margin: var(--s);
+}
+
+.ClosePoll-subbox
+{
+    padding: var(--s);
+
+    align-items: center;
+    justify-content: center;
+}
+
+.ClosePoll-yes {
+  color: white;
+  font-size: 150;
+  border: var(--tag-red) 2px solid;
+  border-radius: var(--s);
+  background: var(--tag-red);
+  transition: color 0.1s, background 0.1s;
+  outline:none;
+  padding: var(--xs) var(--s);
+  margin: 0 var(--xs);
+}
+
+.ClosePoll-yes:hover {
+  border: var(--red) 2px solid;
+}
+
+.ClosePoll-no {
+  color: white;
+  font-size: 150;
+  border: var(--tag-red) 2px solid;
+  border-radius: var(--s);
+  background: var(--tag-red);
+  transition: color 0.1s, background 0.1s;
+  outline:none;
+  padding: var(--xs) var(--s);
+  margin: 0 var(--xs);
+}
+
+.ClosePoll-no:hover {
+  border: var(--red) 2px solid;
 }

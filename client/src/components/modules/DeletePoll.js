@@ -18,14 +18,13 @@ class DeletePoll extends Component
     return (
         <>
             <div className="ClosePoll-container">
-                {this.props.user.tag}, are you sure you want to delete this poll? You can't undo this action.
+                <div className="ClosePoll-text"> {this.props.user.tag}, are you sure you want to delete this poll? You can't undo this action. </div>
+                <div className = "u-flex ClosePoll-subbox">
+                    <button className="ClosePoll-yes" onClick={this.props.deletePoll}>yes</button>
+                    <button className="ClosePoll-no" onClick={this.props.closeDeletePoll}>no</button>
+                </div>
             </div>
-            <div className = "u-flex SharePoll-subbox">
-                <button className="ClosePoll-close" onClick={this.props.closeSharePoll}>close</button>
-            </div>
-
         </>
-        
         );
   }
 }
