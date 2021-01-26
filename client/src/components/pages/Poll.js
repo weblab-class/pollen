@@ -84,8 +84,11 @@ class Poll extends Component
       user_info: user_info_map,
     });
 
+
+
     socket.on("NewInfo", (data) =>
     {
+      console.log("SOCKET SOCKET SOCKET", data.poll)
       let new_user_info = this.state.user_info;
       if (!(data.id in new_user_info))
       {

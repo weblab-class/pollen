@@ -356,14 +356,14 @@ router.post("/poll/addOption", async (req, res) => {
   // is this right?
   let actives = socketManager.getAllConnectedUsers();
   actives = actives.map((obj) => {return obj._id; });
-  
+
   console.log(actives);
   console.log(poll.viewers);
   for (const viewer_id of poll.viewers)
   {
     if (viewer_id in actives)
     {
-      const dataObj = {id: viewer_id, poll: poll};
+      const dataObj = {id: user_id, poll: poll}; // id: person doing the action
       socketManager.getSocketFromUserID(viewer_id).emit("NewInfo", dataObj);
     }
   }
