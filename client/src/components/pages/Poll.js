@@ -86,11 +86,13 @@ class Poll extends Component
 
     socket.on("message", (data) =>
     {
-      console.log("SOCKET SOCKET SOCKET", data.poll)
       let new_user_info = this.state.user_info;
 
+      //console.log("SOCKET SOCKET SOCKET", data.id)
+      //console.log("SOCKET SOCKET USER", new_user_info)
+
       let newId = true;
-      for (const user_info_id of new_user_info)
+      for (const user_info_id in new_user_info)
       {
         if (data.id == user_info_id)
         {
@@ -98,6 +100,8 @@ class Poll extends Component
           break;
         }
       }
+
+      console.log("helloooooo")
 
       if (newId)
       {
