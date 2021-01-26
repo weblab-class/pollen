@@ -9,6 +9,8 @@ import DeletePoll from "../modules/DeletePoll.js";
 
 import "./Poll.css";
 import "../../utilities.css";
+import { socket } from "../../client-socket.js";
+import poll from "../../../../server/models/poll";
 
 /*
     props:
@@ -82,6 +84,14 @@ class Poll extends Component
       owner_tag: ownerObj.tag,
       owner_name: ownerObj.name,
       user_info: user_info_map,
+    });
+
+    socket.on("NewOption", (data) =>{
+      this.setState({
+        poll: {
+          options: this.state.poll.options.concat([data]),
+        },
+      });
     });
   }
 

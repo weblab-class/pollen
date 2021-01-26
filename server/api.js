@@ -277,7 +277,9 @@ router.post("/poll/addOption", async (req, res) => {
   const user_id = req?.user?._id || aniID
   const option = req.body.option
   const poll = await Poll.findOne({_id:req.body.id})
-  if(!poll){
+
+  if(!poll)
+  {
     return res.status(404).send("Not Found")
   }
   console.log(option, user_id)
@@ -286,6 +288,18 @@ router.post("/poll/addOption", async (req, res) => {
     adder: user_id
   })
   await poll.save()
+
+    // is this right?
+  const optionObject = poll.options[poll.options.length - 1]
+  let actives = socketManager.getAllConnectedUsers();
+  for (const viewer_id of poll.viewers)
+  {
+    if (viewer_id in actives)
+    {
+      socketManager.getSocketFromUserID(viewer_id).emit("NewOption", optionObject);
+    }
+  }
+
   res.send(poll);
 });
 
