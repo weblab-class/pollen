@@ -217,7 +217,7 @@ class Poll extends Component
           {closePoll}
           {deletePoll}
 
-            <div className="u-flex">
+            <div className="u-flex" style={{marginLeft: "0px"}} >
               <div className="Poll-subContainer Poll-sideBar">
                 <VoterList user_info={this.state.user_info} votes={this.state.poll.votes} options={this.state.poll.options}/>
               </div>

@@ -1,16 +1,19 @@
 .Poll-container
 {
     margin-top: var(--m);
+    margin-left: 0;
 }
 
 .Poll-subContainer
 {
     flex-basis: 0;
+    margin-left: var(--xs);
 }
 
 .Poll-sideBar
 {
     flex-grow: 1;
+    margin-left: var(--xs);
 }
 
 .Poll-board

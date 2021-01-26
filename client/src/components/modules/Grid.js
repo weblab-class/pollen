@@ -17,10 +17,21 @@ class Grid extends Component {
         super(props);
     }
 
+    // user schema:
+    /* myPolls: [{
+        _id: String,
+        last_visited: Number
+      }],
+      sharedPolls: [{
+        _id: String,
+        last_visited: Number
+      }], */
+
     render() {
         const user = this.props.user;
         let pollsList = null;
-        const userPolls = user?.myPolls || [];
+        const userPolls = (this.props.view === "my polls") ? (user?.myPolls || []) : (user?.sharedPolls || [])
+        // const userPolls = user?.myPolls || [];
         const hasPolls = userPolls.length !== 0;
         if (hasPolls) {
             pollsList = []

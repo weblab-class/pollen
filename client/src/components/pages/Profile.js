@@ -12,8 +12,6 @@ import "../../utilities.css";
     this.props.tagColors
 */
 
-// colors and stuff
-
 class Profile extends Component {
     constructor(props) {
         super(props);
@@ -38,11 +36,15 @@ class Profile extends Component {
     }
 
     viewMyPolls = () => {
-        this.setState({view: "my polls"});
+        this.setState({
+            view: "my polls",
+        });
     }
 
     viewShared = () => {
-        this.setState({view: "shared with me"});
+        this.setState({
+            view: "shared with me",
+        });
     }
 
     createPoll = (event) =>
@@ -87,7 +89,7 @@ class Profile extends Component {
                                     value="Edit Profile"
                                     // onClick={this.createPoll}
                                     onClick={() => {window.location.href = "/profile/edit";}}
-                                    className="Profile-button u-pointer"> edit profile </button>
+                                    className="Profile-button u-pointer"> &nbsp;&nbsp;&nbsp;edit profile&nbsp;&nbsp;&nbsp; </button>
                             </div>
                         </div>
                     </div>
