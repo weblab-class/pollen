@@ -7,6 +7,7 @@ import Poll from "./pages/Poll.js";
 import Profile from './pages/Profile.js';
 import EditProfile from './pages/EditProfile.js';
 import LandingPage from "./pages/LandingPage.js";
+import HowTo from "./pages/HowTo.js";
 
 import "../utilities.css";
 import "./App.css";
@@ -94,8 +95,9 @@ class App extends Component {
             <Poll tagColors={tagColors} userId={this.state.userId} path="/poll/:_id"/>
             <Profile tagColors={tagColors} userId={this.state.userId} path="/profile"/>
             <EditProfile beeIcons={beeIcons} userId={this.state.userId} path="/profile/edit" />
+            <HowTo path="/welcome" />
             <NotFound default />
-            <Skeleton path="/skeleton" />
+            {/* <Skeleton path="/skeleton" /> */}
           </Router>
 
       </>

@@ -21,6 +21,7 @@ const PollSchema = new mongoose.Schema({
   time_created: Number,
   last_edited: Number,
   last_edited_by: String,
+  deleted: Boolean,
   _id: String,
 });
 

@@ -195,8 +195,11 @@ router.post("/poll", (req, res) => {
       time_created: time,
       last_edited: time,
       last_edited_by: user_id,
+      deleted: false,
+
       _id: id
     }
+
     Poll.create(poll, function(err, doc) {
       if(err){
         console.error(err);

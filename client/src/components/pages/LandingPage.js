@@ -23,7 +23,7 @@ class LandingPage extends Component
                 <button 
                     type="submit" 
                     value="start buzzin'" 
-                    // onClick={}
+                    onClick={() => {window.location.href = "/welcome";}}
                     className="LandingPage-button u-pointer"> 
                     start buzzin' 
                 </button>           
