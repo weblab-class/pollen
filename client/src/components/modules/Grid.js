@@ -28,10 +28,12 @@ class Grid extends Component {
         const hasPolls = userPolls.length !== 0;
         if (hasPolls) {
             pollsList = []
-            for(let index in userPolls){
+            for (let index in userPolls){
               const pollObj = userPolls[index]
+
               if(pollObj.deleted)
                 continue;
+
               pollsList.push(
                 <PollCard
                   tagColors={this.props.tagColors}
