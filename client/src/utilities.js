@@ -5,7 +5,7 @@
  * about how these functions work, google search "Fetch API"
  *
  * These functions return promises, which means you should use ".then" on them.
- * e.g. get('/api/foo', { bar: 0 }).then(res => console.log(res))
+ * e.g. get('/api/foo', { bar: 0 }).then(res => //console.log(res))
  */
 
 // ex: formatParams({ some_key: "some_value", a: "b"}) => "some_key=some_value&a=b"

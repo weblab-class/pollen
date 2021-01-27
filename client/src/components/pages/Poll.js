@@ -22,7 +22,7 @@ class Poll extends Component
   constructor(props)
   {
       super(props);
-      //console.log(props)
+      ////console.log(props)
       this.state = {
         poll:{
           question: "",
@@ -94,8 +94,8 @@ class Poll extends Component
     {
       let new_user_info = this.state.user_info;
 
-      //console.log("SOCKET SOCKET SOCKET", data.id)
-      //console.log("SOCKET SOCKET USER", new_user_info)
+      ////console.log("SOCKET SOCKET SOCKET", data.id)
+      ////console.log("SOCKET SOCKET USER", new_user_info)
 
       let newId = true;
       for (const user_info_id in new_user_info)
@@ -118,7 +118,7 @@ class Poll extends Component
             user_info: new_user_info,
           });
         }).catch((err) =>{
-          console.log(err);
+          //console.log(err);
         });
       }
       else
@@ -129,7 +129,7 @@ class Poll extends Component
       }
     });
 
-    socket.on("deletion", (data) =>
+    socket.on("pollend", (data) =>
     {
       this.setState({
         poll: data.poll,
@@ -225,7 +225,7 @@ class Poll extends Component
     const body = {open: false, description: decision, id: this.state.poll._id};
     const pollObj = await post("/api/poll/", body);
 
-    console.log(pollObj);
+    //console.log(pollObj);
     this.setState({
       poll: pollObj,
       close_show: false,

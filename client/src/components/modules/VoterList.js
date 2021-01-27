@@ -19,9 +19,9 @@ class VoterList extends Component
   render()
   {
       let voterCardList = [];
-      console.log("VOTES", this.props.votes)
-      console.log("Options", this.props.options)
-      console.log("User Info", this.props.user_info)
+      //console.log("VOTES", this.props.votes)
+      //console.log("Options", this.props.options)
+      //console.log("User Info", this.props.user_info)
       const optionsMap = new Map()
       let index = 0
       for(let option of this.props.options){
@@ -29,8 +29,8 @@ class VoterList extends Component
         optionsMap.set(option._id, option)
         index+=1
       }
-      console.log("Options MAP", optionsMap)
-      console.log("Options MAP Size", optionsMap.size)
+      //console.log("Options MAP", optionsMap)
+      //console.log("Options MAP Size", optionsMap.size)
 
 
       let i = 0;
@@ -40,7 +40,7 @@ class VoterList extends Component
           const userinfo = this.props.user_info[user_id]
           const usertag = userinfo?.tag || '@';
           const userpfp = userinfo?.picture_link;
-          console.log("PFP", userpfp)
+          //console.log("PFP", userpfp)
           const userborder = userinfo?.border_color;
           let votes = this.props.votes[user_id].sort((optA, optB)=>{
             return optionsMap.get(optA).index - optionsMap.get(optB).index;
