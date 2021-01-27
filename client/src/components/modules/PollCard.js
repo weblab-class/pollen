@@ -77,6 +77,11 @@ class PollCard extends Component {
                 <div className="PollCard-namebanner u-textCenter" style={{backgroundColor: cardColor}}>
                     {this.state.owner.name}
                 </div>
+                <div className="PollCard-picContainer">
+                    <img className="Profile-pfp" 
+                                src={this.props.tagIcons[poll.tags[0]]} alt="bee" 
+                                width="10px" height="10px" />
+                </div>
                 <div className="PollCard-body">
                     {statusTag}
                     <p className="PollCard-question">{poll.question}</p>

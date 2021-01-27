@@ -4,6 +4,7 @@ import PollCard from "../modules/PollCard.js";
 
 import "./Grid.css";
 import "../../utilities.css";
+import "../Profile.css";
 
 /**
  * Proptypes
@@ -50,7 +51,7 @@ class Grid extends Component {
             }
 
         } else {
-            pollsList = <div>No polls yet! Why not create one?</div>
+            pollsList = <div className = "Profile-view">No polls yet! Why not create one?</div>
         }
         return (
             <div className="Grid-container">{pollsList}</div>

@@ -78,3 +78,14 @@ a {
   color: inherit;
   text-decoration: inherit;
 }
+
+.PollCard-picContainer
+{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.PollCard-pic
+{
+    justify-content: flex-end;
+}
