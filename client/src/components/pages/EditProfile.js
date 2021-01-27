@@ -97,8 +97,8 @@ class EditProfile extends Component {
               onClick={this.handleChangeUsername}
               className="Modal-submit u-pointer"
               style={{marginLeft: "1px"}}
-          > change </button>
-          {/* <button className="Modal-close" onClick={this.props.closeCreator}>Close</button> */}
+          > change </button> 
+          <button className="Modal-close" style={{marginLeft: "var(--xs)"}} onClick={() => {window.location.href = "/profile"}}>back to profile</button>
         </div>
       </div>
     );

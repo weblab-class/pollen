@@ -67,9 +67,10 @@ class Profile extends Component {
     }
 
     render() {
-        console.log(this.state.user);
+//        console.log(this.state.user);
         if (!this.state.show_create)
         {
+            console.log("PICTURE", this.state.user.picture_link)
             const pfpborder = {
                 border: this.state.user.border_color + " 2px dashed", 
             };
@@ -85,8 +86,8 @@ class Profile extends Component {
                         <p className="Profile-username">{this.state.user.userTag}</p>
                         <div className="Profile-sidebuttons u-flexColumn">
                             <div className="Profile-subTop">
-                                <div className="u-morepadding" onClick={this.viewMyPolls} >my polls</div>
-                                <div className="u-morepadding" onClick={this.viewShared} >shared with me</div>
+                                <div className="u-morepadding u-pointer" onClick={this.viewMyPolls} >my polls</div>
+                                <div className="u-morepadding u-pointer" onClick={this.viewShared} >shared with me</div>
                             </div>
                             <div className="Profile-subBot">
                                 <button
