@@ -244,7 +244,7 @@ class Poll extends Component
       if (!this.state.poll.open)
       {
         const pfpborder = {
-          border: this.state.border_color + " 2px dashed", 
+          border: this.state.border_color + " 2px solid", 
         };
 
         decbox = <div className="u-flex Poll-decContainer">
