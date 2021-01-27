@@ -62,7 +62,7 @@ class App extends Component {
   componentDidMount() {
     get("/api/user/self").then((user) => {
       if (user._id) {
-        console.log(user._id)
+        //console.log(user._id)
         // they are registed in the database, and currently logged in.
         this.setState({ userId: user._id });
       }
@@ -71,14 +71,14 @@ class App extends Component {
 
   handleLogin = (redirect) => {
     return (res) => {
-      console.log(`Logged in as ${res.profileObj.name}`);
+      //console.log(`Logged in as ${res.profileObj.name}`);
       const userToken = res.tokenObj.id_token;
       post("/api/login", { token: userToken}).then((user) => {
         sessionStorage.setItem("LoggedIn", "true");
-        console.log("Posted to login, response:", user)
+        //console.log("Posted to login, response:", user)
         this.setState({ userId: user._id });
-        console.log("USERID",this.state.userId)
-        console.log("REDIRECT", redirect)
+        //console.log("USERID",this.state.userId)
+        //console.log("REDIRECT", redirect)
         window.location.href = redirect || '/profile'
         post("/api/initsocket", { socketid: socket.id });
       });

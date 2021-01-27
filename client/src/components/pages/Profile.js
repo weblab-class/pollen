@@ -32,7 +32,7 @@ class Profile extends Component {
     componentDidMount() {
         // get('/api/user', {id: this.props.userId})
         get('/api/user/self', {}).then((user) => {
-            console.log("USER", user)
+            //console.log("USER", user)
             this.setState({
                 user: user,
             });
@@ -69,10 +69,10 @@ class Profile extends Component {
     }
 
     render() {
-//        console.log(this.state.user);
+//        //console.log(this.state.user);
         if (!this.state.show_create)
         {
-            console.log("PICTURE", this.state.user.picture_link)
+            //console.log("PICTURE", this.state.user.picture_link)
             const pfpborder = {
                 border: this.state.user.border_color + " 2px dashed",
             };

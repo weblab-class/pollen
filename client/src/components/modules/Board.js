@@ -35,7 +35,7 @@ class Board extends Component
       option_map[opt_id] = 0;
     }
 
-    console.log("VOTESSSSSS", this.props.votes)
+    //console.log("VOTESSSSSS", this.props.votes)
     for (const userId in this.props.votes)
     {
         let user_options = this.props.votes[userId];
@@ -47,7 +47,7 @@ class Board extends Component
             }
             else
             {
-                console.log("err");
+                //console.log("err");
             }   
         }
     }

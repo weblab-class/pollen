@@ -50,7 +50,7 @@ router.get("/poll/delete", async (req, res) => {
   if(!req.query.id){
     return res.status(208).send("No id provided");
   }
-  console.log("POLL DELETE")
+  //console.log("POLL DELETE")
   const user_id = req?.user?._id || aniID
   const poll_id = req.query.id
   const poll = await Poll.findOne({_id:poll_id})
@@ -68,8 +68,8 @@ router.get("/poll/delete", async (req, res) => {
 
   for (const viewer_id of poll.viewers)
   {
-    console.log("VIEWER 1", viewer_id)
-    console.log("ACTIVES", actives)
+    //console.log("VIEWER 1", viewer_id)
+    //console.log("ACTIVES", actives)
 
     let activeViewer = false;
     for (const active_id of actives)
@@ -121,7 +121,7 @@ router.get("/poll", async (req, res) => {
     return res.status(404).send("Poll not found")
   }
   let foundIndex = -1;
-  console.log(poll.viewers)
+  //console.log(poll.viewers)
   for(const index in poll.viewers){
     if(poll.viewers[index] == user_id){
       foundIndex = index;
@@ -212,7 +212,7 @@ router.post("/poll", (req, res) => {
       if(err){
         console.error(err);
       }
-      // console.log(doc)
+      // //console.log(doc)
       res.send(doc)
     })
     const myPoll = {_id:id, last_visited:time}
@@ -274,8 +274,8 @@ router.post("/poll/vote", async (req, res) => {
 
   for (const viewer_id of poll.viewers)
   {
-    console.log("VIEWER 1", viewer_id)
-    console.log("ACTIVES", actives)
+    //console.log("VIEWER 1", viewer_id)
+    //console.log("ACTIVES", actives)
 
     let activeViewer = false;
     for (const active_id of actives)
@@ -289,7 +289,7 @@ router.post("/poll/vote", async (req, res) => {
     if (activeViewer)
     {
       const dataObj = {id: user_id, poll: poll}; // id: person doing the action
-      console.log("POSTED VOTE", poll)
+      //console.log("POSTED VOTE", poll)
       socketManager.getSocketFromUserID(viewer_id).emit("message", dataObj);
     }
   }
@@ -346,8 +346,8 @@ router.post("/poll/unvote", async (req, res) => {
 
   for (const viewer_id of poll.viewers)
   {
-    console.log("VIEWER 1", viewer_id)
-    console.log("ACTIVES", actives)
+    //console.log("VIEWER 1", viewer_id)
+    //console.log("ACTIVES", actives)
 
     let activeViewer = false;
     for (const active_id of actives)
@@ -369,7 +369,7 @@ router.post("/poll/unvote", async (req, res) => {
 });
 
 router.post("/poll/addOption", async (req, res) => {
-  console.log("==================================================")
+  //console.log("==================================================")
   if (!(req.body.admin || req.user)) {
     return res.send({});
   }
@@ -400,8 +400,8 @@ router.post("/poll/addOption", async (req, res) => {
 
   for (const viewer_id of poll.viewers)
   {
-    console.log("VIEWER 1", viewer_id)
-    console.log("ACTIVES", actives)
+    //console.log("VIEWER 1", viewer_id)
+    //console.log("ACTIVES", actives)
 
     let activeViewer = false;
     for (const active_id of actives)
@@ -476,7 +476,7 @@ router.get("/user/info", (req, res) => {
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
-  console.log(`API route not found: ${req.method} ${req.url}`);
+  //console.log(`API route not found: ${req.method} ${req.url}`);
   res.status(404).send({ msg: "API route not found" });
 });
 

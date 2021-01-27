@@ -50,7 +50,7 @@ const cute_colors = [
 function getOrCreateUser(user) {
   // the "sub" field means "subject", which is a unique identifier for each user
   return User.findOne({ googleID: user.sub }).then((existingUser) => {
-    console.log(profilePics)
+    //console.log(profilePics)
     if (existingUser) return existingUser;
 
     const newUser = new User({
@@ -70,7 +70,7 @@ function getOrCreateUser(user) {
 }
 
 function login(req, res) {
-  console.log("LOGIN")
+  //console.log("LOGIN")
   verify(req.body.token)
     .then((user) => getOrCreateUser(user))
     .then((user) => {
@@ -79,7 +79,7 @@ function login(req, res) {
       res.send(user);
     })
     .catch((err) => {
-      console.log(`Failed to log in: ${err}`);
+      //console.log(`Failed to log in: ${err}`);
       res.status(401).send({ err });
     });
 }
