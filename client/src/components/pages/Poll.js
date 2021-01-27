@@ -234,123 +234,130 @@ class Poll extends Component
 
   render()
   {
-    if (this.state.poll.deleted)
+    if (Object.keys(this.state.user).length === 0)
     {
-      return <div className="Poll-delete"> Sorry, this poll has been deleted :( </div>
+      return <></>;
     }
     else
     {
-      let decbox = null;
-      if (!this.state.poll.open)
+      if (this.state.poll.deleted)
       {
-        const pfpborder = {
-          border: this.state.border_color + " 2px dashed", 
-        };
+        return <div className="Poll-delete"> Sorry, this poll has been deleted :( </div>
+      }
+      else
+      {
+        let decbox = null;
+        if (!this.state.poll.open)
+        {
+          const pfpborder = {
+            border: this.state.border_color + " 2px dashed", 
+          };
 
-        decbox = <div className="u-flex Poll-decContainer">
-                    <div className="Poll-pfpbox">
-                      <img className="Poll-pfp" 
-                                src={this.state.picture_link} alt="bee" 
-                                style={pfpborder}
-                                width="100px" height="100px" />
-                    </div>
-                    <div className="Poll-box">
-                        <div className = "u-flex Poll-subbox">
-                          <span className="u-bold">{this.state.owner_tag} </span>
-                          <span> 's Final Decision</span> 
-                        </div>
-                        <div className = "u-flex Poll-subbox Poll-dec">
-                            <span className="Poll-dectext">{this.state.poll.description}</span>
-                        </div>
-                    </div>
-                 </div>
+          decbox = <div className="u-flex Poll-decContainer">
+                      <div className="Poll-pfpbox">
+                        <img className="Poll-pfp" 
+                                  src={this.state.picture_link} alt="bee" 
+                                  style={pfpborder}
+                                  width="100px" height="100px" />
+                      </div>
+                      <div className="Poll-box">
+                          <div className = "u-flex Poll-subbox">
+                            <span className="u-bold">{this.state.owner_tag} </span>
+                            <span> 's Final Decision</span> 
+                          </div>
+                          <div className = "u-flex Poll-subbox Poll-dec">
+                              <span className="Poll-dectext">{this.state.poll.description}</span>
+                          </div>
+                      </div>
+                  </div>
+          
+
+        }
         
+        let isOwner = this.props.userId === this.state.poll.owner;
+        let closePoll = null;
+        if (this.state.close_show)
+        {
+          closePoll = <ClosePoll submitDecision={this.submitDecision} closeClosePoll={this.closeClosePoll} user={this.state.user_info[this.props.userId]} />;
+        }
+        else
+        {
+          closePoll = <div></div>;
+        }
 
-      }
-      
-      let isOwner = this.props.userId === this.state.poll.owner;
-      let closePoll = null;
-      if (this.state.close_show)
-      {
-        closePoll = <ClosePoll submitDecision={this.submitDecision} closeClosePoll={this.closeClosePoll} user={this.state.user_info[this.props.userId]} />;
-      }
-      else
-      {
-        closePoll = <div></div>;
-      }
+        let shareModal = null
+        if (this.state.share_show)
+        {
+          shareModal = <SharePoll closeSharePoll={this.closeSharePoll} />;
+        }
+        else
+        {
+          shareModal = <div></div>;
+        }
 
-      let shareModal = null
-      if (this.state.share_show)
-      {
-        shareModal = <SharePoll closeSharePoll={this.closeSharePoll} />;
-      }
-      else
-      {
-        shareModal = <div></div>;
-      }
+        let deletePoll = null;
+        if (this.state.delete_show)
+        {
+          deletePoll = <DeletePoll deleteFunc={this.deletePollEndpoint} closeDeletePoll={this.closeDeletePoll} user={this.state.user_info[this.props.userId]} />;
+        }
+        else
+        {
+          deletePoll = <div></div>;
+        }
 
-      let deletePoll = null;
-      if (this.state.delete_show)
-      {
-        deletePoll = <DeletePoll deleteFunc={this.deletePollEndpoint} closeDeletePoll={this.closeDeletePoll} user={this.state.user_info[this.props.userId]} />;
-      }
-      else
-      {
-        deletePoll = <div></div>;
-      }
+          return (
+            <div className="App-container">
+              <div className="Poll-container">
 
-        return (
-          <div className="App-container">
-            <div className="Poll-container">
-
-            <div className="Poll-head">
-              <div className="Poll-title u-textCenter u-darkdarkbrown u-textMedium">
-                      <span className="u-bold">{this.state.owner_tag} </span>
-                      <span>'s poll</span>
+              <div className="Poll-head">
+                <div className="Poll-title u-textCenter u-darkdarkbrown u-textMedium">
+                        <span className="u-bold">{this.state.owner_tag} </span>
+                        <span>'s poll</span>
+                </div>
+                <div className="Poll-buttonContainer">
+                  {(isOwner && this.state.poll.open) ? <button type="submit" value="Close Poll" onClick={this.showClosePoll} className="Poll-button u-pointer"> Close Poll </button> : null}
+                  <button type="submit" value="Share Poll" onClick={this.showSharePoll} className="Poll-button u-pointer"> Share Poll </button>
+                  {isOwner ? <div className="Poll-trash"><img src='/images/trash.svg' height="30px" onClick={this.showDeletePoll} /></div> : null}
+                </div>
               </div>
-              <div className="Poll-buttonContainer">
-                {(isOwner && this.state.poll.open) ? <button type="submit" value="Close Poll" onClick={this.showClosePoll} className="Poll-button u-pointer"> Close Poll </button> : null}
-                <button type="submit" value="Share Poll" onClick={this.showSharePoll} className="Poll-button u-pointer"> Share Poll </button>
-                {isOwner ? <div className="Poll-trash"><img src='/images/trash.svg' height="30px" onClick={this.showDeletePoll} /></div> : null}
+
+                <div className="u-flex" style={{marginLeft: "0px"}} >
+                  <div className="Poll-sideBar">
+                    <VoterList user_info={this.state.user_info} votes={this.state.poll.votes} options={this.state.poll.options}/>
+                  </div>
+                  
+                  <div className="Poll-board" style={{display: "flex", flexDirection: "column"}}>
+                  {decbox}
+                  {shareModal}
+                  {closePoll}
+                  {deletePoll}
+                  <div>
+                    <Board handleAddVote={this.handleAddVote}
+                            handleRemoveVote={this.handleRemoveVote}
+                            userVoteIds={this.state.poll.votes[this.state?.user?._id] || []}
+                            poll_id={this.state.poll._id}
+                            question={this.state.poll.question}
+                            options={this.state.poll.options || []}
+                            tags={this.state.poll.tags}
+                            tagColors={this.props.tagColors}
+                            votes={this.state.poll.votes}
+                            open={this.state.poll.open}
+                            isOwner = {isOwner}/>
+                  {this.state.poll.open ?
+                    <div className="u-textCenter">
+                      <NewOption addNewOption={this.addNewOption} />
+                    </div> : null}
+
+                  </div>
+                  </div>
+                </div>
+
               </div>
             </div>
-
-              <div className="u-flex" style={{marginLeft: "0px"}} >
-                <div className="Poll-sideBar">
-                  <VoterList user_info={this.state.user_info} votes={this.state.poll.votes} options={this.state.poll.options}/>
-                </div>
-                
-                <div className="Poll-board" style={{display: "flex", flexDirection: "column"}}>
-                {decbox}
-                {shareModal}
-                {closePoll}
-                {deletePoll}
-                <div>
-                  <Board handleAddVote={this.handleAddVote}
-                          handleRemoveVote={this.handleRemoveVote}
-                          userVoteIds={this.state.poll.votes[this.state?.user?._id] || []}
-                          poll_id={this.state.poll._id}
-                          question={this.state.poll.question}
-                          options={this.state.poll.options || []}
-                          tags={this.state.poll.tags}
-                          tagColors={this.props.tagColors}
-                          votes={this.state.poll.votes}
-                          open={this.state.poll.open}
-                          isOwner = {isOwner}/>
-                {this.state.poll.open ?
-                  <div className="u-textCenter">
-                    <NewOption addNewOption={this.addNewOption} />
-                  </div> : null}
-
-                </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        );
+          );
+      }
     }
-  }
+  }   
 }
 
 export default Poll;
