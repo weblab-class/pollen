@@ -21,11 +21,20 @@ class VoterCard extends Component
       i++;
       return <div key={i}> {">" + voteObj} </div>;
     });
+    const pfpborder = {
+      border: this.props.border + " 2px dashed", 
+    };
 
       return (
         <div className="VoterCard-container">
-            <div className="VoterCard-name u-bold"> {this.props.user} </div>
-            {voteList}
+            <img className="VoterCard-pfp" 
+                                src={this.props.pfp} alt="bee" 
+                                style={pfpborder}
+                                width="50px" height="50px" />
+            <div>
+              <div className="VoterCard-name u-bold"> {this.props.user} </div>
+              {voteList}
+            </div>
         </div>
       );
   }
