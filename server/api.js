@@ -75,8 +75,6 @@ router.get("/poll/quick", async (req, res) => {
   if(!poll_id){
     return res.status(208).send("No poll id")
   }
-  const user_id = req?.user?._id || aniID
-  const time = Math.floor(Date.now()/1000)
   const poll = await Poll.findOne({_id:poll_id})
   if(!poll){
     return res.status(404).send("Poll not found")

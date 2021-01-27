@@ -37,7 +37,7 @@ class PollCard extends Component {
     }
 
     componentDidMount() {
-        get('/api/poll', {id: this.props._id}).then((pollObj) => {
+        get('/api/poll/quick', {id: this.props._id}).then((pollObj) => {
             this.setState({
                 poll: pollObj,
             });
@@ -72,7 +72,7 @@ class PollCard extends Component {
         const pollLink = '/poll/' + poll._id;
 
         return (
-              <div className="PollCard-container" 
+              <div className="PollCard-container"
                 onClick={() => {window.location.href = "/poll/" + poll._id;}}
                 style={{borderColor: cardColor}}>
                 <div className="PollCard-namebanner u-textCenter" style={{backgroundColor: cardColor}}>
@@ -91,7 +91,7 @@ class PollCard extends Component {
                     </div>
                     <p className="PollCard-question">{poll.question}</p>
                     {tagsList}
-                    
+
                     {/* <p className="PollCard-info u-textRight" >{numvotes} votes</p>
                     <p className="PollCard-info u-textRight" >{poll.options.length} options</p> */}
                 </div>
