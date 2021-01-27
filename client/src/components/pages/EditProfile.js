@@ -79,7 +79,6 @@ class EditProfile extends Component {
         <br/>
         <h1 className="u-textCenter">edit profile</h1>
         <h2 className="EditProfile-heading" ><span className="u-textCenter EditProfile-highlightPurple" > &nbsp;&nbsp;click to change your icon!&nbsp;&nbsp; </span></h2>
-        // {this.state.changedPic ? (<div className="u-textCenter">profile icon changed!<br/></div>) : (<div></div>)}
         <div className="EditProfile-pfpContainer">
           {pfpList}
         </div>
