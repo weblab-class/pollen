@@ -62,6 +62,30 @@ router.get("/poll/delete", async (req, res) => {
     res.send("Hey that's not yours")
   }
   poll.save();
+
+  let actives = socketManager.getAllConnectedUsers();
+  actives = actives.map((obj) => {return obj._id; });
+
+  for (const viewer_id of poll.viewers)
+  {
+    console.log("VIEWER 1", viewer_id)
+    console.log("ACTIVES", actives)
+
+    let activeViewer = false;
+    for (const active_id of actives)
+    {
+      if (viewer_id == active_id)
+      {
+        activeViewer = true;
+        break;
+      }
+    }
+    if (activeViewer)
+    {
+      const dataObj = {id: user_id, poll: poll}; // id: person doing the action
+      socketManager.getSocketFromUserID(viewer_id).emit("deletion", dataObj);
+    }
+  }
 })
 
 // |------------------------------|

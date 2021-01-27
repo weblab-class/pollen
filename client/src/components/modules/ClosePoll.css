@@ -37,9 +37,9 @@
 .ClosePoll-yes {
   color: white;
   font-size: 150;
-  border: var(--tag-red) 2px solid;
+  border: var(--green) 2px solid;
   border-radius: var(--s);
-  background: var(--tag-red);
+  background: var(--green);
   transition: color 0.1s, background 0.1s;
   outline:none;
   padding: var(--xs) var(--s);
@@ -47,7 +47,7 @@
 }
 
 .ClosePoll-yes:hover {
-  border: var(--red) 2px solid;
+  border: var(--darkgreen) 2px solid;
 }
 
 .ClosePoll-no {

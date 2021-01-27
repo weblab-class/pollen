@@ -105,3 +105,20 @@
     -ms-transform: scale(1.05);
     transform: scale(1.05);
 }
+
+.Poll-delete
+{
+    background-color: white;
+    text-align: center;
+
+    border: var(--darkgrey) 1px solid;
+    border-radius: var(--xs);
+    font-size: x-large;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 100;
+    color: black;
+
+    margin: 20px var(--m);
+    padding: var(--l);
+    outline: none;
+}
