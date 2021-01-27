@@ -66,7 +66,9 @@ class Poll extends Component
     let user_info_map = {}; // user id -> name and tag
     user_info_map[user._id] = {
       name: user.displayName,
-      tag: user.userTag
+      tag: user.userTag,
+      picture_link: "/images/pfp/defaultpfp.svg",
+      border_color: "#82CCB5",
     }
     for (const user_id in pollObj.votes)
     {
