@@ -1,6 +1,6 @@
 .NavBar-container {
     padding: var(--xs);
-    width: 100%;
+    width: 100vw;
     background-color: #fff2ccff;
     display: flex;
     flex-direction: row;

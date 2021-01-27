@@ -300,7 +300,7 @@ class Poll extends Component
       }
 
         return (
-          <div className="App-container">
+          <div >
             <div className="Poll-container">
 
             <div className="Poll-head">
