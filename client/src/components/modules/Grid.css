@@ -2,5 +2,5 @@
     display: flex;
     flex-wrap: wrap;
     max-width: 80vw;
-    margin-left: var(--m);
+    margin-left: var(--xl);
 }
