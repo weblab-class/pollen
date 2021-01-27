@@ -65,8 +65,8 @@ class EditProfile extends Component {
     let pfpList = null;
     if (this.props.beeIcons.length !== 0) {
       pfpList = this.props.beeIcons.map((icon) => (
-        <img src={icon} alt="bee" width="100px" height="100px"
-          className="EditProfile-pfp u-pointer" 
+        <img src={icon} class={icon==this.state?.user?.picture_link ? 'solid-pfp' : 'EditProfile-pfp'} alt="bee" width="100px" height="100px"
+          className="EditProfile-pfp u-pointer"
           onClick={this.handleChangePfp(icon)}
         />
       ));
@@ -75,11 +75,11 @@ class EditProfile extends Component {
     }
     let placeholderBox = (this.state.user.userTag) ? (this.state.user.userTag.substring(1)) : (this.state.user.userTag);
     return (
-      <div className="App-container"> 
+      <div className="App-container">
         <br/>
-        <h1 className="u-textCenter">edit profile</h1> 
+        <h1 className="u-textCenter">edit profile</h1>
         <h2 className="EditProfile-heading" ><span className="u-textCenter EditProfile-highlightPurple" > &nbsp;&nbsp;click to change your icon!&nbsp;&nbsp; </span></h2>
-        {this.state.changedPic ? (<div className="u-textCenter">profile icon changed!<br/></div>) : (<div></div>)}
+        // {this.state.changedPic ? (<div className="u-textCenter">profile icon changed!<br/></div>) : (<div></div>)}
         <div className="EditProfile-pfpContainer">
           {pfpList}
         </div>
@@ -101,7 +101,7 @@ class EditProfile extends Component {
               onClick={this.handleChangeUsername}
               className="Modal-submit u-pointer"
               style={{marginLeft: "1px"}}
-          > change </button> 
+          > change </button>
           <button className="Modal-close" style={{marginLeft: "var(--xs)"}} onClick={() => {window.location.href = "/profile"}}>back to profile</button>
         </div>
       </div>

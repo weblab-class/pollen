@@ -4,6 +4,11 @@
   border: lightblue 2px dashed;
 }
 
+.solid-pfp {
+  border-radius: 50%;
+  border: lightblue 3px solid;
+}
+
 .EditProfile-pfp:hover {
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
@@ -27,7 +32,7 @@
   text-align: center;
 }
 
-.EditProfile-highlightPurple 
+.EditProfile-highlightPurple
 {
   /* margin-bottom: var(--s); */
   padding: var(--xs);
