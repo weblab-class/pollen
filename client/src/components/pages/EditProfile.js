@@ -70,7 +70,7 @@ class EditProfile extends Component {
     }
     let placeholderBox = (this.state.user.userTag) ? (this.state.user.userTag.substring(1)) : (this.state.user.userTag);
     return (
-      <div> 
+      <div className="App-container"> 
         <br/>
         <h1 className="u-textCenter">edit profile</h1> 
         {/* so basically show a row of circle pfps and when they click to choose make the circle bigger */}

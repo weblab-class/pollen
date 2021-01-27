@@ -77,7 +77,7 @@ class Profile extends Component {
                 border: this.state.user.border_color + " 2px dashed",
             };
             return (
-                <div>
+                <div className="App-container">
                 <div className="Profile-container">
                     <div className="Profile-sidebar">
                         <img className="Profile-pfp"
