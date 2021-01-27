@@ -17,19 +17,20 @@ function verify(token) {
     .then((ticket) => ticket.getPayload());
 }
 
-const glob = require("glob");
-let profilePics = ['/images/pfp/defaultpfp.svg'];
-glob("server/public/images/pfp/", {}, function (err, files) {
-  const prefix = 'server/public'
-  profilePics = files.map((file)=>{
-    if(file.startsWith(prefix))
-      return file.substring(prefix.length);
-    else
-      return file;
-  })
-})
-
-console.log(profilePics)
+const profilePics = [
+  '/images/pfp/bee_family.svg',
+  '/images/pfp/bee_food.svg',
+  '/images/pfp/bee_games.svg',
+  '/images/pfp/bee_random.svg',
+  '/images/pfp/bee_title.svg',
+  '/images/pfp/bee_trav.svg',
+  '/images/pfp/defaultpfp.svg',
+  '/images/pfp/pfp2.svg',
+  '/images/pfp/pfp3.svg',
+  '/images/pfp/pfp4.svg',
+  '/images/pfp/pfp5.svg',
+  '/images/pfp/pfp6.svg'
+];
 
 const cute_colors = [
   "#877BB9",
