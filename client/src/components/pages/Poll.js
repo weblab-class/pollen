@@ -67,8 +67,8 @@ class Poll extends Component
     user_info_map[user._id] = {
       name: user.displayName,
       tag: user.userTag,
-      picture_link: "/images/pfp/defaultpfp.svg",
-      border_color: "#82CCB5",
+      picture_link: user.picture_link,
+      border_color: user.border_color,
     }
     for (const user_id in pollObj.votes)
     {

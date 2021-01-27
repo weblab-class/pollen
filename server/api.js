@@ -439,7 +439,9 @@ router.get("/user/info", (req, res) => {
     if(doc){
       res.send({
           tag: doc.userTag,
-          name: doc.displayName
+          name: doc.displayName,
+          picture_link: doc.picture_link,
+          border_color: doc.border_color,
       })
     }
     else{
