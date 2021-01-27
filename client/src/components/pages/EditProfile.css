@@ -1,3 +1,15 @@
+.EditProfile-pfp {
+  border-radius: 50%;
+  /* background-color: aliceblue; */
+  border: lightblue 2px dashed;
+}
+
+.EditProfile-pfp:hover {
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
 .EditProfile-pfpContainer {
   display: flex;
   justify-content: center;
