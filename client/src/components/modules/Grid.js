@@ -27,21 +27,19 @@ class Grid extends Component {
         // const userPolls = user?.myPolls || [];
         const hasPolls = userPolls.length !== 0;
         if (hasPolls) {
-            pollsList = []
-            for (let index in userPolls){
-              const pollObj = userPolls[index]
-
-              if(pollObj.deleted)
-                continue;
-
-              pollsList.push(
+            pollsList = [];
+            for(let index in userPolls){
+              const pollObj = userPolls[index];
+              if(!pollObj.deleted) {
+                pollsList.push(
                 <PollCard
                   tagColors={this.props.tagColors}
                   tagIcons={this.props.tagIcons}
                   _id={pollObj._id}
                   last_visited={pollObj.last_visited}
-                  key={pollObj._id}/>)
-                console.log(pollsList)
+                  key={pollObj._id}/>);
+                console.log(pollsList);
+              }
             }
 
         } else {
