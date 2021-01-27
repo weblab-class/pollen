@@ -18,16 +18,6 @@ class Grid extends Component {
         super(props);
     }
 
-    // user schema:
-    /* myPolls: [{
-        _id: String,
-        last_visited: Number
-      }],
-      sharedPolls: [{
-        _id: String,
-        last_visited: Number
-      }], */
-
     render() {
         const user = this.props.user;
         let pollsList = null;
@@ -50,7 +40,9 @@ class Grid extends Component {
             }
 
         } else {
-            pollsList = <div>No polls yet! Why not create one?</div>
+            pollsList = (this.props.view === "my polls") ? 
+              (<div>No polls yet! Why not create one?</div>) : 
+              (<div>No shared polls yet! <em>pollen</em> is better when you buzz with friends ;)</div>)
         }
         return (
             <div className="Grid-container">{pollsList}</div>
