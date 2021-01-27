@@ -121,8 +121,9 @@ router.get("/poll", async (req, res) => {
     return res.status(404).send("Poll not found")
   }
   let foundIndex = -1;
+  console.log(poll.viewers)
   for(const index in poll.viewers){
-    if(poll.viewers[foundIndex] == user_id){
+    if(poll.viewers[index] == user_id){
       foundIndex = index;
       break;
     }
@@ -130,11 +131,9 @@ router.get("/poll", async (req, res) => {
   if(foundIndex<0){
     poll.viewers.push(user_id)
     poll.save();
-    res.send(poll)
   }
-  console.log("USER ID:\t", user_id);
-  console.log("OWNER ID:\t", poll.owner);
-  console.log("Inequality:\t", user_id != poll.owner);
+  res.send(poll)
+
   if(user_id != poll.owner){
     const user = await User.findOne({_id:user_id});
     if(!user)
@@ -290,6 +289,7 @@ router.post("/poll/vote", async (req, res) => {
     if (activeViewer)
     {
       const dataObj = {id: user_id, poll: poll}; // id: person doing the action
+      console.log("POSTED VOTE", poll)
       socketManager.getSocketFromUserID(viewer_id).emit("message", dataObj);
     }
   }
