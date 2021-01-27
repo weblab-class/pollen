@@ -315,17 +315,17 @@ class Poll extends Component
               </div>
             </div>
 
-            {decbox}
-            {shareModal}
-            {closePoll}
-            {deletePoll}
-
               <div className="u-flex" style={{marginLeft: "0px"}} >
-                <div className="Poll-subContainer Poll-sideBar">
+                <div className="Poll-sideBar">
                   <VoterList user_info={this.state.user_info} votes={this.state.poll.votes} options={this.state.poll.options}/>
                 </div>
-
-                <div className="Poll-subContainer Poll-board">
+                
+                <div className="Poll-board" style={{display: "flex", flexDirection: "column"}}>
+                {decbox}
+                {shareModal}
+                {closePoll}
+                {deletePoll}
+                <div>
                   <Board handleAddVote={this.handleAddVote}
                           handleRemoveVote={this.handleRemoveVote}
                           userVoteIds={this.state.poll.votes[this.state?.user?._id] || []}
@@ -343,7 +343,7 @@ class Poll extends Component
                   </div> : null}
 
                 </div>
-
+                </div>
               </div>
 
             </div>

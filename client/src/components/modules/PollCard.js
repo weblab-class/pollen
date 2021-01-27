@@ -105,11 +105,11 @@ class PollCard extends Component {
                     {ownerName}
                 </div>
                 <div className="PollCard-body">
-                        <div className="PollCard-picContainer">
+                        {/* <div className="PollCard-picContainer">
                             <img className="Profile-pfp"
                                         src={sample} alt="bee"
                                         width="100px" height="100px" />
-                        </div>
+                        </div> */}
                     <div>
                         <div className="PollCard-status">
                             {statusTag}

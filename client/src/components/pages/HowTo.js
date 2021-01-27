@@ -56,6 +56,7 @@ class HowTo extends Component {
         <h2><span className="EditProfile-highlightRed" >&nbsp;&nbsp;Ready to get pollin' with <em>pollen</em>?&nbsp;&nbsp;</span></h2>
         <p>Login with your Google account in the top right corner!</p>
         <br/>
+        <br/>
       </div>
     );
   }
