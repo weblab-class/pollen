@@ -4,7 +4,7 @@ import PollCard from "../modules/PollCard.js";
 
 import "./Grid.css";
 import "../../utilities.css";
-import "../Profile.css";
+import "../pages/Profile.css";
 
 /**
  * Proptypes

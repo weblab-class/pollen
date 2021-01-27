@@ -81,11 +81,13 @@ a {
 
 .PollCard-picContainer
 {
+    display: inline;
     display: flex;
-    flex-direction: row-reverse;
+    justify-content: flex-end;
 }
 
-.PollCard-pic
+.PollCard-status
 {
-    justify-content: flex-end;
+    display: flex;
+    justify-content: space-between;
 }
