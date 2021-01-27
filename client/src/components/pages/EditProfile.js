@@ -75,7 +75,7 @@ class EditProfile extends Component {
     }
     let placeholderBox = (this.state.user.userTag) ? (this.state.user.userTag.substring(1)) : (this.state.user.userTag);
     return (
-      <div> 
+      <div className="App-container"> 
         <br/>
         <h1 className="u-textCenter">edit profile</h1> 
         <h2 className="EditProfile-heading" ><span className="u-textCenter EditProfile-highlightPurple" > &nbsp;&nbsp;click to change your icon!&nbsp;&nbsp; </span></h2>
