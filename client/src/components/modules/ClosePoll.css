@@ -12,7 +12,7 @@
     color: black;
 
     margin: 20px 5px 5px 5px;
-    padding: 6px 14px;
+    padding: var(--m);
     outline: none;
 }
 
@@ -64,4 +64,70 @@
 
 .ClosePoll-no:hover {
   border: var(--red) 2px solid;
+}
+
+.ClosePoll-buttons
+{
+  padding: var(--xs) var(--xl);
+}
+
+.ClosePoll-input,
+.ClosePoll-submit,
+.ClosePoll-close
+{
+  font-size: 14px;
+  margin-top: var(--s);
+  padding: var(--s) var(--m);
+}
+
+.ClosePoll-input {
+  flex-grow: 1;
+  color: var(--darkbrown);
+  border: rgb(224, 187, 73) 2px solid;
+  border-radius: var(--s) 0 0 var(--s);
+  transition: box-shadow 0.1s;
+  background-color: #ffd966ff;
+}
+
+.ClosePoll-input:focus-within 
+{
+  outline: none;
+  box-shadow: 0 0 0 var(--xs) #ffd966ff;
+}
+
+.ClosePoll-submit {
+  color: #ffd966ff;
+  border: var(--deepgrey) 2px solid;
+  border-radius: 0 var(--s) var(--s) 0;
+  background-color: var(--deepgrey);
+  transition: color 0.1s, background 0.1s;
+  outline:none;
+}
+
+.ClosePoll-submit:hover {
+  border-color: var(--blackblack);
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+
+  cursor: pointer;
+}
+
+.ClosePoll-close {
+  color: white;
+  border: var(--tag-red) 2px solid;
+  border-radius: var(--s);
+  background-color: var(--tag-red);
+  transition: color 0.1s, background 0.1s;
+  outline:none;
+  margin-left: var(--s);
+}
+
+.ClosePoll-close:hover {
+  border-color: var(--red);
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+
+  cursor: pointer;
 }

@@ -122,3 +122,54 @@
     padding: var(--l);
     outline: none;
 }
+
+.Poll-decContainer
+{
+    margin-top: var(--l);
+    padding: var(--s) var(--xxl);
+    background-color: #ffd966ff;
+    border-radius: var(--m);
+
+    align-items: center;
+    justify-content: center;
+}
+
+.Poll-box
+{
+    flex-basis: 0;
+    flex-grow: 2;
+}
+
+.Poll-pfpbox
+{
+    flex-basis: 0;
+    flex-grow: 1;
+}
+
+.Poll-subbox
+{
+    color: var(--darkbrown);
+    padding: var(--s);
+
+    align-items: center;
+    justify-content: center;
+}
+
+.Poll-dec
+{
+    justify-content: flex-center;
+    background-color: var(--deepgrey);
+    color: #ffd966ff;
+    border-radius: var(--s);
+    margin: var(--s);
+}
+
+.Poll-dectext
+{
+    display: inline-block;
+}
+
+.Poll-pfp
+{
+    border-radius: 50%;
+}
