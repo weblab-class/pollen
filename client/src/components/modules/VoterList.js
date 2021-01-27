@@ -38,12 +38,13 @@ class VoterList extends Component
         for (const user_id in this.props.votes)
         {
           const userinfo = this.props.user_info[user_id]
-          const usertag = userinfo?.tag || '@'
+          const usertag = userinfo?.tag || '@';
+          const userpfp = userinfo?.picture_link;
           let votes = this.props.votes[user_id].sort((optA, optB)=>{
             return optionsMap.get(optA).index - optionsMap.get(optB).index;
           })
           votes = votes.map(opt => optionsMap.get(opt).text);
-          voterCardList.push((<VoterCard key={i} user={usertag} votes={votes} />));
+          voterCardList.push((<VoterCard key={i} pfp={userpfp} user={usertag} votes={votes} />));
           i++;
         }
 

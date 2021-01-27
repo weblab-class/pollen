@@ -24,8 +24,13 @@ class VoterCard extends Component
 
       return (
         <div className="VoterCard-container">
-            <div className="VoterCard-name u-bold"> {this.props.user} </div>
-            {voteList}
+            <img className="VoterCard-pfp" 
+                                src={this.props.pfp} alt="bee" 
+                                width="50px" height="50px" />
+            <div>
+              <div className="VoterCard-name u-bold"> {this.props.user} </div>
+              {voteList}
+            </div>
         </div>
       );
   }

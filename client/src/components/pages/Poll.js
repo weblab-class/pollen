@@ -101,8 +101,6 @@ class Poll extends Component
         }
       }
 
-      console.log("helloooooo")
-
       if (newId)
       {
         get("/api/user/info", { id: data.id} ).then((userObj) =>

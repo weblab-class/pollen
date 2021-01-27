@@ -1,12 +1,21 @@
 .VoterCard-container
 {
+    display: flex;
     margin: var(--xs);
     padding: var(--m) var(--l);
 
     background-color: white;
 }
 
+.VoterCard-pfp
+{
+    flex-basis: 0;
+    flex-grow: 1;
+}
+
 .VoterCard-name
 {
+    flex-basis: 0;
+    flex-grow: 2;
     margin-bottom: var(--xs);
 }
