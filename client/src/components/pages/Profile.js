@@ -86,8 +86,8 @@ class Profile extends Component {
                         <p className="Profile-username">{this.state.user.userTag}</p>
                         <div className="Profile-sidebuttons u-flexColumn">
                             <div className="Profile-subTop">
-                                <div className="u-morepadding" onClick={this.viewMyPolls} >my polls</div>
-                                <div className="u-morepadding" onClick={this.viewShared} >shared with me</div>
+                                <div className="Profile-option u-morepadding u-pointer" onClick={this.viewMyPolls} >my polls</div>
+                                <div className="Profile-option u-morepadding u-pointer" onClick={this.viewShared} >shared with me</div>
                             </div>
                             <div className="Profile-subBot">
                                 <button
@@ -98,7 +98,6 @@ class Profile extends Component {
                                 <button
                                     type="submit"
                                     value="Edit Profile"
-                                    // onClick={this.createPoll}
                                     onClick={() => {window.location.href = "/profile/edit";}}
                                     className="Profile-button u-pointer"> &nbsp;&nbsp;&nbsp;edit profile&nbsp;&nbsp;&nbsp; </button>
                             </div>

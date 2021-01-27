@@ -74,3 +74,7 @@
 {
     padding-left: var(--s);
 }
+
+.Profile-option:hover {
+    color: #525252;
+}
