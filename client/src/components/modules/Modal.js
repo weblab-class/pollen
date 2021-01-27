@@ -103,9 +103,10 @@ class Modal extends Component
                     value="Add New Option"
                     onClick={this.handleSubmit}
                     className="Modal-submit u-pointer"
-                > create a poll </button>
+                > Create poll </button>
                 <button className="Modal-close" onClick={this.props.closeCreator}>Close</button>
             </div>
+            
         </>
       );
   }

@@ -43,9 +43,9 @@ class Grid extends Component {
             }
 
         } else {
-            pollsList = (this.props.view === "my polls") ?
-              (<div className="Profile-view">No polls yet! Why not create one?</div>) :
-              (<div className="Profile-view">No shared polls yet! <em>pollen</em> is better when you buzz with friends ;)</div>)
+            pollsList = (this.props.view === "my polls") ? 
+              (<div>No polls yet! Why not create one?</div>) : 
+              (<div>No shared polls yet! <em>pollen</em> is better when you buzz with friends ; )</div>)
         }
         return (
             <div className="Grid-container">{pollsList}</div>

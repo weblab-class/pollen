@@ -85,8 +85,8 @@ class Profile extends Component {
                         <p className="Profile-username">{this.state.user.userTag}</p>
                         <div className="Profile-sidebuttons u-flexColumn">
                             <div className="Profile-subTop">
-                                <div className="u-morepadding" onClick={this.viewMyPolls} >my polls</div>
-                                <div className="u-morepadding" onClick={this.viewShared} >shared with me</div>
+                                <div className="u-morepadding u-pointer" onClick={this.viewMyPolls} >my polls</div>
+                                <div className="u-morepadding u-pointer" onClick={this.viewShared} >shared with me</div>
                             </div>
                             <div className="Profile-subBot">
                                 <button
