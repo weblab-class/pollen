@@ -67,9 +67,10 @@ class Profile extends Component {
     }
 
     render() {
-        console.log(this.state.user);
+//        console.log(this.state.user);
         if (!this.state.show_create)
         {
+            console.log("PICTURE", this.state.user.picture_link)
             const pfpborder = {
                 border: this.state.user.border_color + " 2px dashed", 
             };
