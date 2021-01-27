@@ -31,7 +31,7 @@ class PollCard extends Component {
                 _id: props._id
               },
             owner: {
-                name: "",
+                name: '',
             }
         };
     }
@@ -46,6 +46,11 @@ class PollCard extends Component {
             this.setState({
                 owner: userObj,
             });
+            const poll_owners = localStorage.getItem('pollOwners');
+            const owner_set = poll_owners ? JSON.parse(poll_owners) : {};
+            owner_set[this.props._id]=userObj.name;
+            localStorage.setItem('pollOwners', JSON.stringify(owner_set));
+
         });
     }
 
@@ -54,6 +59,24 @@ class PollCard extends Component {
         if(!poll){
           return (null);
         }
+        if(poll?.deleted){
+          const deleted_polls = localStorage.getItem('deletedPolls');
+          const deleted_set = deleted_polls ? JSON.parse(deleted_polls) : {};
+          deleted_set[this.props._id]=0;
+          localStorage.setItem('deletedPolls', JSON.stringify(deleted_set));
+
+          console.log("LOCALSTORAGE", localStorage.getItem('deletedPolls'))
+          return (null);
+        }
+        let ownerName = this.state.owner.name || '';
+        if(ownerName.length==0){
+          const poll_owners = localStorage.getItem('pollOwners');
+          const owner_set = poll_owners ? JSON.parse(poll_owners) : {};
+          if(this.props._id in owner_set)
+            ownerName = owner_set[this.props._id]
+        }
+
+
         let statusTag = poll.open ?
             (<div className="PollCard-tag" style={{backgroundColor: "#bbd059ff"}} >open</div>) :
             (<div className="PollCard-tag" style={{backgroundColor: "#e06666ff"}} >closed</div>);
@@ -74,28 +97,12 @@ class PollCard extends Component {
 
         const pollLink = '/poll/' + poll._id;
 
-        if(poll?.deleted){
-          const deleted_polls = localStorage.getItem('deletedPolls');
-          if(!deleted_polls){
-            const deleted_set = {};
-            deleted_set[this.props._id]=0;
-            localStorage.setItem('deletedPolls', JSON.stringify(deleted_set));
-          }
-          else{
-            const deleted_set = JSON.parse(deleted_polls);
-            deleted_set[this.props._id]=0;
-            localStorage.setItem('deletedPolls', JSON.stringify(deleted_set));
-          }
-          console.log("LOCALSTORAGE", localStorage.getItem('deletedPolls'))
-          return (null);
-        }
-
         return (
               <div className="PollCard-container"
                 onClick={() => {window.location.href = "/poll/" + poll._id;}}
                 style={{borderColor: cardColor}}>
                 <div className="PollCard-namebanner u-textCenter" style={{backgroundColor: cardColor}}>
-                    {this.state.owner.name}
+                    {ownerName}
                 </div>
                 <div className="PollCard-body">
                         <div className="PollCard-picContainer">

@@ -25,7 +25,7 @@ class Profile extends Component {
                 border_color: "#82CCB5",
             },
             show_create: false,
-            view: "my polls", // either "my polls" or "shared with me"
+            view: sessionStorage.getItem("view") || "my polls", // either "my polls" or "shared with me"
         }
     }
 
@@ -43,12 +43,14 @@ class Profile extends Component {
         this.setState({
             view: "my polls",
         });
+        sessionStorage.setItem("view", "my polls");
     }
 
     viewShared = () => {
         this.setState({
             view: "shared with me",
         });
+        sessionStorage.setItem("view", "shared with me");
     }
 
     createPoll = (event) =>
@@ -72,14 +74,14 @@ class Profile extends Component {
         {
             console.log("PICTURE", this.state.user.picture_link)
             const pfpborder = {
-                border: this.state.user.border_color + " 2px dashed", 
+                border: this.state.user.border_color + " 2px dashed",
             };
             return (
                 <div className="App-container">
                 <div className="Profile-container">
                     <div className="Profile-sidebar">
-                        <img className="Profile-pfp" 
-                                src={this.state.user.picture_link} alt="bee" 
+                        <img className="Profile-pfp"
+                                src={this.state.user.picture_link} alt="bee"
                                 style={pfpborder}
                                 width="120px" height="120px" />
                         <h2 className="Profile-displayname">{this.state.user.displayName}</h2>
