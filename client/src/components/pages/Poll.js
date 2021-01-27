@@ -272,6 +272,7 @@ class Poll extends Component
                         options={this.state.poll.options || []}
                         tags={this.state.poll.tags}
                         tagColors={this.props.tagColors}
+                        votes={this.state.poll.votes}
                         isOwner = {isOwner}/>
 
                 <div className="u-textCenter">

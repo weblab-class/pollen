@@ -17,6 +17,7 @@ import "./Board.css";
     this.props.tags
     this.props.tagColors
     this.props.isOwner
+    this.props.votes
 */
 class Board extends Component
 {
@@ -27,30 +28,59 @@ class Board extends Component
 
   render()
   {
-        let optionsList = this.props.options.map((opt) =>
-        {
-            return <Option handleAddVote={this.props.handleAddVote} 
-                            handleRemoveVote={this.props.handleRemoveVote}
-                                userVoteIds={this.props.userVoteIds}
-                                poll_id={this.props.poll_id}
-                                _id={opt._id} 
-                                key={"Option#" + opt._id} 
-                                text={opt.text} />
-        });
+    let option_map = {};
+    for (let i = 0; i < this.props.options.length; i++)
+    {
+      const opt_id = this.props.options[i]._id;
+      option_map[opt_id] = 0;
+    }
 
-        return (
-            <div className="Board-container">
-                <div>
-                    <Question content={this.props.question}
-                                tags={this.props.tags}
-                                tagColors={this.props.tagColors} 
-                                isOwner={this.props.isOwner}/>
-                </div>
-                <div className="Board-optionsContainer">
-                    {optionsList}
-                </div>
+    console.log("VOTESSSSSS", this.props.votes)
+    for (const userId in this.props.votes)
+    {
+        let user_options = this.props.votes[userId];
+        for (const option_id of user_options)
+        {
+            if (option_id in option_map)
+            {
+                option_map[option_id]++;
+            }
+            else
+            {
+                console.log("err");
+            }   
+        }
+    }
+
+    let optionsList = [];
+    for (let i = 0; i < this.props.options.length; i++)
+    {
+        let opt = this.props.options[i];
+        let num_votes = option_map[opt._id];
+
+        optionsList.push(<Option handleAddVote={this.props.handleAddVote} 
+                                    handleRemoveVote={this.props.handleRemoveVote}
+                                    userVoteIds={this.props.userVoteIds}
+                                    poll_id={this.props.poll_id}
+                                    _id={opt._id} 
+                                    key={"Option#" + opt._id} 
+                                    text={opt.text}
+                                    nvotes={num_votes} />);
+    }
+
+    return (
+        <div className="Board-container">
+            <div>
+                <Question content={this.props.question}
+                            tags={this.props.tags}
+                            tagColors={this.props.tagColors} 
+                            isOwner={this.props.isOwner}/>
             </div>
-        );
+            <div className="Board-optionsContainer">
+                {optionsList}
+            </div>
+        </div>
+    );
   }
 }
 

@@ -44,6 +44,7 @@
     background-color: #ffd966ff;
     /* flex: 0 42%; */
     flex: 0 25%;
+    justify-content: space-between;
 }
 
 .Board-questionContent
@@ -60,11 +61,24 @@
 
 .Board-optionContent
 {
-    flex-grow: 10;
+    flex-grow: 5;
     flex-basis: 0;
     color: var(--darkbrown);
     font-size: 20px;
-    margin: var(--s) 0 0;
+    margin: var(--m);
+}
+
+.Board-voteContainer
+{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.Board-votes
+{
+    color: var(--darkbrown);
+    font-size: 10px;
+    justify-content: flex-end;
 }
 
 .Board-tag {

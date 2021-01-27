@@ -12,6 +12,7 @@ import "./Option.css";
     this.props.handleAddVote
     this.props.handleRemoveVote
     this.props.userVoteIds
+    this.props.nvotes
 
 */
 class Option extends Component
@@ -54,7 +55,10 @@ class Option extends Component
     }
 
       return ( // removed u-flex
-        <div className="Board-optionBox u-textCenter">
+        <div className="u-flexColumn Board-optionBox u-textCenter">
+          <div className="Board-voteContainer">
+            <div className="Board-votes">{this.props.nvotes + " votes"} </div>
+          </div>
           <div className="Board-optionContent">{this.props.text}</div>
           {votebutton}
         </div>);

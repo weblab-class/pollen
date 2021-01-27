@@ -9,7 +9,7 @@
     font-weight: 300;
     color: white;
 
-    margin: 2px 2px 2px 0px;
+    margin: 0px var(--l);
     padding: 6px 14px;
     outline: none;
 
