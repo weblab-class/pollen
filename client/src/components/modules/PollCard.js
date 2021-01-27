@@ -4,6 +4,7 @@ import Poll from "../pages/Poll.js";
 import "./PollCard.css";
 import "../../utilities.css";
 import { get, post } from "../../utilities.js";
+import sample from "./bee_food.svg";
 
 /**
  * Proptypes
@@ -78,7 +79,16 @@ class PollCard extends Component {
                     {this.state.owner.name}
                 </div>
                 <div className="PollCard-body">
-                    {statusTag}
+                        <div className="PollCard-picContainer">
+                            <img className="Profile-pfp" 
+                                        src={sample} alt="bee" 
+                                        width="100px" height="100px" />
+                        </div>
+                    <div>
+                        <div className="PollCard-status">
+                            {statusTag}
+                        </div>
+                    </div>
                     <p className="PollCard-question">{poll.question}</p>
                     {tagsList}
 

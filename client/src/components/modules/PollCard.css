@@ -78,3 +78,16 @@ a {
   color: inherit;
   text-decoration: inherit;
 }
+
+.PollCard-picContainer
+{
+    display: inline;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.PollCard-status
+{
+    display: flex;
+    justify-content: space-between;
+}
