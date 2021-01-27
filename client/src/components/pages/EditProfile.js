@@ -68,6 +68,7 @@ class EditProfile extends Component {
     } else {
       pfpList = <div>no icons available :(</div>;
     }
+    let placeholderBox = (this.state.user.userTag) ? (this.state.user.userTag.substring(1)) : (this.state.user.userTag);
     return (
       <div> 
         <br/>
@@ -84,7 +85,7 @@ class EditProfile extends Component {
         <div className="u-flex" style={{justifyContent: "center"}}>
             <input
                 type="text"
-                placeholder="bobthebee"
+                placeholder={placeholderBox}
                 value={this.state.usernameBox}
                 onChange={this.handleTypingUsername}
                 className="Modal-input"
