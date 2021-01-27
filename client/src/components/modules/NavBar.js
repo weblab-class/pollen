@@ -17,6 +17,16 @@ class NavBar extends Component {
   }
 
   render() {
+    const url_path = window.location.pathname;
+    if(url_path == '/' || url_path == '/welcome'){}
+    else{
+      if(sessionStorage.getItem("LoggedIn") !== "true"){
+        sessionStorage.setItem("redirect", url_path)
+        window.location.href = '/'
+        alert("PLEASE LOGIN")
+      }
+    }
+
     return (
       <nav className="NavBar-container">
 
@@ -41,7 +51,7 @@ class NavBar extends Component {
           {/* <Link to="/chat/" className="NavBar-link">
             Chat
           </Link> */}
-          {this.props.userId ? (
+          { sessionStorage.getItem("LoggedIn") === "true" ? (
             <GoogleLogout
               clientId={GOOGLE_CLIENT_ID}
               buttonText="logout"
@@ -53,11 +63,14 @@ class NavBar extends Component {
             <GoogleLogin
               clientId={GOOGLE_CLIENT_ID}
               buttonText="login"
-              onSuccess={this.props.handleLogin}
-              onFailure={(err) => console.log(err)}
+              onSuccess={this.props.handleLogin(sessionStorage.getItem("redirect"))}
+              onFailure={console.log}
               className="NavBar-link NavBar-login"
             />
           )}
+
+
+
         </div>
 
       </nav>

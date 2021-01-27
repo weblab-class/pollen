@@ -69,22 +69,24 @@ class App extends Component {
     });
   }
 
-  handleLogin = (res) => {
-    console.log(`Logged in as ${res.profileObj.name}`);
-    const userToken = res.tokenObj.id_token;
-    post("/api/login", { token: userToken}).then((user) => {
-      console.log("Posted to login, response:", user)
-
-      this.setState({ userId: user._id });
-
-      console.log("USERID",this.state.userId)
-
-      window.location.href = '/profile'
-      post("/api/initsocket", { socketid: socket.id });
-    });
-  };
+  handleLogin = (redirect) => {
+    return (res) => {
+      console.log(`Logged in as ${res.profileObj.name}`);
+      const userToken = res.tokenObj.id_token;
+      post("/api/login", { token: userToken}).then((user) => {
+        sessionStorage.setItem("LoggedIn", "true");
+        console.log("Posted to login, response:", user)
+        this.setState({ userId: user._id });
+        console.log("USERID",this.state.userId)
+        console.log("REDIRECT", redirect)
+        window.location.href = redirect || '/profile'
+        post("/api/initsocket", { socketid: socket.id });
+      });
+    };
+  }
 
   handleLogout = () => {
+    sessionStorage.setItem("LoggedIn", "false");
     this.setState({ userId: undefined });
     window.location.href = '/'
     post("/api/logout");
