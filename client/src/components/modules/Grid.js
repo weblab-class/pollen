@@ -29,7 +29,7 @@ class Grid extends Component {
         if (hasPolls) {
             pollsList = []
             for (let index in userPolls){
-              const pollObj = userPolls[index]
+              const pollObj = userPolls[index];
 
               if(pollObj.deleted)
                 continue;
