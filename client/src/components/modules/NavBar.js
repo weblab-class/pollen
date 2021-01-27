@@ -17,10 +17,10 @@ class NavBar extends Component {
   }
 
   render() {
-    // const url_path = window.location.pathname;
+    const url_path = window.location.pathname;
     // if(url_path == '/' || url_path == '/welcome'){}
     // else{
-    //   if(!this.props.userId && sessionStorage.getItem("LoggedIn") !== "true"){
+    //   if(!(this.props.userId || sessionStorage.getItem("LoggedIn") === "true")){
     //     this.props.handleLogin(url_path)
     //   }
     // }
@@ -61,7 +61,7 @@ class NavBar extends Component {
             <GoogleLogin
               clientId={GOOGLE_CLIENT_ID}
               buttonText="login"
-              onSuccess={this.props.handleLogin()}
+              onSuccess={this.props.handleLogin(url_path)}
               onFailure={console.log}
               className="NavBar-link NavBar-login"
             />

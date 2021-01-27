@@ -62,7 +62,7 @@ class App extends Component {
   componentDidMount() {
     get("/api/user/self").then((user) => {
       if (user._id) {
-        console.log(user._id)
+        //console.log(user._id)
         // they are registed in the database, and currently logged in.
         this.setState({ userId: user._id });
       }
@@ -71,15 +71,12 @@ class App extends Component {
 
   handleLogin = (redirect) => {
     return (res) => {
-      console.log(`Logged in as ${res.profileObj.name}`);
+      //console.log(`Logged in as ${res.profileObj.name}`);
       const userToken = res.tokenObj.id_token;
       post("/api/login", { token: userToken}).then((user) => {
-        sessionStorage.setItem("LoggedIn", "true");
-        console.log("Posted to login, response:", user)
+        // sessionStorage.setItem("LoggedIn", "true");
         this.setState({ userId: user._id });
-        console.log("USERID",this.state.userId)
-        console.log("REDIRECT", redirect)
-        window.location.href = redirect || '/profile'
+        window.location.href = redirect == '/' ? '/profile' : redirect;
         post("/api/initsocket", { socketid: socket.id });
       });
     };
@@ -101,7 +98,7 @@ class App extends Component {
           handleLogout={this.handleLogout}
         />
           <Router>
-            <LandingPage path="/" handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
+            <LandingPage path="/"/>
             <Poll tagColors={tagColors} userId={this.state.userId} path="/poll/:_id"/>
             <Profile tagColors={tagColors} tagIcons={tagIcons} userId={this.state.userId} path="/profile"/>
             <EditProfile beeIcons={beeIcons} userId={this.state.userId} path="/profile/edit" />

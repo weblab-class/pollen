@@ -15,10 +15,12 @@ Gone are the days of joining a video call with your friends and spending half an
 Decision-making dread is the bane of your friend group's virtual hangouts, and you know it. We made *pollen* to quell those qualms. By turning polling into its own enjoyable mini-activity rather than a necessary evil every time your friends want to watch a movie together, we're intending to make indecision obsolete.
 
 ## Features
+- Ability to create, share, close, and delete polls
 - Ability to vote, and unvote, for multiple options
 - Ability to add your own option if you're not satisfied with the available choices
 - Ability to see everyone's votes, because anonymity and secrecy have no place in casual settings
-- At-a-glance grid view of all your polls, with information about their tags and number of votes and options
+- At-a-glance grid view of all your polls and the polls shared with you, with information about their tags and number of votes and options
+- Live updating for voting and unvoting, adding options, closing, and deleting polls
 - Ability to add one or more tags to categorize your poll (e.g. food, travel, games)
 - Color-coordination by tag
 - Irresistably cute, bee-themed interface

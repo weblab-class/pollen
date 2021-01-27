@@ -25,7 +25,7 @@ class Grid extends Component {
 
         const user = this.props.user;
         let pollsList = null;
-        console.log(user);
+        //console.log(user);
         const userPolls = (this.props.view === "my polls") ? (user?.myPolls || []) : (user?.sharedPolls || [])
         // const userPolls = user?.myPolls || [];
         const hasPolls = userPolls.length !== 0;

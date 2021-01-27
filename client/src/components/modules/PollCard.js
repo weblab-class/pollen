@@ -65,7 +65,7 @@ class PollCard extends Component {
           deleted_set[this.props._id]=0;
           localStorage.setItem('deletedPolls', JSON.stringify(deleted_set));
 
-          console.log("LOCALSTORAGE", localStorage.getItem('deletedPolls'))
+          //console.log("LOCALSTORAGE", localStorage.getItem('deletedPolls'))
           return (null);
         }
         let ownerName = this.state.owner.name || '';
