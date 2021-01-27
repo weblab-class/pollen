@@ -300,7 +300,7 @@ class Poll extends Component
       }
 
         return (
-          <div >
+          <div style={{maxWidth: "1200px", margin: "auto"}}>
             <div className="Poll-container">
 
             <div className="Poll-head">
