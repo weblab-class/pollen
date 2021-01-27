@@ -11,6 +11,7 @@ import "../../utilities.css";
     props:
     this.props.userId
     this.props.tagColors
+    this.props.tagIcons
 */
 
 class Profile extends Component {
@@ -20,6 +21,8 @@ class Profile extends Component {
             user: {
                 myPolls: [],
                 sharedPolls: [],
+                picture_link: "/images/pfp/defaultpfp.svg",
+                border_color: "#82CCB5",
             },
             show_create: false,
             view: "my polls", // either "my polls" or "shared with me"
@@ -67,11 +70,17 @@ class Profile extends Component {
         console.log(this.state.user);
         if (!this.state.show_create)
         {
+            const pfpborder = {
+                border: this.state.user.border_color + " 2px dashed", 
+            };
             return (
                 <div className="App-container">
                 <div className="Profile-container">
                     <div className="Profile-sidebar">
-                        <img className="Profile-pfp" src='/images/pfp/defaultpfp.svg' alt="bee" width="100px" height="100px" />
+                        <img className="Profile-pfp" 
+                                src={this.state.user.picture_link} alt="bee" 
+                                style={pfpborder}
+                                width="120px" height="120px" />
                         <h2 className="Profile-displayname">{this.state.user.displayName}</h2>
                         <p className="Profile-username">{this.state.user.userTag}</p>
                         <div className="Profile-sidebuttons u-flexColumn">
@@ -96,8 +105,8 @@ class Profile extends Component {
                     </div>
 
                     <div>
-                        <h2>  {this.state.view}</h2>
-                        <Grid tagColors={this.props.tagColors} user={this.state.user} view={this.state.view} />
+                        <h2 className="Profile-view">  {this.state.view}</h2>
+                        <Grid tagColors={this.props.tagColors} tagIcons={this.props.tagIcons} user={this.state.user} view={this.state.view} />
                     </div>
                 </div>
                 </div>

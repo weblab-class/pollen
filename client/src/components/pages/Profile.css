@@ -68,5 +68,9 @@
 .Profile-pfp {
     border-radius: 50%;
     /* background-color: aliceblue; */
-    border: lightblue 2px dashed;
+}
+
+.Profile-view
+{
+    padding-left: var(--s);
 }

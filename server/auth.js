@@ -18,8 +18,8 @@ function verify(token) {
 }
 
 const glob = require("glob");
-let profilePics = ['/images/pfp/bee_pfp.png'];
-glob("server/public/images/pfp/*", {}, function (err, files) {
+let profilePics = ['/images/pfp/defaultpfp.svg'];
+glob("server/public/images/pfp/", {}, function (err, files) {
   const prefix = 'server/public'
   profilePics = files.map((file)=>{
     if(file.startsWith(prefix))
@@ -28,6 +28,8 @@ glob("server/public/images/pfp/*", {}, function (err, files) {
       return file;
   })
 })
+
+console.log(profilePics)
 
 const cute_colors = [
   "#877BB9",
@@ -47,7 +49,7 @@ const cute_colors = [
 function getOrCreateUser(user) {
   // the "sub" field means "subject", which is a unique identifier for each user
   return User.findOne({ googleID: user.sub }).then((existingUser) => {
-    console.log(existingUser)
+    console.log(profilePics)
     if (existingUser) return existingUser;
 
     const newUser = new User({

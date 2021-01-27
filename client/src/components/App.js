@@ -27,6 +27,14 @@ const tagColors = {
   "other": "#da9fc5ff"
 };
 
+const tagIcons = {
+  "food":"/images/pfp/bee_food.svg",
+  "travel":  "/images/pfp/bee_trav.svg",
+  "games": "/images/pfp/bee_games.svg",
+  "relationships":"/images/pfp/bee_family.svg",
+  "other":"/images/pfp/bee_random.svg",
+};
+
 const beeIcons = [
   "/images/pfp/defaultpfp.svg",
   "/images/pfp/pfp2.svg",
@@ -93,7 +101,7 @@ class App extends Component {
           <Router>
             <LandingPage path="/" handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
             <Poll tagColors={tagColors} userId={this.state.userId} path="/poll/:_id"/>
-            <Profile tagColors={tagColors} userId={this.state.userId} path="/profile"/>
+            <Profile tagColors={tagColors} tagIcons={tagIcons} userId={this.state.userId} path="/profile"/>
             <EditProfile beeIcons={beeIcons} userId={this.state.userId} path="/profile/edit" />
             <HowTo path="/welcome" />
             <NotFound default />

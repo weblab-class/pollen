@@ -10,6 +10,7 @@ import { get, post } from "../../utilities.js";
  * @param {string} _id
  * @param {number} last_visited
  * this.props.tagColors
+ * this.props.tagIcons
 */
 
 
