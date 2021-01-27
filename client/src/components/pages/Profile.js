@@ -4,6 +4,7 @@ import Modal from "../modules/Modal.js";
 
 import "../App.css";
 import "./Profile.css";
+import "./Poll.css";
 import { get, post } from "../../utilities.js";
 import "../../utilities.css";
 
@@ -73,7 +74,7 @@ class Profile extends Component {
 
         if (Object.keys(this.state.user).length === 0)
         {
-            return <></>;
+            return <div className="Poll-delete"> Please login to continue. </div>;
         }
         else
         {

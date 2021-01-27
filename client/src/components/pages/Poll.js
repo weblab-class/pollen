@@ -236,7 +236,7 @@ class Poll extends Component
   {
     if (Object.keys(this.state.user).length === 0)
     {
-      return <></>;
+      return <div className="Poll-delete"> Please login to continue. </div>;
     }
     else
     {
