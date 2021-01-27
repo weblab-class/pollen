@@ -126,7 +126,7 @@
 .Poll-decContainer
 {
     margin-top: var(--l);
-    padding: var(--s) var(--xxl);
+    padding: var(--m) var(--xxl);
     background-color: #ffd966ff;
     border-radius: var(--m);
 
