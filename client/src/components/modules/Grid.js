@@ -20,6 +20,9 @@ class Grid extends Component {
     }
 
     render() {
+        const deleted_polls_str = localStorage.getItem('deletedPolls');
+        const deleted_polls = deleted_polls_str ? JSON.parse(deleted_polls_str) : {}
+
         const user = this.props.user;
         let pollsList = null;
         console.log(user);
@@ -30,21 +33,22 @@ class Grid extends Component {
             pollsList = [];
             for(let index in userPolls){
               const pollObj = userPolls[index];
-              if(!pollObj.deleted) {
-                pollsList.push(
-                <PollCard
-                  tagColors={this.props.tagColors}
-                  tagIcons={this.props.tagIcons}
-                  _id={pollObj._id}
-                  last_visited={pollObj.last_visited}
-                  key={pollObj._id}/>);
-                console.log(pollsList);
-              }
+              if(pollObj._id in deleted_polls)
+                continue;
+
+              pollsList.push(
+              <PollCard
+                tagColors={this.props.tagColors}
+                tagIcons={this.props.tagIcons}
+                _id={pollObj._id}
+                last_visited={pollObj.last_visited}
+                key={pollObj._id}/>);
+
             }
 
         } else {
-            pollsList = (this.props.view === "my polls") ? 
-              (<div>No polls yet! Why not create one?</div>) : 
+            pollsList = (this.props.view === "my polls") ?
+              (<div>No polls yet! Why not create one?</div>) :
               (<div>No shared polls yet! <em>pollen</em> is better when you buzz with friends ; )</div>)
         }
         return (
