@@ -129,7 +129,7 @@ class Poll extends Component
       }
     });
 
-    socket.on("deletion", (data) =>
+    socket.on("pollend", (data) =>
     {
       this.setState({
         poll: data.poll,
@@ -300,7 +300,7 @@ class Poll extends Component
       }
 
         return (
-          <div style={{maxWidth: "1200px", margin: "auto"}}>
+          <div className="App-container">
             <div className="Poll-container">
 
             <div className="Poll-head">

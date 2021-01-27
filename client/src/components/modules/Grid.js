@@ -29,31 +29,39 @@ class Grid extends Component {
         const userPolls = (this.props.view === "my polls") ? (user?.myPolls || []) : (user?.sharedPolls || [])
         // const userPolls = user?.myPolls || [];
         const hasPolls = userPolls.length !== 0;
+        let hasexistingpolls = false;
         if (hasPolls) {
             pollsList = [];
-            for(let index in userPolls){
+            for(let index in userPolls)
+            {
               const pollObj = userPolls[index];
               if(pollObj._id in deleted_polls)
+              {
                 continue;
-
-              pollsList.push(
-              <PollCard
-                tagColors={this.props.tagColors}
-                tagIcons={this.props.tagIcons}
-                _id={pollObj._id}
-                last_visited={pollObj.last_visited}
-                key={pollObj._id}/>);
-
+              }
+              else
+              {
+                  hasexistingpolls = true;
+                    pollsList.push(
+                    <PollCard
+                      tagColors={this.props.tagColors}
+                      tagIcons={this.props.tagIcons}
+                      _id={pollObj._id}
+                      last_visited={pollObj.last_visited}
+                      key={pollObj._id}/>);
+              }
             }
+        } 
 
-        } else {
+        if (!hasexistingpolls)
+        {
             pollsList = (this.props.view === "my polls") ?
               (<div>No polls yet! Why not create one?</div>) :
               (<div>No shared polls yet! <em>pollen</em> is better when you buzz with friends ; )</div>)
         }
         return (
             <div className="Grid-container">{pollsList}</div>
-        )
+        );
     }
 }
 

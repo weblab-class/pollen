@@ -19,6 +19,8 @@ class EditProfile extends Component {
       user: {},
       usernameBox: "",
       pfp_loc: "/images/pfp/defaultpfp.svg",
+      changedPic: false,
+      changedName: false,
     }
   }
 
@@ -37,7 +39,9 @@ class EditProfile extends Component {
       const userObj = await post("/api/user/self", body);
       this.setState({
         user: userObj,
+        changedPic: true,
       });
+      console.log("pfp set");
     }
   }
 
@@ -53,6 +57,7 @@ class EditProfile extends Component {
     const userObj = await post("/api/user/self", body);
     this.setState({
       user: userObj,
+      changedName: true,
     });
   }
 
@@ -70,18 +75,17 @@ class EditProfile extends Component {
     }
     let placeholderBox = (this.state.user.userTag) ? (this.state.user.userTag.substring(1)) : (this.state.user.userTag);
     return (
-      <div> 
+      <div className="App-container"> 
         <br/>
         <h1 className="u-textCenter">edit profile</h1> 
-        {/* so basically show a row of circle pfps and when they click to choose make the circle bigger */}
-        <br/>
-        <h2 className="EditProfile-heading" ><span className="u-textCenter EditProfile-highlightPurple" > &nbsp;&nbsp;pick a new profile icon!&nbsp;&nbsp; </span></h2>
+        <h2 className="EditProfile-heading" ><span className="u-textCenter EditProfile-highlightPurple" > &nbsp;&nbsp;click to change your icon!&nbsp;&nbsp; </span></h2>
+        {this.state.changedPic ? (<div className="u-textCenter">profile icon changed!<br/></div>) : (<div></div>)}
         <div className="EditProfile-pfpContainer">
           {pfpList}
         </div>
         <br/>
         <h2 className="EditProfile-heading" ><span className="u-textCenter EditProfile-highlightPurple" > &nbsp;&nbsp;change your username:&nbsp;&nbsp; </span></h2>
-
+        {this.state.changedName ? (<div className="u-textCenter">username changed!</div>) : (<div></div>)}
         <div className="u-flex" style={{justifyContent: "center"}}>
             <input
                 type="text"

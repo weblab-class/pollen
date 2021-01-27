@@ -29,7 +29,7 @@
 
 .EditProfile-highlightPurple 
 {
-  margin-bottom: var(--m);
+  /* margin-bottom: var(--s); */
   padding: var(--xs);
   border-radius: var(--s);
   background-color: #d9cfdb;
@@ -38,7 +38,7 @@
 }
 
 .EditProfile-highlightBlue {
-  margin-bottom: var(--m);
+  /* margin-bottom: var(--s); */
   padding: var(--xs);
   border-radius: var(--s);
   background-color: #ced6e2;
@@ -47,7 +47,7 @@
 }
 
 .EditProfile-highlightPink {
-  margin-bottom: var(--m);
+  /* margin-bottom: var(--s); */
   padding: var(--xs);
   border-radius: var(--s);
   background-color: #dac1d1;
@@ -56,7 +56,7 @@
 }
 
 .EditProfile-highlightGreen {
-  margin-bottom: var(--m);
+  /* margin-bottom: var(--s); */
   padding: var(--xs);
   border-radius: var(--s);
   background-color: #cfd6aa;
@@ -71,7 +71,7 @@
 }
 
 .EditProfile-highlightRed {
-  margin-bottom: var(--m);
+  /* margin-bottom: var(--s); */
   padding: var(--xs);
   border-radius: var(--s);
   background-color: #e4b9b9;

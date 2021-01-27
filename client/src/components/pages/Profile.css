@@ -63,6 +63,7 @@
     padding-right: var(--xl);
     text-align: center;
     width: 150px;
+    overflow-wrap: break-word;
     /* position: sticky; */
     /* background-color: lightgray; */
 }
@@ -74,7 +75,7 @@
 
 .Profile-view
 {
-    padding-left: var(--l);
+    padding-left: 42px;
 }
 
 .Profile-option:hover {
