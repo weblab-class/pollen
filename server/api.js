@@ -83,7 +83,7 @@ router.get("/poll/delete", async (req, res) => {
     if (activeViewer)
     {
       const dataObj = {id: user_id, poll: poll}; // id: person doing the action
-      socketManager.getSocketFromUserID(viewer_id).emit("deletion", dataObj);
+      socketManager.getSocketFromUserID(viewer_id).emit("pollend", dataObj);
     }
   }
 })
@@ -178,7 +178,32 @@ router.post("/poll", (req, res) => {
       delete req.body.deleted;
     }
     Poll.findOneAndUpdate({_id:req.body.id}, req.body, {new: true}, (err, doc)=>{
-      if(doc){
+      if(doc)
+      {
+        if (!doc.open)
+        {
+          let poll = doc;
+          let actives = socketManager.getAllConnectedUsers();
+          actives = actives.map((obj) => {return obj._id; });
+        
+          for (const viewer_id of poll.viewers)
+          {        
+            let activeViewer = false;
+            for (const active_id of actives)
+            {
+              if (viewer_id == active_id)
+              {
+                activeViewer = true;
+                break;
+              }
+            }
+            if (activeViewer)
+            {
+              const dataObj = {id: user_id, poll: poll}; // id: person doing the action
+              socketManager.getSocketFromUserID(viewer_id).emit("pollend", dataObj);
+            }
+          }
+        }
         res.send(doc)
       }
       else{

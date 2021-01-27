@@ -129,7 +129,7 @@ class Poll extends Component
       }
     });
 
-    socket.on("deletion", (data) =>
+    socket.on("pollend", (data) =>
     {
       this.setState({
         poll: data.poll,
