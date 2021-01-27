@@ -37,9 +37,11 @@ class Poll extends Component
         // user_votes: {}, // user tag to [option text]
         user: {},
         user_info: {},
-
+        
         owner_name: "",
         owner_tag: "",
+        picture_link: "/images/pfp/defaultpfp.svg",
+        border_color: "#82CCB5",
         share_show: false,
         delete_show: false,
         close_show: false,
@@ -84,6 +86,8 @@ class Poll extends Component
       owner_tag: ownerObj.tag,
       owner_name: ownerObj.name,
       user_info: user_info_map,
+      picture_link: ownerObj.picture_link,
+      border_color: ownerObj.border_color,
     });
 
     socket.on("message", (data) =>
@@ -216,6 +220,18 @@ class Poll extends Component
     window.location.href = '/profile';
   }
 
+  submitDecision = async (decision) =>
+  {
+    const body = {open: false, description: decision, id: this.state.poll._id};
+    const pollObj = await post("/api/poll/", body);
+
+    console.log(pollObj);
+    this.setState({
+      poll: pollObj,
+      close_show: false,
+    });
+  }
+
   render()
   {
     if (this.state.poll.deleted)
@@ -224,11 +240,39 @@ class Poll extends Component
     }
     else
     {
+      let decbox = null;
+      if (!this.state.poll.open)
+      {
+        const pfpborder = {
+          border: this.state.border_color + " 2px dashed", 
+        };
+
+        decbox = <div className="u-flex Poll-decContainer">
+                    <div className="Poll-pfpbox">
+                      <img className="Poll-pfp" 
+                                src={this.state.picture_link} alt="bee" 
+                                style={pfpborder}
+                                width="100px" height="100px" />
+                    </div>
+                    <div className="Poll-box">
+                        <div className = "u-flex Poll-subbox">
+                          <span className="u-bold">{this.state.owner_tag} </span>
+                          <span> 's Final Decision</span> 
+                        </div>
+                        <div className = "u-flex Poll-subbox Poll-dec">
+                            <span className="Poll-dectext">{this.state.poll.description}</span>
+                        </div>
+                    </div>
+                 </div>
+        
+
+      }
+      
       let isOwner = this.props.userId === this.state.poll.owner;
       let closePoll = null;
       if (this.state.close_show)
       {
-        closePoll = <ClosePoll closeClosePoll={this.closeClosePoll} user={this.state.user_info[this.props.userId]} />;
+        closePoll = <ClosePoll submitDecision={this.submitDecision} closeClosePoll={this.closeClosePoll} user={this.state.user_info[this.props.userId]} />;
       }
       else
       {
@@ -256,7 +300,7 @@ class Poll extends Component
       }
 
         return (
-          <div className="App-container">
+          <div >
             <div className="Poll-container">
 
             <div className="Poll-head">
@@ -265,12 +309,13 @@ class Poll extends Component
                       <span>'s poll</span>
               </div>
               <div className="Poll-buttonContainer">
-                {isOwner ? <button type="submit" value="Close Poll" onClick={this.showClosePoll} className="Poll-button u-pointer"> Close Poll </button> : null}
+                {(isOwner && this.state.poll.open) ? <button type="submit" value="Close Poll" onClick={this.showClosePoll} className="Poll-button u-pointer"> Close Poll </button> : null}
                 <button type="submit" value="Share Poll" onClick={this.showSharePoll} className="Poll-button u-pointer"> Share Poll </button>
                 {isOwner ? <div className="Poll-trash"><img src='/images/trash.svg' height="30px" onClick={this.showDeletePoll} /></div> : null}
               </div>
             </div>
 
+            {decbox}
             {shareModal}
             {closePoll}
             {deletePoll}
@@ -290,11 +335,12 @@ class Poll extends Component
                           tags={this.state.poll.tags}
                           tagColors={this.props.tagColors}
                           votes={this.state.poll.votes}
+                          open={this.state.poll.open}
                           isOwner = {isOwner}/>
-
+                {this.state.poll.open ?
                   <div className="u-textCenter">
                     <NewOption addNewOption={this.addNewOption} />
-                  </div>
+                  </div> : null}
 
                 </div>
 

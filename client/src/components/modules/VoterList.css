@@ -3,6 +3,8 @@
     margin-right: var(--m);
     padding: var(--xs) var(--m);
     overflow-wrap: break-word;
-    max-width: 15vw;
+    max-width: 20vw;
     /* margin-left: var(--xl); */
+    display: flex;
+    flex-direction: column;
 }

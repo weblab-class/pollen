@@ -1,8 +1,8 @@
 .VoterCard-container
 {
     display: flex;
-    margin: var(--xs);
-    padding: var(--m) var(--l);
+    margin: var(--m) var(--s);
+    /* padding: var(--m) var(--l); */
 
     background-color: white;
 }

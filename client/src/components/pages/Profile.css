@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 175px 1fr;
     grid-gap: 16px;
-    /* padding: 16px; */
+    padding: var(--l);
     margin: 0px;
     /* height: 400px; */
 }
@@ -57,10 +57,12 @@
 }
 
 .Profile-sidebar {
-    margin: 0px;
+    margin-left: var(--xl);
     padding-top: var(--l);
     padding-left: 0px;
+    padding-right: var(--xl);
     text-align: center;
+    width: 150px;
     /* position: sticky; */
     /* background-color: lightgray; */
 }
@@ -72,7 +74,7 @@
 
 .Profile-view
 {
-    padding-left: var(--s);
+    padding-left: var(--l);
 }
 
 .Profile-option:hover {

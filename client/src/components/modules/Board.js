@@ -65,6 +65,7 @@ class Board extends Component
                                     _id={opt._id} 
                                     key={"Option#" + opt._id} 
                                     text={opt.text}
+                                    open={this.props.open}
                                     nvotes={num_votes} />);
     }
 

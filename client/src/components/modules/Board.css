@@ -23,6 +23,8 @@
     background-color: white;
     /* width: 100%; */
     flex-grow: 1;
+    max-width: 75vw;
+    overflow-wrap: break-word;
 }
 
 .Board-optionsContainer {

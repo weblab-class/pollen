@@ -45,15 +45,17 @@ class Option extends Component
     }
 
     let votebutton = null;
-    if (voted)
+    if (this.props.open)
     {
-      votebutton = <button type="submit" value="Unvote" onClick={this.removeVote} className="Option-button Option-remove u-pointer"> Unvote </button>;
+      if (voted)
+      {
+        votebutton = <button type="submit" value="Unvote" onClick={this.removeVote} className="Option-button Option-remove u-pointer"> Unvote </button>;
+      }
+      else
+      { 
+        votebutton = <button type="submit" value="Vote" onClick={this.addVote} className="Option-button Option-add u-pointer"> Vote </button>;
+      }
     }
-    else
-    { 
-      votebutton = <button type="submit" value="Vote" onClick={this.addVote} className="Option-button Option-add u-pointer"> Vote </button>;
-    }
-
       return ( // removed u-flex
         <div className="u-flexColumn Board-optionBox u-textCenter">
           <div className="Board-voteContainer">

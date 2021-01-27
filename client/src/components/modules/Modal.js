@@ -89,6 +89,7 @@ class Modal extends Component
                     value={this.state.question}
                     onChange={this.handleQuestionChange}
                     className="Modal-input"
+                    style={{borderRadius: "var(--xs)"}}
                 />
             </div>
             <div className = "u-flex Modal-box">
@@ -103,8 +104,13 @@ class Modal extends Component
                     value="Add New Option"
                     onClick={this.handleSubmit}
                     className="Modal-submit u-pointer"
+                    style={{borderRadius: "var(--xs) 0 0 var(--xs)", marginRight: "1px"}}
                 > Create poll </button>
-                <button className="Modal-close" onClick={this.props.closeCreator}>Close</button>
+                <button 
+                    className="Modal-close" 
+                    onClick={this.props.closeCreator}
+                    style={{borderRadius: "0 var(--xs) var(--xs) 0", marginLeft: "1px"}}
+                > Close </button>
             </div>
             
         </>
