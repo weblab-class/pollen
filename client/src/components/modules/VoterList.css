@@ -1,7 +1,7 @@
 .VoterList-container
 {
     margin-right: var(--m);
-    padding: var(--xs) var(--xs);
+    padding: var(--xs) var(--m);
     overflow-wrap: break-word;
     max-width: 15vw;
     /* margin-left: var(--xl); */
