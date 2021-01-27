@@ -62,7 +62,7 @@ class Poll extends Component
       const opt_id = pollObj.options[i]._id;
       option_map[opt_id] = pollObj.options[i];
     }
-    console.log("user", user)
+
     let user_info_map = {}; // user id -> name and tag
     user_info_map[user._id] = {
       name: user.displayName,
@@ -200,9 +200,12 @@ class Poll extends Component
     });
   }
 
-  deletePoll = (event) =>
+  deletePollEndpoint = (event) =>
   {
-    console.log("ENDPOINT PLS")
+    const pollObj = await get("/api/poll/delete", {id: this.state.poll._id});
+    this.setState({
+      poll: pollObj,
+    });
   }
 
   render()
