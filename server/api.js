@@ -13,7 +13,7 @@ const shortid = require('shortid');
 // import models so we can interact with the database
 const User = require("./models/user");
 // debug only
-const aniID = '600686cc11557d00229c4578'
+const aniID = '6010e587aab4c63658c97ef3'
 
 const Poll = require("./models/poll");
 
@@ -53,31 +53,15 @@ router.get("/poll/delete", async (req, res) => {
   console.log("POLL DELETE")
   const user_id = req?.user?._id || aniID
   const poll_id = req.query.id
-  // Poll.deleteOne({_id:poll_id, owner:user_id}, function (err, doc) {
-  //   if(err){
-  //     return res.status(404).send(err);
-  //   }
-  //   console.log(err, doc)
-  //   return res.send("Deleted")
-  // });
   const poll = await Poll.findOne({_id:poll_id})
+  poll.deleted = true
   if(poll.owner == user_id){
-    res.send("Deleted")
+    res.send(poll)
   }
   else{
     res.send("Hey that's not yours")
   }
-
-  for(const user of poll.viewers){
-    User.findOne({_id:poll_id}).then((user) =>{
-
-
-    })
-  }
-
-
-  await poll.remove();
-
+  poll.save();
 })
 
 // |------------------------------|
@@ -169,6 +153,9 @@ router.post("/poll", (req, res) => {
     delete req.body.admin
     req.body.last_edited = (Date.now())/1000
     req.body.last_edited_by = user_id
+    if(req.body.deleted){
+      delete req.body.deleted;
+    }
     Poll.findOneAndUpdate({_id:req.body.id}, req.body, {new: true}, (err, doc)=>{
       if(doc){
         res.send(doc)
