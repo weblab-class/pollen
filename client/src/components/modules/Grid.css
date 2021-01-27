@@ -1,6 +1,6 @@
 .Grid-container {
     display: flex;
     flex-wrap: wrap;
-    max-width: 70vw;
+    max-width: 80vw;
     margin-left: var(--m);
 }
