@@ -51,6 +51,9 @@ class PollCard extends Component {
 
     render() {
         let poll = this.state.poll;
+        if(!poll){
+          return (null);
+        }
         let statusTag = poll.open ?
             (<div className="PollCard-tag" style={{backgroundColor: "#bbd059ff"}} >open</div>) :
             (<div className="PollCard-tag" style={{backgroundColor: "#e06666ff"}} >closed</div>);
@@ -71,6 +74,22 @@ class PollCard extends Component {
 
         const pollLink = '/poll/' + poll._id;
 
+        if(poll?.deleted){
+          const deleted_polls = localStorage.getItem('deletedPolls');
+          if(!deleted_polls){
+            const deleted_set = {};
+            deleted_set[this.props._id]=0;
+            localStorage.setItem('deletedPolls', JSON.stringify(deleted_set));
+          }
+          else{
+            const deleted_set = JSON.parse(deleted_polls);
+            deleted_set[this.props._id]=0;
+            localStorage.setItem('deletedPolls', JSON.stringify(deleted_set));
+          }
+          console.log("LOCALSTORAGE", localStorage.getItem('deletedPolls'))
+          return (null);
+        }
+
         return (
               <div className="PollCard-container"
                 onClick={() => {window.location.href = "/poll/" + poll._id;}}
@@ -80,8 +99,8 @@ class PollCard extends Component {
                 </div>
                 <div className="PollCard-body">
                         <div className="PollCard-picContainer">
-                            <img className="Profile-pfp" 
-                                        src={sample} alt="bee" 
+                            <img className="Profile-pfp"
+                                        src={sample} alt="bee"
                                         width="100px" height="100px" />
                         </div>
                     <div>
