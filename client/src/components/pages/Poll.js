@@ -200,7 +200,7 @@ class Poll extends Component
     });
   }
 
-  deletePollEndpoint = (event) =>
+  deletePollEndpoint = async (event) =>
   {
     const pollObj = await get("/api/poll/delete", {id: this.state.poll._id});
     this.setState({
